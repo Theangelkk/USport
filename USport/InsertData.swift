@@ -8,8 +8,24 @@
 import SwiftUI
 
 struct InsertData: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+    @State var nickname: String = ""
+    @State var weight: String = ""
+    @State var height: String = ""
+    @State var number_workout: String = ""
+    var body: some View{
+        NavigationView{
+            Form{
+                TextField("Nickname",text: $nickname)
+                TextField("Height",text: $height)
+                TextField("Weight", text: $weight)
+                TextField("Number of Workout", text: $number_workout)
+            }
+            .navigationBarTitle("Insert your data")
+            
+            
+           
+        }
+        
     }
 }
 
