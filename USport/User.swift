@@ -37,7 +37,7 @@ class User : ObservableObject
     
     func add_workout()
     {
-        self.workouts.append(Workout())
+        self.workouts.append(Workout(newValue_Day : Date(), newValue_Title: "", newValue_StartTime: 0, newValue_EndTime: 0, newValue_Intesity_Level : ""))
     }
     
     func get_n_workouts() -> Int
