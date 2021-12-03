@@ -15,6 +15,7 @@
 		650C7C84275A0C620096215D /* USportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650C7C83275A0C620096215D /* USportTests.swift */; };
 		650C7C8E275A0C620096215D /* USportUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650C7C8D275A0C620096215D /* USportUITests.swift */; };
 		650C7C90275A0C620096215D /* USportUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650C7C8F275A0C620096215D /* USportUITestsLaunchTests.swift */; };
+		65635FD3275A5EBC0076A9C8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65635FD2275A5EBC0076A9C8 /* User.swift */; };
 		6576E6AD275A14EB0022FD08 /* Sport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6576E6AC275A14EB0022FD08 /* Sport.swift */; };
 		6576E6AF275A16E60022FD08 /* Football.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6576E6AE275A16E60022FD08 /* Football.swift */; };
 		6576E6B1275A19340022FD08 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6576E6B0275A19340022FD08 /* Activity.swift */; };
@@ -54,6 +55,7 @@
 		650C7C89275A0C620096215D /* USportUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = USportUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		650C7C8D275A0C620096215D /* USportUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USportUITests.swift; sourceTree = "<group>"; };
 		650C7C8F275A0C620096215D /* USportUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USportUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		65635FD2275A5EBC0076A9C8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		6576E6AC275A14EB0022FD08 /* Sport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sport.swift; sourceTree = "<group>"; };
 		6576E6AE275A16E60022FD08 /* Football.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Football.swift; sourceTree = "<group>"; };
 		6576E6B0275A19340022FD08 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 				65F0EAFA275A533D00649843 /* Volleyball.swift */,
 				6576E6B0275A19340022FD08 /* Activity.swift */,
 				6576E6B2275A19EB0022FD08 /* Workout.swift */,
+				65635FD2275A5EBC0076A9C8 /* User.swift */,
 			);
 			path = USport;
 			sourceTree = "<group>";
@@ -295,6 +298,7 @@
 				65F0EAFD275A537F00649843 /* Tennis.swift in Sources */,
 				650C7C73275A0C5F0096215D /* USportApp.swift in Sources */,
 				6576E6B3275A19EB0022FD08 /* Workout.swift in Sources */,
+				65635FD3275A5EBC0076A9C8 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
