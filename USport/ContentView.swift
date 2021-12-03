@@ -7,7 +7,10 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct ContentView: View
+{
+    @EnvironmentObject var UserAPP : User
+    
     var body: some View {
         Text("Ciao sono Raffaele!!")
             .padding()
