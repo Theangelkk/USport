@@ -52,10 +52,12 @@ struct PreviewAPP: View {
                 showMainView = true
             }
         }
+    }
 }
 
 struct PreviewAPP_Previews: PreviewProvider {
-    static var previews: some View {
+    static var previews: some View
+    {
         PreviewAPP()
     }
 }
