@@ -8,8 +8,33 @@
 import SwiftUI
 
 struct EditWorkout: View {
+    @State private var workout: String = ""
+    private var day = ["Lunedi", "Martedi"]
+    @State private var daySelected = ""
+    @State private var start = Date()
+    @State private var end = Date()
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        GeometryReader{ geometry in
+            Form{
+                Section {
+                TextField("Workout", text: $workout)
+                    
+                Picker("day", selection: $daySelected){
+                    
+                        ForEach(day, id:\.self){
+                        
+                            Text($0)
+                        }
+                } .pickerStyle(.menu)
+                
+                    
+                
+                DatePicker("Start", selection: $start, displayedComponents: .hourAndMinute)
+                DatePicker("End", selection: $end, displayedComponents: .hourAndMinute)
+                }
+            }
+        }
     }
 }
 
