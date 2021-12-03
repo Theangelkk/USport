@@ -17,6 +17,10 @@
 		650C7C90275A0C620096215D /* USportUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650C7C8F275A0C620096215D /* USportUITestsLaunchTests.swift */; };
 		65635FD3275A5EBC0076A9C8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65635FD2275A5EBC0076A9C8 /* User.swift */; };
 		65635FD5275A5FF00076A9C8 /* PreviewAPP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65635FD4275A5FF00076A9C8 /* PreviewAPP.swift */; };
+		65635FD7275A69530076A9C8 /* ChoseSport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65635FD6275A69530076A9C8 /* ChoseSport.swift */; };
+		65635FD9275A696E0076A9C8 /* InsertData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65635FD8275A696E0076A9C8 /* InsertData.swift */; };
+		65635FDB275A69870076A9C8 /* AddWorkout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65635FDA275A69870076A9C8 /* AddWorkout.swift */; };
+		65635FDD275A69C00076A9C8 /* EditWorkout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65635FDC275A69C00076A9C8 /* EditWorkout.swift */; };
 		6576E6AD275A14EB0022FD08 /* Sport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6576E6AC275A14EB0022FD08 /* Sport.swift */; };
 		6576E6AF275A16E60022FD08 /* Football.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6576E6AE275A16E60022FD08 /* Football.swift */; };
 		6576E6B1275A19340022FD08 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6576E6B0275A19340022FD08 /* Activity.swift */; };
@@ -58,6 +62,10 @@
 		650C7C8F275A0C620096215D /* USportUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USportUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		65635FD2275A5EBC0076A9C8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		65635FD4275A5FF00076A9C8 /* PreviewAPP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewAPP.swift; sourceTree = "<group>"; };
+		65635FD6275A69530076A9C8 /* ChoseSport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoseSport.swift; sourceTree = "<group>"; };
+		65635FD8275A696E0076A9C8 /* InsertData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertData.swift; sourceTree = "<group>"; };
+		65635FDA275A69870076A9C8 /* AddWorkout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWorkout.swift; sourceTree = "<group>"; };
+		65635FDC275A69C00076A9C8 /* EditWorkout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditWorkout.swift; sourceTree = "<group>"; };
 		6576E6AC275A14EB0022FD08 /* Sport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sport.swift; sourceTree = "<group>"; };
 		6576E6AE275A16E60022FD08 /* Football.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Football.swift; sourceTree = "<group>"; };
 		6576E6B0275A19340022FD08 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
@@ -131,6 +139,10 @@
 				6576E6B0275A19340022FD08 /* Activity.swift */,
 				6576E6B2275A19EB0022FD08 /* Workout.swift */,
 				65635FD2275A5EBC0076A9C8 /* User.swift */,
+				65635FD6275A69530076A9C8 /* ChoseSport.swift */,
+				65635FD8275A696E0076A9C8 /* InsertData.swift */,
+				65635FDA275A69870076A9C8 /* AddWorkout.swift */,
+				65635FDC275A69C00076A9C8 /* EditWorkout.swift */,
 			);
 			path = USport;
 			sourceTree = "<group>";
@@ -296,13 +308,17 @@
 				1B133E7C275A5D4000C7E4B3 /* IO_Dictionary.swift in Sources */,
 				65F0EAF9275A525500649843 /* Basket.swift in Sources */,
 				65F0EAFF275A5ED600649843 /* Manager_APP.swift in Sources */,
+				65635FDD275A69C00076A9C8 /* EditWorkout.swift in Sources */,
 				650C7C75275A0C5F0096215D /* ContentView.swift in Sources */,
+				65635FD9275A696E0076A9C8 /* InsertData.swift in Sources */,
+				65635FD7275A69530076A9C8 /* ChoseSport.swift in Sources */,
 				6576E6AD275A14EB0022FD08 /* Sport.swift in Sources */,
 				65635FD5275A5FF00076A9C8 /* PreviewAPP.swift in Sources */,
 				65F0EAFD275A537F00649843 /* Tennis.swift in Sources */,
 				650C7C73275A0C5F0096215D /* USportApp.swift in Sources */,
 				6576E6B3275A19EB0022FD08 /* Workout.swift in Sources */,
 				65635FD3275A5EBC0076A9C8 /* User.swift in Sources */,
+				65635FDB275A69870076A9C8 /* AddWorkout.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
