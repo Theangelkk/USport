@@ -12,9 +12,9 @@ class Volleyball : Sport
 {
     override func real_CoeffSport()
     {
-        self.Coeff_Kcal_Low = 7
-        self.Coeff_Kcal_Medium = 7.5
-        self.Coeff_Kcal_High = 8
+        self.Coeff_Kcal_Low = 4.4
+        self.Coeff_Kcal_Medium = 4.9
+        self.Coeff_Kcal_High = 5.4
         self.Img_Icon = "Volleyball_icon"
     }
 }

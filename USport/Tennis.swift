@@ -12,9 +12,9 @@ class Tennis : Sport
 {
     override func real_CoeffSport()
     {
-        self.Coeff_Kcal_Low = 7
-        self.Coeff_Kcal_Medium = 7.5
-        self.Coeff_Kcal_High = 8
+        self.Coeff_Kcal_Low = 6.0
+        self.Coeff_Kcal_Medium = 6.5
+        self.Coeff_Kcal_High = 7.0
         self.Img_Icon = "Tennis_icon"
     }
 }
