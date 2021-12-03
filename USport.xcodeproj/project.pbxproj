@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B133E7C275A5D4000C7E4B3 /* IO_Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B133E7B275A5D4000C7E4B3 /* IO_Dictionary.swift */; };
 		650C7C73275A0C5F0096215D /* USportApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650C7C72275A0C5F0096215D /* USportApp.swift */; };
 		650C7C75275A0C5F0096215D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650C7C74275A0C5F0096215D /* ContentView.swift */; };
 		650C7C77275A0C610096215D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 650C7C76275A0C610096215D /* Assets.xcassets */; };
@@ -41,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1B133E7B275A5D4000C7E4B3 /* IO_Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IO_Dictionary.swift; sourceTree = "<group>"; };
 		650C7C6F275A0C5F0096215D /* USport.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = USport.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		650C7C72275A0C5F0096215D /* USportApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USportApp.swift; sourceTree = "<group>"; };
 		650C7C74275A0C5F0096215D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 				650C7C76275A0C610096215D /* Assets.xcassets */,
 				650C7C78275A0C610096215D /* Preview Content */,
 				6576E6AC275A14EB0022FD08 /* Sport.swift */,
+				1B133E7B275A5D4000C7E4B3 /* IO_Dictionary.swift */,
 				6576E6AE275A16E60022FD08 /* Football.swift */,
 				65F0EAF8275A525500649843 /* Basket.swift */,
 				65F0EAFC275A537F00649843 /* Tennis.swift */,
@@ -281,6 +284,7 @@
 				6576E6B1275A19340022FD08 /* Activity.swift in Sources */,
 				65F0EAFB275A533D00649843 /* Volleyball.swift in Sources */,
 				6576E6AF275A16E60022FD08 /* Football.swift in Sources */,
+				1B133E7C275A5D4000C7E4B3 /* IO_Dictionary.swift in Sources */,
 				65F0EAF9275A525500649843 /* Basket.swift in Sources */,
 				650C7C75275A0C5F0096215D /* ContentView.swift in Sources */,
 				6576E6AD275A14EB0022FD08 /* Sport.swift in Sources */,
