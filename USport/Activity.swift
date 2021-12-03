@@ -48,6 +48,13 @@ class Activity
         }
     }
     
+    init()
+    {
+        self.Title = "Workout 1"
+        self.Start_Time = 0
+        self.End_Time = 0
+    }
+    
     init(newValue_Title : String, newValue_StartTime : Int, newValue_EndTime : Int)
     {
         self.Title = newValue_Title

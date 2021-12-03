@@ -61,12 +61,27 @@ class Sport
         }
     }
     
-    init(newValue_Coeff_Low: Float, newValue_Coeff_Medium : Float, newValue_Coeff_High : Float, newValue_Icon : String)
+    internal var Name_Sport : String
+    {
+        get
+        {
+            return self.Name_Sport
+        }
+        
+        set(newValue_NameSport)
+        {
+            self.Name_Sport = newValue_NameSport
+        }
+    }
+    
+    init(newValue_Coeff_Low: Float, newValue_Coeff_Medium : Float, newValue_Coeff_High : Float, newValue_Icon : String, newValue_NameSport : String)
     {
         self.Coeff_Kcal_Low = newValue_Coeff_Low
         self.Coeff_Kcal_Medium = newValue_Coeff_Medium
         self.Coeff_Kcal_High = newValue_Coeff_High
         self.Img_Icon = newValue_Icon
+        
+        self.Name_Sport = "Default"
     }
     
     func real_CoeffSport()
