@@ -11,8 +11,6 @@ struct AddWorkout: View
 {
     @EnvironmentObject var UserAPP : User
     
-    var pippo : Workout = Workout()
-    
     var body: some View
     {
         GeometryReader
@@ -21,13 +19,6 @@ struct AddWorkout: View
             
             NavigationView
             {
-                
-                Text("Add your workouts")
-                    .frame(maxWidth: .infinity, alignment: .center)
-                    .font(.system(size: 30))
-                    .foregroundColor(Color.blue)
-                    .padding(.vertical, 20.0)
-     
                 Section
                 {
                     List
@@ -35,9 +26,8 @@ struct AddWorkout: View
                         ButtonWorkout(titleButton: "1")
                         ButtonWorkout(titleButton: "2")
                     }
-                    
                 }
-                .padding(.top, 60.0)
+                .navigationBarTitle("Add your workouts")
             }
         }
     }
