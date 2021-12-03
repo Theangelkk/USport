@@ -42,6 +42,14 @@ class Workout : Activity
         }
     }
     
+    override init()
+    {
+        super.init()
+        
+        self.Day = Date()
+        self.Intesity_Level = "Low"
+    }
+    
     init(newValue_Day : Date, newValue_Title: String, newValue_StartTime: Int, newValue_EndTime: Int, newValue_Intesity_Level : String )
     {
         super.init(newValue_Title: newValue_Title, newValue_StartTime: newValue_StartTime, newValue_EndTime: newValue_EndTime)
