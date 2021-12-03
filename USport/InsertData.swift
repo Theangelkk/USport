@@ -32,6 +32,7 @@ struct InsertData: View {
                     .multilineTextAlignment(.center)
                     .padding(.bottom, 50.0)
             }
+            .border(.blue)
         }
         
     }
