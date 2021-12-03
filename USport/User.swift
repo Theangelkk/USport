@@ -15,7 +15,7 @@ class User : ObservableObject
     
     @Published var weight : Float
     
-    @Published var workouts = [Workout]()
+    @Published var workouts : [Workout] = [Workout]()
     
     @Published var Type_of_Sport : Sport?
     
@@ -35,9 +35,9 @@ class User : ObservableObject
         self.Type_of_Sport = type_of_sport
     }
     
-    func add_workout(workout : Workout)
+    func add_workout()
     {
-        self.workouts.append(workout)
+        self.workouts.append(Workout())
     }
     
     func get_n_workouts() -> Int
