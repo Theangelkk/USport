@@ -10,8 +10,9 @@ import SwiftUI
 @main
 struct USportApp: App {
     var body: some Scene {
-        WindowGroup {
-            ContentView()
+        WindowGroup
+        {
+            PreviewAPP()
         }
     }
 }
