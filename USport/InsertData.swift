@@ -9,7 +9,6 @@ import SwiftUI
 
 struct InsertData: View
 {
-    
     @EnvironmentObject var UserAPP : User
     
     @Binding var nameSport : String
@@ -74,15 +73,19 @@ struct InsertData: View
                 .navigationBarTitle("Insert your data")
             }
             
-            ButtonNext(changeView: $changeView)
-                .position(x: geometry.size.width/2, y: (geometry.size.height)-60)
+            Button(action:
+            {
+                self.checkFieds()
+            })
+            {
+                Text("Next")
+                    .font(.system(size: 25))
+                    .fontWeight(.heavy)
+            }
+            .buttonStyle(CustomButtonStyle())
+            .position(x: geometry.size.width/2, y: (geometry.size.height)-60)
+            
         }
-        
-        if(changeView == true)
-        {
-            checkFieds()
-        }
-        
     }
 }
 
