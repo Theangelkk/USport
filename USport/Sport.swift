@@ -7,80 +7,38 @@
 
 import Foundation
 
-class Sport
+class Sport : ObservableObject
 {
-    internal var Coeff_Kcal_Low : Float
-    {
-        get
-        {
-            return self.Coeff_Kcal_Low
-        }
-        
-        set(newValue_Coeff_Medium)
-        {
-            self.Coeff_Kcal_Medium = newValue_Coeff_Medium
-        }
-    }
+    @Published var Coeff_Kcal_Low : Float
     
-    internal var Coeff_Kcal_Medium : Float
-    {
-        get
-        {
-            return self.Coeff_Kcal_Medium
-        }
-        
-        set(newValue_Coeff_Medium)
-        {
-            self.Coeff_Kcal_Medium = newValue_Coeff_Medium
-        }
-    }
+    @Published var Coeff_Kcal_Medium : Float
     
-    internal var Coeff_Kcal_High : Float
-    {
-        get
-        {
-            return self.Coeff_Kcal_High
-        }
-        
-        set(newValue_Coeff_High)
-        {
-            self.Coeff_Kcal_High = newValue_Coeff_High
-        }
-    }
+    @Published var Coeff_Kcal_High : Float
     
-    internal var Img_Icon : String
-    {
-        get
-        {
-            return self.Img_Icon
-        }
-        
-        set(newValue_Icon)
-        {
-            self.Img_Icon = newValue_Icon
-        }
-    }
+    @Published var Img_Icon : String
     
-    internal var Name_Sport : String
-    {
-        get
-        {
-            return self.Name_Sport
-        }
-        
-        set(newValue_NameSport)
-        {
-            self.Name_Sport = newValue_NameSport
-        }
-    }
+    @Published var Name_Sport : String
+    
     
     init()
     {
+        self.Coeff_Kcal_Low = 0
+        self.Coeff_Kcal_Medium = 0
+        self.Coeff_Kcal_High = 0
+        self.Img_Icon = ""
+        self.Name_Sport = ""
+        
         self.Football()
     }
     
     init(type_of_sport : String)
     {
+        self.Coeff_Kcal_Low = 0
+        self.Coeff_Kcal_Medium = 0
+        self.Coeff_Kcal_High = 0
+        self.Img_Icon = ""
+        self.Name_Sport = ""
+        
         if(type_of_sport == "Football")
         {
             self.Football()

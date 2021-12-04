@@ -7,85 +7,83 @@
 
 import SwiftUI
 
-struct EditWorkout: View {
-    
+struct EditWorkout: View
+{
     @EnvironmentObject var UserAPP : User
+    @Environment(\.presentationMode) var presentationMode
     
     @Binding var idx_workout : Int
+    @State  var workout: String = "Workout"
     
-    @State private var workout: String = ""
+    var day = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
     
-    private var day = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    @State var IntensityOfLevel = ["Low", "Medium", "High"]
     
-    @State private var IntensityOfLevel = ["Low", "Medium", "High"]
+    @State var daySelected = 0
+    @State var intensitySelected = 0
     
-    @State private var daySelected = 0
-    @State private var intensitySelected = 0
+    @State var start = Date()
+    @State var end = Date()
     
-    @State private var start = Date()
-    @State private var end = Date()
-    
-    var body: some View {
-        NavigationView {
-        GeometryReader{ geometry in
-            Form{
-                Section(header: Text("")) {
-                TextField("Workout", text: $workout)
-                        
-                }.navigationBarTitle(Text("Volleyball"), displayMode: .inline)
+    var body: some View
+    {
+        GeometryReader
+        {
+            geometry in
+            
+            Form
+                {
+                    Section(header: Text(""))
+                    {
+                        TextField("Workout", text: $workout)
+                    }
                 
-                Section(header: Text("Actions")) {
-                Picker(selection: $daySelected, label: Text("Selected day")){
+                    Section(header: Text("Actions"))
+                    {
+                        Picker(selection: $daySelected, label: Text("Selected day")){
                     
-                    ForEach(0 ..< day.count){
-                        
-                        Text(self.day[$0])
-                    }.navigationBarTitle(Text("Day"), displayMode: .inline)
-                        
-                } 
+                                ForEach(0 ..< day.count)
+                                {
+                                    Text(self.day[$0])
+                                }
+                            }
                 
-                    DatePicker("Start", selection: $start, displayedComponents: .hourAndMinute)
-                DatePicker("End", selection: $end, displayedComponents: .hourAndMinute)
-                    
-                    Picker(selection: $intensitySelected, label: Text("Intensity of Level")){
-                        
-                        ForEach(0 ..< IntensityOfLevel.count){
+                        DatePicker("Start", selection: $start, displayedComponents: .hourAndMinute)
+                        DatePicker("End", selection: $end, displayedComponents: .hourAndMinute)
                             
-                            Text(self.IntensityOfLevel[$0])
-                        } .navigationBarTitle(Text("Intensity of Level"), displayMode: .inline)
+                        Picker(selection: $intensitySelected, label: Text("Intensity of Level"))
+                                {
+                                    ForEach(0 ..< IntensityOfLevel.count)
+                                    {
+                                        Text(self.IntensityOfLevel[$0])
+                                    }
+                                }
                     }
-                }
-                .navigationBarTitle(Text("Volleyball"), displayMode: .inline)
-            } .accentColor(.red)
-                .navigationTitle("Volley")
-            /*Da Rivedere l'utilizzo del toolbar*/
-                .toolbar {
-                    ToolbarItemGroup(placement: .navigationBarLeading) {
-                        Button("Cancel", action: cancelWorkout)
-                            .foregroundColor(.red)
-                            .font(.system(size: 20))
-                    }
-                    ToolbarItemGroup(placement: .navigationBarTrailing) {
-                        Button("Add", action: adWorkout)
-                        .foregroundColor(.blue)
-                        .font(.system(size: 20))
-                    }
-                }
-                
-        }
+                    
+                } .accentColor(.red)
+            
+                .navigationBarBackButtonHidden(true)
+                .navigationBarItems(leading: Button(action :
+                {
+                    self.adWorkout()
+                    self.presentationMode.wrappedValue.dismiss()
+                    
+                }){
+                        Image(systemName: "arrow.left")
+                })
+                .navigationBarTitle(Text(workout), displayMode: .inline)
+            }
     }
-}
-
-func adWorkout()
-{
-    print("Workout saved")
     
-    var actual_workout = self.UserAPP.get_elem_workout(idx: <#T##Int#>)
+    func adWorkout()
+    {
+                
+        self.UserAPP.workouts[self.idx_workout].Day = self.day[daySelected]
+        self.UserAPP.workouts[self.idx_workout].Intesity_Level = IntensityOfLevel[intensitySelected]
+        self.UserAPP.workouts[self.idx_workout].Start_Time = start
+        self.UserAPP.workouts[self.idx_workout].End_Time = end
     
-    
-}
-func cancelWorkout() {
-    print("Cancel Workout")
+    }
 }
  
 struct EditWorkout_Previews: PreviewProvider {
@@ -101,4 +99,4 @@ struct EditWorkout_Previews: PreviewProvider {
             .environmentObject(UserAPP)
     }
 }
-}
+

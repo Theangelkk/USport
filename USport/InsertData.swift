@@ -36,10 +36,10 @@ struct InsertData: View
                     self.UserAPP.nickname = self.nickname
                     self.UserAPP.weight = int_weight
                     self.UserAPP.height = float_height
-                    self.UserAPP.Type_of_Sport = Sport(type_of_sport: nameSport)
                     self.UserAPP.create_n_workouts(n_workouts: int_n_workouts)
+                    self.UserAPP.addSport(nameSport: self.nameSport)
                     
-                    AddWorkout()
+                    changeView = true
                 }
             }
         }
@@ -76,6 +76,10 @@ struct InsertData: View
             .buttonStyle(CustomButtonStyle())
             .position(x: geometry.size.width/2, y: (geometry.size.height)-60)
             
+            if(changeView == true)
+            {
+                AddWorkout()
+            }
         }
     }
 }

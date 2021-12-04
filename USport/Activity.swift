@@ -7,46 +7,14 @@
 
 import Foundation
 
-class Activity
+class Activity : ObservableObject
 {
-    internal var Title : String
-    {
-        get
-        {
-            return self.Title
-        }
-        
-        set(newValue_Title)
-        {
-            self.Title = (newValue_Title)
-        }
-    }
+    @Published var Title : String
     
-    internal var Start_Time : Date
-    {
-        get
-        {
-            return self.Start_Time
-        }
-        
-        set(newValue_StartTime)
-        {
-            self.Start_Time = newValue_StartTime
-        }
-    }
+    @Published var Start_Time : Date
     
-    internal var End_Time : Date
-    {
-        get
-        {
-            return self.End_Time
-        }
-        
-        set(newValue_EndTime)
-        {
-            self.End_Time = newValue_EndTime
-        }
-    }
+    @Published var End_Time : Date
+    
     
     init()
     {

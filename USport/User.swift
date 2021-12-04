@@ -69,4 +69,9 @@ class User : ObservableObject
     {
         return self.workouts.count
     }
+    
+    func addSport(nameSport : String)
+    {
+        self.Type_of_Sport = Sport(type_of_sport: nameSport)
+    }
 }
