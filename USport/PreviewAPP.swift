@@ -22,7 +22,7 @@ struct PreviewAPP: View {
         {
             if showMainView
             {
-                ContentView()
+                ChoseSport()
             }
             else
             {

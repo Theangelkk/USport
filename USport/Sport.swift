@@ -76,26 +76,66 @@ class Sport
     
     init()
     {
-        self.Coeff_Kcal_Low = 0.0
-        self.Coeff_Kcal_Medium = 0.0
-        self.Coeff_Kcal_High = 0.0
-        self.Img_Icon = "Default"
-        
-        self.Name_Sport = "Default"
+        self.Football()
     }
     
-    init(newValue_Coeff_Low: Float, newValue_Coeff_Medium : Float, newValue_Coeff_High : Float, newValue_Icon : String, newValue_NameSport : String)
+    init(type_of_sport : String)
     {
-        self.Coeff_Kcal_Low = newValue_Coeff_Low
-        self.Coeff_Kcal_Medium = newValue_Coeff_Medium
-        self.Coeff_Kcal_High = newValue_Coeff_High
-        self.Img_Icon = newValue_Icon
-        
-        self.Name_Sport = "Default"
+        if(type_of_sport == "Football")
+        {
+            self.Football()
+        }
+        else if(type_of_sport == "Tennis")
+        {
+            self.Tennis()
+        }
+        else if(type_of_sport == "Basket")
+        {
+            self.Basket()
+        }
+        else if(type_of_sport == "Volleyball")
+        {
+            self.Volleyball()
+        }
     }
     
-    func real_CoeffSport()
+    func Football()
     {
-        preconditionFailure("This method must be overridden")
+        self.Coeff_Kcal_Low = 7
+        self.Coeff_Kcal_Medium = 7.5
+        self.Coeff_Kcal_High = 8
+        
+        self.Img_Icon = "Football_icon"
+        self.Name_Sport = "Football"
+    }
+    
+    func Basket()
+    {
+        self.Coeff_Kcal_Low = 7
+        self.Coeff_Kcal_Medium = 7.5
+        self.Coeff_Kcal_High = 8
+        
+        self.Img_Icon = "Basket_icon"
+        self.Name_Sport = "Basket"
+    }
+    
+    func Volleyball()
+    {
+        self.Coeff_Kcal_Low = 4.4
+        self.Coeff_Kcal_Medium = 4.9
+        self.Coeff_Kcal_High = 5.4
+        
+        self.Img_Icon = "Volleyball_icon"
+        self.Name_Sport = "Volleyball"
+    }
+    
+    func Tennis()
+    {
+        self.Coeff_Kcal_Low = 6.0
+        self.Coeff_Kcal_Medium = 6.5
+        self.Coeff_Kcal_High = 7.0
+        
+        self.Img_Icon = "Tennis_icon"
+        self.Name_Sport = "Tennis"
     }
 }

@@ -18,11 +18,6 @@ struct InsertData: View
     @State var height: String = ""
     @State var number_workout: String = ""
     
-    var dictSports : [String: Any] = ["Football": Football().real_CoeffSport(),
-                                      "Tennis": Tennis().real_CoeffSport(),
-                                      "Basket": Basket().real_CoeffSport(),
-                                      "Volleyball": Volleyball().real_CoeffSport()]
-    
     @State var changeView : Bool = false
     
     func checkFieds()
@@ -41,17 +36,12 @@ struct InsertData: View
                     self.UserAPP.nickname = self.nickname
                     self.UserAPP.weight = int_weight
                     self.UserAPP.height = float_height
-                    self.UserAPP.Type_of_Sport = self.setSport()
+                    self.UserAPP.Type_of_Sport = Sport(type_of_sport: nameSport)
                     
-                    AddWorkout()
+                    //AddWorkout()
                 }
             }
         }
-    }
-    
-    func setSport() -> Sport
-    {
-        return self.dictSports[nameSport] as! Sport
     }
     
     var body: some View{
