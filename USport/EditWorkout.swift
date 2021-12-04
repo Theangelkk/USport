@@ -8,11 +8,20 @@
 import SwiftUI
 
 struct EditWorkout: View {
+    
+    @EnvironmentObject var UserAPP : User
+    
+    @Binding var idx_workout : Int
+    
     @State private var workout: String = ""
+    
     private var day = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    
     @State private var IntensityOfLevel = ["Low", "Medium", "High"]
+    
     @State private var daySelected = 0
     @State private var intensitySelected = 0
+    
     @State private var start = Date()
     @State private var end = Date()
     
@@ -67,16 +76,29 @@ struct EditWorkout: View {
     }
 }
 
-    func adWorkout() {
-        print("Workout saved")
-    }
-    func cancelWorkout() {
-        print("Cancel Workout")
-    }
+func adWorkout()
+{
+    print("Workout saved")
     
+    var actual_workout = self.UserAPP.get_elem_workout(idx: <#T##Int#>)
+    
+    
+}
+func cancelWorkout() {
+    print("Cancel Workout")
+}
+ 
 struct EditWorkout_Previews: PreviewProvider {
-    static var previews: some View {
-        EditWorkout()
+    
+    @StateObject static var UserAPP : User = User(n_workout: 1)
+    @State static var nameSport : String = "Football"
+    
+    @State static var idx : Int = 0
+    
+    static var previews: some View
+    {
+        EditWorkout(idx_workout: $idx)
+            .environmentObject(UserAPP)
     }
 }
 }

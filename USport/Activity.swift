@@ -22,7 +22,7 @@ class Activity
         }
     }
     
-    internal var Start_Time : Int
+    internal var Start_Time : Date
     {
         get
         {
@@ -35,7 +35,7 @@ class Activity
         }
     }
     
-    internal var End_Time : Int
+    internal var End_Time : Date
     {
         get
         {
@@ -50,12 +50,12 @@ class Activity
     
     init()
     {
-        self.Title = "Workout 1"
-        self.Start_Time = 0
-        self.End_Time = 0
+        self.Title = "Workout"
+        self.Start_Time = Date()
+        self.End_Time = Date()
     }
     
-    init(newValue_Title : String, newValue_StartTime : Int, newValue_EndTime : Int)
+    init(newValue_Title : String, newValue_StartTime : Date, newValue_EndTime : Date)
     {
         self.Title = newValue_Title
         self.Start_Time = newValue_StartTime

@@ -9,7 +9,7 @@ import Foundation
 
 class Workout : Activity
 {
-    internal var Day : Date
+    internal var Day : String
     {
         get
         {
@@ -46,11 +46,11 @@ class Workout : Activity
     {
         super.init()
         
-        self.Day = Date()
+        self.Day = "Monday"
         self.Intesity_Level = "Low"
     }
     
-    init(newValue_Day : Date, newValue_Title: String, newValue_StartTime: Int, newValue_EndTime: Int, newValue_Intesity_Level : String )
+    init(newValue_Day : Date, newValue_Title: String, newValue_StartTime: Date, newValue_EndTime: Date, newValue_Intesity_Level : String)
     {
         super.init(newValue_Title: newValue_Title, newValue_StartTime: newValue_StartTime, newValue_EndTime: newValue_EndTime)
     }

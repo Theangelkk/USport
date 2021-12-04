@@ -37,8 +37,9 @@ struct InsertData: View
                     self.UserAPP.weight = int_weight
                     self.UserAPP.height = float_height
                     self.UserAPP.Type_of_Sport = Sport(type_of_sport: nameSport)
+                    self.UserAPP.create_n_workouts(n_workouts: int_n_workouts)
                     
-                    //AddWorkout()
+                    AddWorkout()
                 }
             }
         }

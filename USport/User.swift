@@ -27,6 +27,16 @@ class User : ObservableObject
         self.Type_of_Sport = nil
     }
     
+    init(n_workout : Int)
+    {
+        self.nickname = "Default"
+        self.height = 0
+        self.weight = 0.0
+        self.Type_of_Sport = nil
+        
+        self.create_n_workouts(n_workouts: n_workout)
+    }
+    
     init(nickname : String, height : Int, weight : Float, type_of_sport : Sport)
     {
         self.nickname = nickname
@@ -35,9 +45,24 @@ class User : ObservableObject
         self.Type_of_Sport = type_of_sport
     }
     
-    func add_workout()
+    func create_n_workouts(n_workouts : Int)
     {
-        self.workouts.append(Workout(newValue_Day : Date(), newValue_Title: "", newValue_StartTime: 0, newValue_EndTime: 0, newValue_Intesity_Level : ""))
+        self.workouts = []
+        
+        for _ in 1...n_workouts
+        {
+            self.add_workout(workout: Workout())
+        }
+    }
+    
+    func add_workout(workout : Workout)
+    {
+        self.workouts.append(workout)
+    }
+    
+    func get_elem_workout(idx : Int) -> Workout
+    {
+        return self.workouts[idx]
     }
     
     func get_n_workouts() -> Int
