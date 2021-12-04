@@ -11,6 +11,8 @@ struct AddWorkout: View
 {
     @EnvironmentObject var UserAPP : User
     
+    @State var changeView : Bool = false
+    
     var body: some View
     {
         GeometryReader
@@ -29,6 +31,9 @@ struct AddWorkout: View
                 }
                 .navigationBarTitle("Add your workouts")
             }
+            
+            ButtonNext(changeView: $changeView)
+                .position(x: geometry.size.width/2, y: (geometry.size.height)-60)
         }
     }
 }

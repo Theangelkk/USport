@@ -74,6 +74,16 @@ class Sport
         }
     }
     
+    init()
+    {
+        self.Coeff_Kcal_Low = 0.0
+        self.Coeff_Kcal_Medium = 0.0
+        self.Coeff_Kcal_High = 0.0
+        self.Img_Icon = "Default"
+        
+        self.Name_Sport = "Default"
+    }
+    
     init(newValue_Coeff_Low: Float, newValue_Coeff_Medium : Float, newValue_Coeff_High : Float, newValue_Icon : String, newValue_NameSport : String)
     {
         self.Coeff_Kcal_Low = newValue_Coeff_Low
