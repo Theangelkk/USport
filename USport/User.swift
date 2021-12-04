@@ -15,7 +15,7 @@ class User : ObservableObject
     
     @Published var weight : Float
     
-    @Published var workouts : [Workout] = [Workout]()
+    @Published var workouts : [Workout] = []
     
     @Published var Type_of_Sport : Sport?
     
