@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1B04606F275A6EC100F0BF22 /* ChoiceButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B04606E275A6EC100F0BF22 /* ChoiceButton.swift */; };
 		1B133E7C275A5D4000C7E4B3 /* IO_Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B133E7B275A5D4000C7E4B3 /* IO_Dictionary.swift */; };
+		1BEEFD9C275BA535005A14CE /* Homepage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEEFD9B275BA535005A14CE /* Homepage.swift */; };
 		650C7C73275A0C5F0096215D /* USportApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650C7C72275A0C5F0096215D /* USportApp.swift */; };
 		650C7C75275A0C5F0096215D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650C7C74275A0C5F0096215D /* ContentView.swift */; };
 		650C7C77275A0C610096215D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 650C7C76275A0C610096215D /* Assets.xcassets */; };
@@ -48,6 +49,7 @@
 /* Begin PBXFileReference section */
 		1B04606E275A6EC100F0BF22 /* ChoiceButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceButton.swift; sourceTree = "<group>"; };
 		1B133E7B275A5D4000C7E4B3 /* IO_Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IO_Dictionary.swift; sourceTree = "<group>"; };
+		1BEEFD9B275BA535005A14CE /* Homepage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Homepage.swift; sourceTree = "<group>"; };
 		650C7C6F275A0C5F0096215D /* USport.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = USport.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		650C7C72275A0C5F0096215D /* USportApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USportApp.swift; sourceTree = "<group>"; };
 		650C7C74275A0C5F0096215D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 				650C7C74275A0C5F0096215D /* ContentView.swift */,
 				65635FD4275A5FF00076A9C8 /* PreviewAPP.swift */,
 				65635FD6275A69530076A9C8 /* ChoseSport.swift */,
+				1BEEFD9B275BA535005A14CE /* Homepage.swift */,
 				65635FD8275A696E0076A9C8 /* InsertData.swift */,
 				65635FDA275A69870076A9C8 /* AddWorkout.swift */,
 				65635FDC275A69C00076A9C8 /* EditWorkout.swift */,
@@ -296,6 +299,7 @@
 				6576E6B1275A19340022FD08 /* Activity.swift in Sources */,
 				1B133E7C275A5D4000C7E4B3 /* IO_Dictionary.swift in Sources */,
 				65F0EAFF275A5ED600649843 /* Manager_APP.swift in Sources */,
+				1BEEFD9C275BA535005A14CE /* Homepage.swift in Sources */,
 				65635FDD275A69C00076A9C8 /* EditWorkout.swift in Sources */,
 				650C7C75275A0C5F0096215D /* ContentView.swift in Sources */,
 				1B04606F275A6EC100F0BF22 /* ChoiceButton.swift in Sources */,
