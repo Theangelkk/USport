@@ -77,11 +77,12 @@ struct InsertData: View
             ButtonNext(changeView: $changeView)
                 .position(x: geometry.size.width/2, y: (geometry.size.height)-60)
         }
-        
+        /*
         if(changeView == true)
         {
             checkFieds()
         }
+         */
         
     }
 }

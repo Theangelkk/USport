@@ -48,12 +48,32 @@ struct EditWorkout: View {
                 }
                 .navigationBarTitle(Text("Volleyball"), displayMode: .inline)
             } .accentColor(.red)
-
+                .navigationTitle("Volley")
+            /*Da Rivedere l'utilizzo del toolbar*/
+                .toolbar {
+                    ToolbarItemGroup(placement: .navigationBarLeading) {
+                        Button("Cancel", action: cancelWorkout)
+                            .foregroundColor(.red)
+                            .font(.system(size: 20))
+                    }
+                    ToolbarItemGroup(placement: .navigationBarTrailing) {
+                        Button("Add", action: adWorkout)
+                        .foregroundColor(.blue)
+                        .font(.system(size: 20))
+                    }
+                }
                 
         }
     }
 }
 
+    func adWorkout() {
+        print("Workout saved")
+    }
+    func cancelWorkout() {
+        print("Cancel Workout")
+    }
+    
 struct EditWorkout_Previews: PreviewProvider {
     static var previews: some View {
         EditWorkout()
