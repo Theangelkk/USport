@@ -9,7 +9,30 @@ import SwiftUI
 
 struct Homepage: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack{
+            GeometryReader{
+                geometry in
+                
+                VStack{
+                    Spacer()
+                    
+                    HStack{
+                        
+                    }.padding()
+                    
+                    HStack{
+                        
+                    }.padding()
+                    
+                    Text("USport")
+                        .foregroundColor(Color.blue)
+                            .font(.system(size: 37))
+                            .bold()
+                            .position(x: geometry.size.width/2, y: 20)
+                    
+                }
+            }
+        }
     }
 }
 
