@@ -68,6 +68,11 @@ struct History: View {
                 }
             }
             .navigationBarTitle("History", displayMode: .inline)
+            
+            .navigationBarItems(trailing: NavigationLink(destination: History_Filter()
+            ){
+                    Image(systemName: "calendar")
+            })
         }
     }
 }
