@@ -18,6 +18,8 @@
 		650C7C84275A0C620096215D /* USportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650C7C83275A0C620096215D /* USportTests.swift */; };
 		650C7C8E275A0C620096215D /* USportUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650C7C8D275A0C620096215D /* USportUITests.swift */; };
 		650C7C90275A0C620096215D /* USportUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650C7C8F275A0C620096215D /* USportUITestsLaunchTests.swift */; };
+		655078FA275CCDA90034BACB /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 655078F9275CCDA90034BACB /* SwiftUICharts */; };
+		655078FC275D1AC80034BACB /* History_Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655078FB275D1AC80034BACB /* History_Filter.swift */; };
 		65635FD3275A5EBC0076A9C8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65635FD2275A5EBC0076A9C8 /* User.swift */; };
 		65635FD5275A5FF00076A9C8 /* PreviewAPP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65635FD4275A5FF00076A9C8 /* PreviewAPP.swift */; };
 		65635FD7275A69530076A9C8 /* ChoseSport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65635FD6275A69530076A9C8 /* ChoseSport.swift */; };
@@ -27,7 +29,29 @@
 		6576E6AD275A14EB0022FD08 /* Sport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6576E6AC275A14EB0022FD08 /* Sport.swift */; };
 		6576E6B1275A19340022FD08 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6576E6B0275A19340022FD08 /* Activity.swift */; };
 		6576E6B3275A19EB0022FD08 /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6576E6B2275A19EB0022FD08 /* Workout.swift */; };
+		65A5BE8C275D248A00819933 /* RKColorSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A5BE85275D248A00819933 /* RKColorSettings.swift */; };
+		65A5BE8D275D248A00819933 /* RKColorSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A5BE85275D248A00819933 /* RKColorSettings.swift */; };
+		65A5BE8E275D248A00819933 /* RKColorSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A5BE85275D248A00819933 /* RKColorSettings.swift */; };
+		65A5BE8F275D248A00819933 /* RKWeekdayHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A5BE86275D248A00819933 /* RKWeekdayHeader.swift */; };
+		65A5BE90275D248A00819933 /* RKWeekdayHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A5BE86275D248A00819933 /* RKWeekdayHeader.swift */; };
+		65A5BE91275D248A00819933 /* RKWeekdayHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A5BE86275D248A00819933 /* RKWeekdayHeader.swift */; };
+		65A5BE92275D248A00819933 /* RKMonth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A5BE87275D248A00819933 /* RKMonth.swift */; };
+		65A5BE93275D248A00819933 /* RKMonth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A5BE87275D248A00819933 /* RKMonth.swift */; };
+		65A5BE94275D248A00819933 /* RKMonth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A5BE87275D248A00819933 /* RKMonth.swift */; };
+		65A5BE95275D248A00819933 /* RKViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A5BE88275D248A00819933 /* RKViewController.swift */; };
+		65A5BE96275D248A00819933 /* RKViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A5BE88275D248A00819933 /* RKViewController.swift */; };
+		65A5BE97275D248A00819933 /* RKViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A5BE88275D248A00819933 /* RKViewController.swift */; };
+		65A5BE98275D248A00819933 /* RKDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A5BE89275D248A00819933 /* RKDate.swift */; };
+		65A5BE99275D248A00819933 /* RKDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A5BE89275D248A00819933 /* RKDate.swift */; };
+		65A5BE9A275D248A00819933 /* RKDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A5BE89275D248A00819933 /* RKDate.swift */; };
+		65A5BE9B275D248A00819933 /* RKCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A5BE8A275D248A00819933 /* RKCell.swift */; };
+		65A5BE9C275D248A00819933 /* RKCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A5BE8A275D248A00819933 /* RKCell.swift */; };
+		65A5BE9D275D248A00819933 /* RKCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A5BE8A275D248A00819933 /* RKCell.swift */; };
+		65A5BE9E275D248A00819933 /* RKManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A5BE8B275D248A00819933 /* RKManager.swift */; };
+		65A5BE9F275D248A00819933 /* RKManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A5BE8B275D248A00819933 /* RKManager.swift */; };
+		65A5BEA0275D248A00819933 /* RKManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A5BE8B275D248A00819933 /* RKManager.swift */; };
 		65F0EAFF275A5ED600649843 /* Manager_APP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F0EAFE275A5ED600649843 /* Manager_APP.swift */; };
+		7DFC1FCC275CC1AD00335F63 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFC1FCB275CC1AD00335F63 /* Profile.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +86,7 @@
 		650C7C89275A0C620096215D /* USportUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = USportUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		650C7C8D275A0C620096215D /* USportUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USportUITests.swift; sourceTree = "<group>"; };
 		650C7C8F275A0C620096215D /* USportUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USportUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		655078FB275D1AC80034BACB /* History_Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History_Filter.swift; sourceTree = "<group>"; };
 		65635FD2275A5EBC0076A9C8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		65635FD4275A5FF00076A9C8 /* PreviewAPP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewAPP.swift; sourceTree = "<group>"; };
 		65635FD6275A69530076A9C8 /* ChoseSport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoseSport.swift; sourceTree = "<group>"; };
@@ -71,7 +96,15 @@
 		6576E6AC275A14EB0022FD08 /* Sport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sport.swift; sourceTree = "<group>"; };
 		6576E6B0275A19340022FD08 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		6576E6B2275A19EB0022FD08 /* Workout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
+		65A5BE85275D248A00819933 /* RKColorSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RKColorSettings.swift; sourceTree = "<group>"; };
+		65A5BE86275D248A00819933 /* RKWeekdayHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RKWeekdayHeader.swift; sourceTree = "<group>"; };
+		65A5BE87275D248A00819933 /* RKMonth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RKMonth.swift; sourceTree = "<group>"; };
+		65A5BE88275D248A00819933 /* RKViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RKViewController.swift; sourceTree = "<group>"; };
+		65A5BE89275D248A00819933 /* RKDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RKDate.swift; sourceTree = "<group>"; };
+		65A5BE8A275D248A00819933 /* RKCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RKCell.swift; sourceTree = "<group>"; };
+		65A5BE8B275D248A00819933 /* RKManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RKManager.swift; sourceTree = "<group>"; };
 		65F0EAFE275A5ED600649843 /* Manager_APP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manager_APP.swift; sourceTree = "<group>"; };
+		7DFC1FCB275CC1AD00335F63 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +112,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				655078FA275CCDA90034BACB /* SwiftUICharts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,6 +140,7 @@
 				650C7C82275A0C620096215D /* USportTests */,
 				650C7C8C275A0C620096215D /* USportUITests */,
 				650C7C70275A0C5F0096215D /* Products */,
+				65BEAB64275CC165007381A8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -128,9 +163,11 @@
 				65635FD6275A69530076A9C8 /* ChoseSport.swift */,
 				1BEEFD9B275BA535005A14CE /* Homepage.swift */,
 				1BEEFD9D275BA58D005A14CE /* History.swift */,
+				655078FB275D1AC80034BACB /* History_Filter.swift */,
 				65635FD8275A696E0076A9C8 /* InsertData.swift */,
 				65635FDA275A69870076A9C8 /* AddWorkout.swift */,
 				65635FDC275A69C00076A9C8 /* EditWorkout.swift */,
+				7DFC1FCB275CC1AD00335F63 /* Profile.swift */,
 				1B04606E275A6EC100F0BF22 /* ChoiceButton.swift */,
 				650C7C76275A0C610096215D /* Assets.xcassets */,
 				650C7C78275A0C610096215D /* Preview Content */,
@@ -140,6 +177,13 @@
 				6576E6B0275A19340022FD08 /* Activity.swift */,
 				6576E6B2275A19EB0022FD08 /* Workout.swift */,
 				65635FD2275A5EBC0076A9C8 /* User.swift */,
+				65A5BE8A275D248A00819933 /* RKCell.swift */,
+				65A5BE85275D248A00819933 /* RKColorSettings.swift */,
+				65A5BE89275D248A00819933 /* RKDate.swift */,
+				65A5BE8B275D248A00819933 /* RKManager.swift */,
+				65A5BE87275D248A00819933 /* RKMonth.swift */,
+				65A5BE88275D248A00819933 /* RKViewController.swift */,
+				65A5BE86275D248A00819933 /* RKWeekdayHeader.swift */,
 			);
 			path = USport;
 			sourceTree = "<group>";
@@ -169,6 +213,13 @@
 			path = USportUITests;
 			sourceTree = "<group>";
 		};
+		65BEAB64275CC165007381A8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -185,6 +236,9 @@
 			dependencies = (
 			);
 			name = USport;
+			packageProductDependencies = (
+				655078F9275CCDA90034BACB /* SwiftUICharts */,
+			);
 			productName = USport;
 			productReference = 650C7C6F275A0C5F0096215D /* USport.app */;
 			productType = "com.apple.product-type.application";
@@ -257,6 +311,9 @@
 				Base,
 			);
 			mainGroup = 650C7C66275A0C5F0096215D;
+			packageReferences = (
+				655078F8275CCDA90034BACB /* XCRemoteSwiftPackageReference "ChartView" */,
+			);
 			productRefGroup = 650C7C70275A0C5F0096215D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -299,6 +356,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65A5BE8F275D248A00819933 /* RKWeekdayHeader.swift in Sources */,
+				655078FC275D1AC80034BACB /* History_Filter.swift in Sources */,
+				65A5BE92275D248A00819933 /* RKMonth.swift in Sources */,
+				7DFC1FCC275CC1AD00335F63 /* Profile.swift in Sources */,
+				65A5BE9B275D248A00819933 /* RKCell.swift in Sources */,
 				6576E6B1275A19340022FD08 /* Activity.swift in Sources */,
 				1B133E7C275A5D4000C7E4B3 /* IO_Dictionary.swift in Sources */,
 				65F0EAFF275A5ED600649843 /* Manager_APP.swift in Sources */,
@@ -306,6 +368,8 @@
 				65635FDD275A69C00076A9C8 /* EditWorkout.swift in Sources */,
 				650C7C75275A0C5F0096215D /* ContentView.swift in Sources */,
 				1B04606F275A6EC100F0BF22 /* ChoiceButton.swift in Sources */,
+				65A5BE98275D248A00819933 /* RKDate.swift in Sources */,
+				65A5BE8C275D248A00819933 /* RKColorSettings.swift in Sources */,
 				65635FD9275A696E0076A9C8 /* InsertData.swift in Sources */,
 				65635FD7275A69530076A9C8 /* ChoseSport.swift in Sources */,
 				6576E6AD275A14EB0022FD08 /* Sport.swift in Sources */,
@@ -313,6 +377,8 @@
 				65635FD5275A5FF00076A9C8 /* PreviewAPP.swift in Sources */,
 				650C7C73275A0C5F0096215D /* USportApp.swift in Sources */,
 				6576E6B3275A19EB0022FD08 /* Workout.swift in Sources */,
+				65A5BE95275D248A00819933 /* RKViewController.swift in Sources */,
+				65A5BE9E275D248A00819933 /* RKManager.swift in Sources */,
 				65635FD3275A5EBC0076A9C8 /* User.swift in Sources */,
 				65635FDB275A69870076A9C8 /* AddWorkout.swift in Sources */,
 			);
@@ -323,6 +389,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				650C7C84275A0C620096215D /* USportTests.swift in Sources */,
+				65A5BE96275D248A00819933 /* RKViewController.swift in Sources */,
+				65A5BE9F275D248A00819933 /* RKManager.swift in Sources */,
+				65A5BE8D275D248A00819933 /* RKColorSettings.swift in Sources */,
+				65A5BE90275D248A00819933 /* RKWeekdayHeader.swift in Sources */,
+				65A5BE99275D248A00819933 /* RKDate.swift in Sources */,
+				65A5BE9C275D248A00819933 /* RKCell.swift in Sources */,
+				65A5BE93275D248A00819933 /* RKMonth.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,8 +403,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65A5BE91275D248A00819933 /* RKWeekdayHeader.swift in Sources */,
+				65A5BE97275D248A00819933 /* RKViewController.swift in Sources */,
 				650C7C8E275A0C620096215D /* USportUITests.swift in Sources */,
+				65A5BEA0275D248A00819933 /* RKManager.swift in Sources */,
+				65A5BE94275D248A00819933 /* RKMonth.swift in Sources */,
+				65A5BE9D275D248A00819933 /* RKCell.swift in Sources */,
 				650C7C90275A0C620096215D /* USportUITestsLaunchTests.swift in Sources */,
+				65A5BE9A275D248A00819933 /* RKDate.swift in Sources */,
+				65A5BE8E275D248A00819933 /* RKColorSettings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -388,6 +468,8 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "values>/**";
+				"FRAMEWORK_SEARCH_PATHS[arch=*]" = "$(PROJECT_DIR)";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -409,6 +491,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				"SYSTEM_FRAMEWORK_SEARCH_PATHS[arch=*]" = "";
 			};
 			name = Debug;
 		};
@@ -449,6 +532,8 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "values>/**";
+				"FRAMEWORK_SEARCH_PATHS[arch=*]" = "$(PROJECT_DIR)";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -661,6 +746,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		655078F8275CCDA90034BACB /* XCRemoteSwiftPackageReference "ChartView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AppPear/ChartView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		655078F9275CCDA90034BACB /* SwiftUICharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 655078F8275CCDA90034BACB /* XCRemoteSwiftPackageReference "ChartView" */;
+			productName = SwiftUICharts;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 650C7C67275A0C5F0096215D /* Project object */;
 }

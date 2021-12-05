@@ -41,7 +41,7 @@ struct EditWorkout: View
                     Section(header: Text("Actions"))
                     {
                         Picker(selection: $daySelected, label: Text("Selected day")){
-                    
+                    //Scorre l'array di giorni
                                 ForEach(0 ..< day.count)
                                 {
                                     Text(self.day[$0])
@@ -53,6 +53,7 @@ struct EditWorkout: View
                             
                         Picker(selection: $intensitySelected, label: Text("Intensity of Level"))
                                 {
+                                    //Scorre l'array dei livelli
                                     ForEach(0 ..< IntensityOfLevel.count)
                                     {
                                         Text(self.IntensityOfLevel[$0])
@@ -60,9 +61,11 @@ struct EditWorkout: View
                                 }
                     }
                     
-                } .accentColor(.red)
+                } .accentColor(.red) //evidenzia il testo in rosso quando viene cliccato
             
+                // Button Cancel
                 .navigationBarBackButtonHidden(true)
+            
                 .navigationBarItems(leading: Button(action :
                 {
                     self.adWorkout()
@@ -75,6 +78,7 @@ struct EditWorkout: View
             }
     }
     
+    // Modifica e controllo
     func adWorkout()
     {
                 
