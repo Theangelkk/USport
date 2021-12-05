@@ -14,67 +14,65 @@ struct History: View {
     
     var body: some View
     {
-        NavigationView
+        GeometryReader
         {
-            GeometryReader
+            geometry in
+            
+            Spacer()
+            
+            Section
             {
-                geometry in
-                
-                Spacer()
-                
-                Section
-                {
-                    LineView(data: data, legend: "pippo")
-                        .padding()
-                        .position(x: geometry.size.width/2, y: geometry.size.height/2.1)
-                
-                }
-                
-                Section
-                {
-                    RoundedRectangle(cornerRadius: 3)
-                        .stroke(Color.blue, lineWidth: 3)
-                    .frame(width: geometry.size.width - 30, height: geometry.size.height/2.2)
-                    .position(x: geometry.size.width/2, y: geometry.size.height/1.4)
-                    
-                    Image("life_person")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: geometry.size.width/2.8, height: geometry.size.height/3.4)
-                        .position(x: geometry.size.width/3.2, y: geometry.size.height/1.65)
-                    
-                    Text("10000 Kcal")
-                        .fontWeight(.bold)
-                        .multilineTextAlignment(.center)
-                        .font(.system(size: 38))
-                        .frame(width: geometry.size.width/3, height: 100)
-                        .position(x: geometry.size.width/1.5, y: geometry.size.height/1.60)
-                    
+                LineView(data: data)
+                    .padding()
+                    .position(x: geometry.size.width/2, y: geometry.size.height/2.1)
             
-                    Text("15000 Kcal")
-                        .fontWeight(.bold)
-                        .multilineTextAlignment(.center)
-                        .font(.system(size: 38))
-                        .frame(width: geometry.size.width/3, height: 100)
-                        .position(x: geometry.size.width/1.5, y: geometry.size.height/1.18)
-                    
-                    Image("life_person")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: geometry.size.width/2.8, height: geometry.size.height/3.4)
-                        .position(x: geometry.size.width/3.2, y: geometry.size.height/1.20)
-                   
-                    
-                }
             }
-            .navigationBarTitle("History", displayMode: .inline)
             
-            .navigationBarItems(trailing: NavigationLink(destination: History_Filter()
-            ){
-                    Image(systemName: "calendar")
-            })
+            Section
+            {
+                RoundedRectangle(cornerRadius: 3)
+                    .stroke(Color.blue, lineWidth: 3)
+                .frame(width: geometry.size.width - 30, height: geometry.size.height/2.2)
+                .position(x: geometry.size.width/2, y: geometry.size.height/1.4)
+                
+                Image("life_person")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: geometry.size.width/2.8, height: geometry.size.height/3.4)
+                    .position(x: geometry.size.width/3.2, y: geometry.size.height/1.65)
+                
+                Text("10000 Kcal")
+                    .fontWeight(.bold)
+                    .multilineTextAlignment(.center)
+                    .font(.system(size: 38))
+                    .frame(width: geometry.size.width/3, height: 100)
+                    .position(x: geometry.size.width/1.5, y: geometry.size.height/1.60)
+                
+        
+                Text("15000 Kcal")
+                    .fontWeight(.bold)
+                    .multilineTextAlignment(.center)
+                    .font(.system(size: 38))
+                    .frame(width: geometry.size.width/3, height: 100)
+                    .position(x: geometry.size.width/1.5, y: geometry.size.height/1.18)
+                
+                Image("life_person")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: geometry.size.width/2.8, height: geometry.size.height/3.4)
+                    .position(x: geometry.size.width/3.2, y: geometry.size.height/1.20)
+               
+                
+            }
         }
+        .navigationBarTitle("History", displayMode: .inline)
+        
+        .navigationBarItems(trailing: NavigationLink(destination: History_Filter()
+        ){
+                Image(systemName: "calendar")
+        })
     }
+    
 }
 
 struct History_Previews: PreviewProvider {
