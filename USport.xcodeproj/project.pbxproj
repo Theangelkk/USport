@@ -18,6 +18,7 @@
 		650C7C84275A0C620096215D /* USportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650C7C83275A0C620096215D /* USportTests.swift */; };
 		650C7C8E275A0C620096215D /* USportUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650C7C8D275A0C620096215D /* USportUITests.swift */; };
 		650C7C90275A0C620096215D /* USportUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650C7C8F275A0C620096215D /* USportUITestsLaunchTests.swift */; };
+		655078FA275CCDA90034BACB /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 655078F9275CCDA90034BACB /* SwiftUICharts */; };
 		65635FD3275A5EBC0076A9C8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65635FD2275A5EBC0076A9C8 /* User.swift */; };
 		65635FD5275A5FF00076A9C8 /* PreviewAPP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65635FD4275A5FF00076A9C8 /* PreviewAPP.swift */; };
 		65635FD7275A69530076A9C8 /* ChoseSport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65635FD6275A69530076A9C8 /* ChoseSport.swift */; };
@@ -79,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				655078FA275CCDA90034BACB /* SwiftUICharts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,6 +108,7 @@
 				650C7C82275A0C620096215D /* USportTests */,
 				650C7C8C275A0C620096215D /* USportUITests */,
 				650C7C70275A0C5F0096215D /* Products */,
+				65BEAB64275CC165007381A8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -169,6 +172,13 @@
 			path = USportUITests;
 			sourceTree = "<group>";
 		};
+		65BEAB64275CC165007381A8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -185,6 +195,9 @@
 			dependencies = (
 			);
 			name = USport;
+			packageProductDependencies = (
+				655078F9275CCDA90034BACB /* SwiftUICharts */,
+			);
 			productName = USport;
 			productReference = 650C7C6F275A0C5F0096215D /* USport.app */;
 			productType = "com.apple.product-type.application";
@@ -257,6 +270,9 @@
 				Base,
 			);
 			mainGroup = 650C7C66275A0C5F0096215D;
+			packageReferences = (
+				655078F8275CCDA90034BACB /* XCRemoteSwiftPackageReference "ChartView" */,
+			);
 			productRefGroup = 650C7C70275A0C5F0096215D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -388,6 +404,8 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "values>/**";
+				"FRAMEWORK_SEARCH_PATHS[arch=*]" = "$(PROJECT_DIR)";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -409,6 +427,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				"SYSTEM_FRAMEWORK_SEARCH_PATHS[arch=*]" = "";
 			};
 			name = Debug;
 		};
@@ -449,6 +468,8 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "values>/**";
+				"FRAMEWORK_SEARCH_PATHS[arch=*]" = "$(PROJECT_DIR)";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -661,6 +682,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		655078F8275CCDA90034BACB /* XCRemoteSwiftPackageReference "ChartView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AppPear/ChartView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		655078F9275CCDA90034BACB /* SwiftUICharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 655078F8275CCDA90034BACB /* XCRemoteSwiftPackageReference "ChartView" */;
+			productName = SwiftUICharts;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 650C7C67275A0C5F0096215D /* Project object */;
 }

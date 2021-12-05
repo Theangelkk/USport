@@ -62,7 +62,9 @@ struct EditWorkout: View
                     
                 } .accentColor(.red)
             
+                // Button Cancel
                 .navigationBarBackButtonHidden(true)
+            
                 .navigationBarItems(leading: Button(action :
                 {
                     self.adWorkout()
@@ -75,6 +77,7 @@ struct EditWorkout: View
             }
     }
     
+    // Modifica e controllo
     func adWorkout()
     {
                 
