@@ -8,9 +8,6 @@
 
 //fare struct per prendersi il giorno in modo dinamico al posto di calendario
 //fare struct specifiche per i vari button
-//fare segmented Picker per i primi tre tasti sopra
-//fare la navigation view
-//migliorare l'interfaccia
 //grafico
 
 
@@ -150,14 +147,6 @@ struct Homepage: View {
     }
 }
 
-
-struct ButtonHome_page: View{
-    var name_button : String
-    
-    var body: some View {
-        Text(" ")
-    }
-}
 
 struct Homepage_Previews: PreviewProvider {
     static var previews: some View {
