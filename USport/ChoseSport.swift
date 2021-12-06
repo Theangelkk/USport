@@ -47,7 +47,7 @@ struct ChoseSport: View {
                         }.padding()
                     
                         HStack{
-                            ChoiceButton(sportSelected: $sportSelected, nameSport: "Swimming", ImageName: "omino_swim1")
+                            ChoiceButton(sportSelected: $sportSelected, nameSport: "Swim", ImageName: "omino_swim1")
                             
                             ChoiceButton(sportSelected: $sportSelected, nameSport: "Gym", ImageName: "omino_gym")
                         }.padding()
