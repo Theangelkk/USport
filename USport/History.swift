@@ -38,7 +38,7 @@ struct History: View {
                 .frame(width: geometry.size.width - 30, height: geometry.size.height/2.2)
                 .position(x: geometry.size.width/2, y: geometry.size.height/1.4)
                 
-                Image("life_person")
+                Image("omino_pallavolo")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: geometry.size.width/2.8, height: geometry.size.height/3.4)
