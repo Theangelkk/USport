@@ -51,7 +51,7 @@ class Manager_Kcal
             self.RMR -= self.coeff_RMR_Famale
         }
         
-        self.RMR * self.coeff_Activity[self.user.Activity_User]!
+        self.RMR * self.coeff_Activity[self.user.Type_Activity]!
         
     }
     
@@ -59,7 +59,7 @@ class Manager_Kcal
     {
         self.compute_RMR()
         
-        return self.RMR * self.coeff_Activity[self.user.Activity_User]!
+        return self.RMR * self.coeff_Activity[self.user.Type_Activity]!
     }
     
     func get_Kcal_pedometer() -> Float
