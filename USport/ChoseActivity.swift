@@ -9,7 +9,7 @@ import SwiftUI
 import Foundation
 
 struct ChoseActivity: View {
-        
+    
     @State var sportSelected : String = "Default"
     @State var changeView : Bool = false
     
@@ -27,18 +27,29 @@ struct ChoseActivity: View {
                 .blur(radius: 5)
                 .opacity(0.15)
                 .frame(width: geometry.size.width)
-                
+                    
                 
                 VStack
                 {
                     Spacer()
-                    
-                    Text("Chose your activity")
-                        .foregroundColor(Color.blue)
-                            .font(.system(size: 37))
+                   
+                    HStack{
+                        
+                   NavigationLink(destination: Homepage().navigationBarBackButtonHidden(true)){
+                                   Text("< Back")
+                            .foregroundColor(Color.cyan)
                             .bold()
-                            .position(x: geometry.size.width/2, y: 20)
+                            .position(x: geometry.size.width/11, y: 20)
+                    }
                     
+                    
+                    Text("Chose activity")
+                        .foregroundColor(Color.blue)
+                        .font(.system(size: 37))
+                            .bold()
+                            .position(x: geometry.size.width/45, y:18)
+                    }
+                                
                     Group{
                         HStack{
                             ChoiceButton(sportSelected: $sportSelected, nameSport: "Volleyball", ImageName: "omino_pallavolo")
@@ -48,7 +59,7 @@ struct ChoseActivity: View {
                         }.padding()
                     
                         HStack{
-                            ChoiceButton(sportSelected: $sportSelected, nameSport: "Swimming", ImageName: "omino_swim1")
+                            ChoiceButton(sportSelected: $sportSelected, nameSport: "Swim", ImageName: "omino_swim1")
                             
                             ChoiceButton(sportSelected: $sportSelected, nameSport: "Gym", ImageName: "omino_gym")
                         }.padding()
@@ -84,3 +95,4 @@ struct ChoseActivity_Previews: PreviewProvider
         ChoseActivity()
     }
 }
+

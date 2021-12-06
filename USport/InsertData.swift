@@ -54,11 +54,18 @@ struct InsertData: View
                         
                         self.UserAPP.set_age(age: int_age)
                         
+                        var mang = Manager_Kcal(user: UserAPP)
+                        
+                        print(mang.get_Kcal_Daily())
+                        print(mang.get_Kcal_pedometer())
+                        
                         if(changeView == true)
                         {
                             // Save JSON User.json... TODO
                             self.UserAPP.encode_json()
                         }
+                        
+                        
                     }
                 }
             }
