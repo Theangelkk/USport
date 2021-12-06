@@ -45,11 +45,14 @@ struct InsertData: View
                         self.UserAPP.set_weight(weight: float_weight)
                         self.UserAPP.set_height(height: int_height)
                         self.UserAPP.create_n_workouts(n_workouts: int_n_workouts)
+                        
                         self.UserAPP.addSport(nameSport: self.nameSport)
                         
-                        self.UserAPP.gender = self.UserAPP.type_of_gender[idx_gender]
+                        self.UserAPP.set_gender(idx: idx_gender)
                         
-                        self.UserAPP.Activity_User = self.UserAPP.type_of_activity[idx_activity]
+                        self.UserAPP.set_type_of_activity(idx: idx_activity)
+                        
+                        self.UserAPP.set_age(age: int_age)
                         
                         if(changeView == true)
                         {
@@ -83,7 +86,6 @@ struct InsertData: View
                             }
                     
                     TextField("Age",text: $age)
-                    
                     TextField("Height",text: $height)
                     TextField("Weight", text: $weight)
                     
@@ -122,7 +124,7 @@ struct InsertData: View
     }
 }
 
-struct InsertData_Previews: PreviewProvider {
+/*struct InsertData_Previews: PreviewProvider {
     
     @StateObject static var UserAPP : User = User()
     @State static var nameSport : String = "Football"
@@ -133,3 +135,4 @@ struct InsertData_Previews: PreviewProvider {
             .environmentObject(UserAPP)
     }
 }
+*/
