@@ -51,11 +51,18 @@ struct InsertData: View
                         
                         self.UserAPP.Activity_User = self.UserAPP.type_of_activity[idx_activity]
                         
+                        var mang = Manager_Kcal(user: UserAPP)
+                        
+                        print(mang.get_Kcal_Daily())
+                        print(mang.get_Kcal_pedometer())
+                        
                         if(changeView == true)
                         {
                             // Save JSON User.json... TODO
                             self.UserAPP.encode_json()
                         }
+                        
+                        
                     }
                 }
             }
