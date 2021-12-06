@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1B04606F275A6EC100F0BF22 /* ChoiceButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B04606E275A6EC100F0BF22 /* ChoiceButton.swift */; };
 		1B8AE4CD275E54890021E9AA /* ChoseActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8AE4CC275E54880021E9AA /* ChoseActivity.swift */; };
+		1B8AE4D1275E72730021E9AA /* EditActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8AE4D0275E72730021E9AA /* EditActivity.swift */; };
 		1BEEFD9C275BA535005A14CE /* Homepage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEEFD9B275BA535005A14CE /* Homepage.swift */; };
 		1BEEFD9E275BA58D005A14CE /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEEFD9D275BA58D005A14CE /* History.swift */; };
 		650C7C73275A0C5F0096215D /* USportApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650C7C72275A0C5F0096215D /* USportApp.swift */; };
@@ -77,6 +78,7 @@
 /* Begin PBXFileReference section */
 		1B04606E275A6EC100F0BF22 /* ChoiceButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceButton.swift; sourceTree = "<group>"; };
 		1B8AE4CC275E54880021E9AA /* ChoseActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoseActivity.swift; sourceTree = "<group>"; };
+		1B8AE4D0275E72730021E9AA /* EditActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditActivity.swift; sourceTree = "<group>"; };
 		1BEEFD9B275BA535005A14CE /* Homepage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Homepage.swift; sourceTree = "<group>"; };
 		1BEEFD9D275BA58D005A14CE /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
 		650C7C6F275A0C5F0096215D /* USport.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = USport.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -175,6 +177,7 @@
 				65635FDC275A69C00076A9C8 /* EditWorkout.swift */,
 				7DFC1FCB275CC1AD00335F63 /* Profile.swift */,
 				1B04606E275A6EC100F0BF22 /* ChoiceButton.swift */,
+				1B8AE4D0275E72730021E9AA /* EditActivity.swift */,
 				1B8AE4CC275E54880021E9AA /* ChoseActivity.swift */,
 				650C7C76275A0C610096215D /* Assets.xcassets */,
 				650C7C78275A0C610096215D /* Preview Content */,
@@ -369,6 +372,7 @@
 				655078FC275D1AC80034BACB /* History_Filter.swift in Sources */,
 				65A5BE92275D248A00819933 /* RKMonth.swift in Sources */,
 				7DFC1FCC275CC1AD00335F63 /* Profile.swift in Sources */,
+				1B8AE4D1275E72730021E9AA /* EditActivity.swift in Sources */,
 				65A5BE9B275D248A00819933 /* RKCell.swift in Sources */,
 				6576E6B1275A19340022FD08 /* Activity.swift in Sources */,
 				65F0EAFF275A5ED600649843 /* Manager_APP.swift in Sources */,
