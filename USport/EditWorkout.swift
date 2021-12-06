@@ -71,6 +71,7 @@ struct EditWorkout: View
                 .navigationBarItems(leading: Button(action :
                 {
                     self.adWorkout()
+    
                     
                 }){
                         Image(systemName: "arrow.left")
@@ -79,7 +80,7 @@ struct EditWorkout: View
             }
     }
     
-    // Mgari con notifica se sbaglia ad inserire
+    // Magari con notifica se sbaglia ad inserire
     func adWorkout()
     {
         var esit_title : Bool = false
@@ -102,7 +103,7 @@ struct EditWorkout: View
     }
 }
  
-struct EditWorkout_Previews: PreviewProvider {
+/*struct EditWorkout_Previews: PreviewProvider {
     
     @StateObject static var UserAPP : User = User(n_workout: 1)
     @State static var nameSport : String = "Football"
@@ -115,5 +116,5 @@ struct EditWorkout_Previews: PreviewProvider {
         EditWorkout(new_workout: $workout, idx_workout: $idx, name_workout: self.UserAPP.workouts[0].Title, daySelected: self.UserAPP.workouts[0].Day, intensitySelected: self.UserAPP.workouts[0].Intesity_Level, start: self.UserAPP.workouts[0].Start_Time, end: self.UserAPP.workouts[0].End_Time)
             .environmentObject(UserAPP)
     }
-}
+}*/
 

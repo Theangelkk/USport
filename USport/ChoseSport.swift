@@ -76,11 +76,11 @@ struct ChoseSport: View {
 }
 
 
-struct ChoseSport_Previews: PreviewProvider
+/*struct ChoseSport_Previews: PreviewProvider
 {
     static var previews: some View
     {
         ChoseSport()
     }
 }
-
+*/

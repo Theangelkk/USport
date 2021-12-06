@@ -19,7 +19,7 @@ class User : ObservableObject
     
     @Published var workouts : [Workout] = []
     
-    @Published var Type_of_Sport : Sport?
+    @Published var Type_of_Sport : String
     
     @Published var gender : String
     
@@ -42,7 +42,7 @@ class User : ObservableObject
         self.nickname = "Default"
         self.height = 0
         self.weight = 0.0
-        self.Type_of_Sport = nil
+        self.Type_of_Sport = "Default"
         self.Age = 0
         self.Type_Activity = "Default"
         self.gender = "Default"
@@ -59,7 +59,7 @@ class User : ObservableObject
         self.nickname = "Default"
         self.height = 0
         self.weight = 0.0
-        self.Type_of_Sport = nil
+        self.Type_of_Sport = "Default"
         self.Age = 0
         self.Type_Activity = "Default"
         self.gender = "Default"
@@ -74,7 +74,7 @@ class User : ObservableObject
         self.nickname = "Default"
         self.height = 0
         self.weight = 0.0
-        self.Type_of_Sport = nil
+        self.Type_of_Sport = "Default"
         self.Age = 0
         self.Type_Activity = "Default"
         self.gender = "Default"
@@ -153,13 +153,13 @@ class User : ObservableObject
     
     func addSport(nameSport : String)
     {
-        self.Type_of_Sport = Sport(type_of_sport: nameSport)
+        self.Type_of_Sport = nameSport
     }
     
     func encode_json()
     {
 
-        let usr_enc : UserEnc = UserEnc(nickname: self.nickname, height: String(self.height), weight: String(self.weight), age: String(self.Age), gender: self.gender, type_activity: self.Type_Activity)
+        let usr_enc : UserEnc = UserEnc(nickname: self.nickname, height: String(self.height), weight: String(self.weight), age: String(self.Age), gender: self.gender, type_activity: self.Type_Activity, Type_of_Sport: self.Type_of_Sport)
         
         let fileURL = dir?.appendingPathComponent("User").appendingPathExtension("json")
         let enc : IO_Dictionary = IO_Dictionary<UserEnc>(newValue_path_dictionary: fileURL)
@@ -181,8 +181,6 @@ struct UserEnc: Codable
     var age: String = ""
     var gender: String = ""
     var type_activity: String = ""
-    
-    var workouts : [WorkoutEnc] = []
-    
-    var Type_of_Sport : SportEnc?
+    var Type_of_Sport : String = ""
+
 }
