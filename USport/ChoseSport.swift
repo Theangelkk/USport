@@ -49,7 +49,7 @@ struct ChoseSport: View {
                         HStack{
                             ChoiceButton(sportSelected: $sportSelected, nameSport: "Swimming", ImageName: "omino_swim1")
                             
-                            ChoiceButton(sportSelected: $sportSelected, nameSport: "Gymnasium", ImageName: "omino_gym")
+                            ChoiceButton(sportSelected: $sportSelected, nameSport: "Gym", ImageName: "omino_gym")
                         }.padding()
                     
                         HStack{
