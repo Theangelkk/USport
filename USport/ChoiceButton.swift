@@ -29,6 +29,10 @@ struct ChoiceButton: View
                     .aspectRatio(contentMode: .fit)
                     .clipShape(Rectangle())
                     .border(Color.black)
+                    .overlay(
+                        Text(nameSport)
+                            .position(x: 55, y: 140)
+                    )
             }
             else
             {
@@ -37,10 +41,15 @@ struct ChoiceButton: View
                     .aspectRatio(contentMode: .fit)
                     .clipShape(Rectangle())
                     .border(Color.blue)
+                    .overlay(
+                        Text(nameSport)
+                            .position(x: 55, y: 140)
+                    )
             }
                 
         }
         .shadow(color: Color.black, radius: 6, x: 10, y: 10)
+        
     }
 }
 

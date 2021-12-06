@@ -67,5 +67,7 @@ struct WorkoutEnc: Codable_Workout
     var Day : String = ""
     
     var Intesity_Level : String = ""
+    
+    
 }
 
