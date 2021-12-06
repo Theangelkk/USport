@@ -27,6 +27,12 @@ struct Homepage: View {
                     VStack{
                         Spacer()
                         
+                        Text("USport")
+                            .foregroundColor(Color.blue)
+                                .font(.system(size: 70))
+                                .bold()
+                                .position(x: geometry.size.width/2, y: -32)
+                        
                         Picker("which period do you want to evaluate", selection: $chose_period) {
                             Button(action:{
                                 
@@ -46,23 +52,10 @@ struct Homepage: View {
                                 Text("Weekly").tag(2)
                             }
                         }.pickerStyle(.segmented)
-                            .position(x: 195, y: 3)
+                            .position(x: 195, y: -80)
                         
-                        
-                    HStack{
                         
                         Ring_Graph(geometry: geometry, currentKcal: currentKcal, totalKcal: totalKcal)
-                        
-                        NavigationLink(destination: Profile())
-                        {
-                            Image("profile_icon")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(width: geometry.size.width/4, height: geometry.size.height/10)
-                                    .position(x: geometry.size.width/3, y: geometry.size.height/20)
-                            
-                        }
-                    }
                         
                         HStack{
                             NavigationLink(destination: History())
@@ -115,28 +108,17 @@ struct Homepage: View {
                                     )
                             })
                             
-                            Button(action: {
+                            NavigationLink(destination: Profile())
+                            {
+                                Image("profile_icon")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: geometry.size.width/4, height: geometry.size.height/1)
+                                        .position(x: geometry.size.width/4, y: geometry.size.height/20)
                                 
-                            }, label: {
-                                Rectangle()
-                                    .cornerRadius(30)
-                                    .foregroundColor(Color.cyan)
-                                    .overlay(
-                                        Label("Advices", systemImage: "lasso.and.sparkles")
-                                            .font(.system(size: 30))
-                                        .foregroundColor(Color.white)
-                                    .buttonStyle(.borderedProminent)
-                                    .controlSize(.large)
-                                    )
-                            })
+                            }
 
                         }.padding()
-                        
-                        Text("USport")
-                            .foregroundColor(Color.blue)
-                                .font(.system(size: 70))
-                                .bold()
-                                .position(x: geometry.size.width/2, y: 90)
                         
                     }
                 }
