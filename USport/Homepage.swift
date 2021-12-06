@@ -33,9 +33,23 @@ struct Homepage: View {
                         Spacer()
                         
                         Picker("which period do you want to evaluate", selection: $chose_period) {
+                            Button(action:{
+                                
+                            }){
                                         Text("Monthly").tag(0)
+                            }
+                            
+                            Button(action: {
+                                
+                            }){
                                         Text("Daily").tag(1)
-                                        Text("Weekly").tag(2)
+                            }
+                            
+                            Button(action: {
+                                
+                            }){
+                                Text("Weekly").tag(2)
+                            }
                         }.pickerStyle(.segmented)
                             .position(x: 195, y: 3)
                         
