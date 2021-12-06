@@ -7,6 +7,21 @@
 
 import Foundation
 
+typealias Codable = Decodable & Encodable
+
+let dir = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+
+let fileURL = dir?.appendingPathComponent("User").appendingPathExtension("json")
+
+struct UserEnc: Codable{
+    var nickname : String = ""
+    var height : String = ""
+    var weight : String = ""
+    var workout : String = ""
+    
+    
+}
+
 class User : ObservableObject
 {
     @Published var nickname : String
@@ -18,6 +33,7 @@ class User : ObservableObject
     @Published var workouts : [Workout] = []
     
     @Published var Type_of_Sport : Sport?
+    
     
     init()
     {
@@ -107,8 +123,35 @@ class User : ObservableObject
         self.Type_of_Sport = Sport(type_of_sport: nameSport)
     }
     
-    func save_json()
+    func encode_json()
     {
-        print("Save JSON User... TODO")
+        
+        /*let usr: User = User(nickname: nickname,height: height, weight: weight, workout: workout)
+
+        let usrenc: UserEnc = UserEnc(nickname: usr.nickname, height: usr.height, weight: usr.weight, workout: usr.workout)
+         */
+        
+        let encoder = JSONEncoder()
+        if let jsonData = try? encoder.encode("usrenc") {
+            if let jsonString = String(data: jsonData, encoding: .utf8) {
+                do {
+                    try jsonString.write(to: fileURL!, atomically: true, encoding: .utf8)
+                } catch {
+                    // Handle error
+                }
+            }
+        }
     }
+    func decode_json()
+    {
+        do {
+                let data = try Data(contentsOf: fileURL!)
+                let decoder = JSONDecoder()
+                let jsonData = try decoder.decode(UserEnc.self,from: data)
+                print(jsonData)
+                } catch {
+                    print("error:\(error)")
+                }
+    }
+    
 }

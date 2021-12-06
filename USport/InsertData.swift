@@ -43,7 +43,7 @@ struct InsertData: View
                     if(changeView == true)
                     {
                         // Save JSON User.json... TODO
-                        self.UserAPP.save_json()
+                        self.UserAPP.encode_json()
                     }
                 }
             }
