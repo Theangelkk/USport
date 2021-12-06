@@ -6,9 +6,7 @@
 //
 
 
-//fare struct per prendersi il giorno in modo dinamico al posto di calendario
-//fare struct specifiche per i vari button
-//grafico
+//prendersi il giorno in modo dinamico al posto di calendario
 
 
 import SwiftUI
