@@ -21,11 +21,21 @@ class User : ObservableObject
     
     @Published var Type_of_Sport : Sport?
     
+    @Published var gender : String
+    
+    @Published var Age : Int
+    
+    @Published var Activity_User : String
+    
     let dir = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
     
     var path_Json_user : URL? = URL(fileURLWithPath: "prova")
     
     var io_dict : IO_Dictionary<UserEnc>? = nil
+    
+    var type_of_gender : [String] = ["Male", "Famale"]
+    
+    var type_of_activity : [String] = ["Sedentary lifestyle", "Slightly active", "Moderately active", "Active lifestyle", "Very active lifestyle"]
     
     init()
     {
@@ -33,23 +43,38 @@ class User : ObservableObject
         self.height = 0
         self.weight = 0.0
         self.Type_of_Sport = nil
+        self.Age = 0
+        
+        self.Activity_User = self.type_of_activity[0]
+        
+        self.gender = self.type_of_gender[0]
         
         self.path_Json_user = dir?.appendingPathComponent("User").appendingPathExtension("json")
         
         self.io_dict = IO_Dictionary<UserEnc>(newValue_path_dictionary: path_Json_user)
     }
     
-    init(nickname : String, height : Int, weight : Float, type_of_sport : Sport)
+    init(nickname : String, age: Int, gender: String, activity : String, height : Int, weight : Float, type_of_sport : Sport)
     {
         self.nickname = "Default"
         self.height = 0
         self.weight = 0.0
         self.Type_of_Sport = nil
         
+        self.Age = 0
+        self.Activity_User = self.type_of_activity[0]
+        self.gender = self.type_of_gender[0]
+        
+        
         self.set_nickname(nick: nickname)
         self.set_height(height: height)
         self.set_weight(weight: weight)
         self.Type_of_Sport = type_of_sport
+        
+        self.set_age(age: age)
+        self.gender = gender
+        
+        self.Activity_User = activity
         
         self.path_Json_user = dir?.appendingPathComponent("User").appendingPathExtension("json")
         
@@ -62,6 +87,10 @@ class User : ObservableObject
         self.height = 0
         self.weight = 0.0
         self.Type_of_Sport = nil
+        
+        self.Age = 0
+        self.Activity_User = self.type_of_activity[0]
+        self.gender = self.type_of_gender[0]
         
         self.create_n_workouts(n_workouts: n_workout)
     }
@@ -100,6 +129,14 @@ class User : ObservableObject
         for _ in 1...n_workouts
         {
             self.add_workout(workout: Workout())
+        }
+    }
+    
+    func set_age(age : Int)
+    {
+        if(age > 8 && age < 120)
+        {
+            self.Age = age
         }
     }
     

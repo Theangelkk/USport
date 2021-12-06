@@ -20,6 +20,10 @@ struct InsertData: View
     
     @State var changeView : Bool = false
     
+    @State var idx_gender : Int = 0
+    @State var idx_activity : Int = 0
+    @State var age : String = ""
+    
     // Magari far uscire una notifica di errore... TODO
     func checkFieds()
     {
@@ -34,16 +38,24 @@ struct InsertData: View
                 
                 if(int_n_workouts > 0 && int_n_workouts < 8)
                 {
-                    changeView = self.UserAPP.set_nickname(nick: self.nickname)
-                    self.UserAPP.set_weight(weight: float_weight)
-                    self.UserAPP.set_height(height: int_height)
-                    self.UserAPP.create_n_workouts(n_workouts: int_n_workouts)
-                    self.UserAPP.addSport(nameSport: self.nameSport)
-                    
-                    if(changeView == true)
+                    let int_age : Int = Int(self.age) ?? 0
+                    if(int_age > 10 && int_age < 120)
                     {
-                        // Save JSON User.json... TODO
-                        self.UserAPP.encode_json()
+                        changeView = self.UserAPP.set_nickname(nick: self.nickname)
+                        self.UserAPP.set_weight(weight: float_weight)
+                        self.UserAPP.set_height(height: int_height)
+                        self.UserAPP.create_n_workouts(n_workouts: int_n_workouts)
+                        self.UserAPP.addSport(nameSport: self.nameSport)
+                        
+                        self.UserAPP.gender = self.UserAPP.type_of_gender[idx_gender]
+                        
+                        self.UserAPP.Activity_User = self.UserAPP.type_of_activity[idx_activity]
+                        
+                        if(changeView == true)
+                        {
+                            // Save JSON User.json... TODO
+                            self.UserAPP.encode_json()
+                        }
                     }
                 }
             }
@@ -61,8 +73,29 @@ struct InsertData: View
                 Form
                 {
                     TextField("Nickname",text: $nickname)
+                    
+                    Picker(selection: $idx_gender, label: Text("Gender"))
+                            {
+                                ForEach(0 ..< UserAPP.type_of_gender.count)
+                                {
+                                    Text(UserAPP.type_of_gender[$0])
+                                }
+                            }
+                    
+                    TextField("Age",text: $age)
+                    
                     TextField("Height",text: $height)
                     TextField("Weight", text: $weight)
+                    
+                    Picker(selection: $idx_activity, label: Text("Activity"))
+                            {
+                                ForEach(0 ..< UserAPP.type_of_activity.count)
+                                {
+                                    Text(UserAPP.type_of_activity[$0])
+                                }
+                            }
+                    
+                    
                     TextField("Number of Workout", text: $number_workout)
                 }
             
