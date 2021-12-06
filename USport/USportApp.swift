@@ -11,6 +11,7 @@ import SwiftUI
 struct USportApp: App {
     
     @StateObject var UserAPP : User = User()
+    @StateObject var Dict_History : IO_Dictionary_History = IO_Dictionary_History(newValue_path_dictionary: "history.json")
         
     var body: some Scene
     {
@@ -18,6 +19,7 @@ struct USportApp: App {
         {
             PreviewAPP()
                 .environmentObject(UserAPP)
+                .environmentObject(Dict_History)
         }
     }
 }
