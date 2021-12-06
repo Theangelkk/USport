@@ -34,8 +34,8 @@ struct ChoseActivity: View {
                     Spacer()
                    
                     HStack{
-                    
-                    NavigationLink(destination: Homepage().navigationBarBackButtonHidden(true)){
+                        
+                   NavigationLink(destination: Homepage().navigationBarBackButtonHidden(true)){
                                    Text("< Back")
                             .foregroundColor(Color.cyan)
                             .bold()
@@ -95,3 +95,4 @@ struct ChoseActivity_Previews: PreviewProvider
         ChoseActivity()
     }
 }
+
