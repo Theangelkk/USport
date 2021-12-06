@@ -34,20 +34,13 @@ struct ChoseActivity: View {
                     Spacer()
                    
                     HStack{
-                        
-                   NavigationLink(destination: Homepage().navigationBarBackButtonHidden(true)){
-                                   Text("< Back")
-                            .foregroundColor(Color.cyan)
-                            .bold()
-                            .position(x: geometry.size.width/11, y: 20)
-                    }
                     
                     
-                    Text("Chose activity")
+                    Text("Chose your activity")
                         .foregroundColor(Color.blue)
                         .font(.system(size: 37))
                             .bold()
-                            .position(x: geometry.size.width/45, y:18)
+                            .position(x: geometry.size.width/2, y:20)
                     }
                                 
                     Group{
