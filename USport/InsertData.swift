@@ -20,7 +20,7 @@ struct InsertData: View
     
     @State var changeView : Bool = false
     
-    // Magari far uscire una notifica di errore
+    // Magari far uscire una notifica di errore... TODO
     func checkFieds()
     {
         if (self.nickname != "")
@@ -39,6 +39,12 @@ struct InsertData: View
                     self.UserAPP.set_height(height: int_height)
                     self.UserAPP.create_n_workouts(n_workouts: int_n_workouts)
                     self.UserAPP.addSport(nameSport: self.nameSport)
+                    
+                    if(changeView == true)
+                    {
+                        // Save JSON User.json... TODO
+                        self.UserAPP.save_json()
+                    }
                 }
             }
         }
