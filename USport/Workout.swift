@@ -9,25 +9,53 @@ import Foundation
 
 class Workout : Activity
 {
-    @Published var Day : String
+    @Published var Day : Int
     
-    @Published var Intesity_Level : String
+    @Published var Intesity_Level : Int
+    
+    var days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    var IntensityOfLevel = ["Low", "Medium", "High"]
    
     override init()
     {
-        self.Day = "Monday"
-        self.Intesity_Level = "Low"
+        self.Day = 0
+        self.Intesity_Level = 0
         
         super.init()
         
     }
     
-    init(newValue_Day : String, newValue_Title: String, newValue_StartTime: Date, newValue_EndTime: Date, newValue_Intesity_Level : String)
+    init(newValue_Day : Int, newValue_Title: String, newValue_StartTime: Date, newValue_EndTime: Date, newValue_Intesity_Level : Int)
     {
-        self.Day = newValue_Day
-        self.Intesity_Level = newValue_Intesity_Level
+        self.Day = 0
+        self.Intesity_Level = 0
         
-        super.init(newValue_Title: newValue_Title, newValue_StartTime: newValue_StartTime, newValue_EndTime: newValue_EndTime)
+        super.init(newValue_Title: newValue_Title, newValue_StartTime: newValue_StartTime)
     }
     
+    func set_Day(idx : Int)
+    {
+        if(idx >= 0 && idx <= 7)
+        {
+            self.Day = idx
+        }
+    }
+    
+    func set_IntensityOfLevel(idx : Int)
+    {
+        if(idx >= 0 && idx <= 3)
+        {
+            self.Intesity_Level = idx
+        }
+    }
+    
+    func name_day() -> String
+    {
+        return self.days[self.Day]
+    }
+    
+    func name_intensity() -> String
+    {
+        return self.IntensityOfLevel[self.Intesity_Level]
+    }
 }

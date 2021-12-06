@@ -8,8 +8,8 @@
 import SwiftUI
 
 @main
-struct USportApp: App {
-    
+struct USportApp: App
+{
     @StateObject var UserAPP : User = User()
     @StateObject var Dict_History : IO_Dictionary_History = IO_Dictionary_History(newValue_path_dictionary: "history.json")
         

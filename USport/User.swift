@@ -39,10 +39,42 @@ class User : ObservableObject
     
     init(nickname : String, height : Int, weight : Float, type_of_sport : Sport)
     {
-        self.nickname = nickname
-        self.height = height
-        self.weight = weight
+        self.nickname = "Default"
+        self.height = 0
+        self.weight = 0.0
+        self.Type_of_Sport = nil
+        
+        self.set_nickname(nick: nickname)
+        self.set_height(height: height)
+        self.set_weight(weight: weight)
         self.Type_of_Sport = type_of_sport
+    }
+    
+    func set_nickname(nick : String) -> Bool
+    {
+        if(nick != "")
+        {
+            self.nickname = nick
+            return true
+        }
+        
+        return false
+    }
+    
+    func set_height(height : Int)
+    {
+        if(height > 0 && height < 270)
+        {
+            self.height = height
+        }
+    }
+    
+    func set_weight(weight : Float)
+    {
+        if(weight > 0.0 && weight < 250.0)
+        {
+            self.weight = weight
+        }
     }
     
     func create_n_workouts(n_workouts : Int)

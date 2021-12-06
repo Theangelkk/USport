@@ -20,26 +20,25 @@ struct InsertData: View
     
     @State var changeView : Bool = false
     
+    // Magari far uscire una notifica di errore
     func checkFieds()
     {
         if (self.nickname != "")
         {
-            let int_weight : Float = Float(self.weight) ?? 0.0
-            let float_height : Int = Int(self.height) ?? 0
+            let float_weight : Float = Float(self.weight) ?? 0.0
+            let int_height : Int = Int(self.height) ?? 0
             
-            if(float_height > 0 && int_weight > 0.0)
+            if(int_height > 0 && int_height < 270 && float_weight > 0.0 && float_weight < 250.0)
             {
                 let int_n_workouts : Int = Int(self.number_workout) ?? 0
                 
-                if(int_n_workouts > 0)
+                if(int_n_workouts > 0 && int_n_workouts < 8)
                 {
-                    self.UserAPP.nickname = self.nickname
-                    self.UserAPP.weight = int_weight
-                    self.UserAPP.height = float_height
+                    changeView = self.UserAPP.set_nickname(nick: self.nickname)
+                    self.UserAPP.set_weight(weight: float_weight)
+                    self.UserAPP.set_height(height: int_height)
                     self.UserAPP.create_n_workouts(n_workouts: int_n_workouts)
                     self.UserAPP.addSport(nameSport: self.nameSport)
-                    
-                    changeView = true
                 }
             }
         }

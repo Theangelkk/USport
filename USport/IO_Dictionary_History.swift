@@ -9,19 +9,19 @@ import Foundation
 
 class IO_Dictionary_History : IO_Dictionary
 {
+    // Day, Day Mounth Year --> From JSON
+    let dict : [String : [String]] = [
+                                        "Saturday, 4 December 2021": ["1800","2100"],
+                                        "Sunday, 5 December 2021": ["1000","2000"],
+                                        "Monday, 6 December 2021": ["1200","2500"]
+                                    ]
+    
     func getKcal_RangeDate(startDate : String, endDate : String) -> (Total_Daily : Float, Total_Sport : Float)
     {
         var Ktotal_Daily : Float = 0.0
         var Ktotal_Sport : Float = 0.0
         
-        // Day, Day Mounth Year --> From JSON
-        let dict : [String : [String]] = [
-                                            "Saturday, 4 December 2021": ["1800","2100"],
-                                            "Sunday, 5 December 2021": ["1000","2000"],
-                                            "Monday, 6 December 2021": ["1200","2500"]
-                                        ]
-        
-        for (_, values) in dict
+        for (_, values) in self.dict
         {
             let kcal_daily : Float = Float(values[0]) ?? 0.0
             let kcal_sport : Float = Float(values[1]) ?? 0.0

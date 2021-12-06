@@ -28,7 +28,7 @@ struct AddWorkout: View
                         ForEach(0..<self.UserAPP.workouts.count)
                         {
                             idx in
-                            ButtonWorkout(idx_workout: idx, titleButton: "Workout \(idx+1)")
+                            ButtonWorkout(idx_workout: idx, titleButton: self.UserAPP.workouts[idx].Title )
                             
                         }
                     }
@@ -77,10 +77,11 @@ struct ButtonWorkout: View
     @EnvironmentObject var UserAPP : User
     
     @State private var esit : Bool = false
+    @State var workout : Workout = Workout()
     
     var body: some View {
-        NavigationLink(destination:
-                        EditWorkout(idx_workout: $idx_workout, workout: self.UserAPP.workouts[self.idx_workout].Title ))
+        
+        NavigationLink(destination: EditWorkout(new_workout: $workout, idx_workout: self.$idx_workout, name_workout: self.UserAPP.workouts[self.idx_workout].Title, daySelected: self.UserAPP.workouts[self.idx_workout].Day, intensitySelected: self.UserAPP.workouts[self.idx_workout].Intesity_Level, start: self.UserAPP.workouts[self.idx_workout].Start_Time, end: self.UserAPP.workouts[self.idx_workout].End_Time))
         {
             Text(self.titleButton)
                 .frame(maxWidth: .infinity, alignment: .center)
