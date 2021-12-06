@@ -7,6 +7,8 @@
 
 import Foundation
 
+typealias Codable_Sport = Decodable & Encodable
+
 class Sport : ObservableObject
 {
     @Published var Coeff_Kcal_Low : Float
@@ -96,4 +98,17 @@ class Sport : ObservableObject
         self.Img_Icon = "Tennis_icon"
         self.Name_Sport = "Tennis"
     }
+}
+
+struct SportEnc: Codable_Sport
+{
+    var Coeff_Kcal_Low : String
+    
+    var Coeff_Kcal_Medium : String
+    
+    var Coeff_Kcal_High : String
+    
+    var Img_Icon : String
+    
+    var Name_Sport : String
 }

@@ -17,6 +17,7 @@
 		650C7C84275A0C620096215D /* USportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650C7C83275A0C620096215D /* USportTests.swift */; };
 		650C7C8E275A0C620096215D /* USportUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650C7C8D275A0C620096215D /* USportUITests.swift */; };
 		650C7C90275A0C620096215D /* USportUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650C7C8F275A0C620096215D /* USportUITestsLaunchTests.swift */; };
+		6517FB2E275E3DE40090D2EC /* Manager_Kcal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6517FB2D275E3DE40090D2EC /* Manager_Kcal.swift */; };
 		655078FA275CCDA90034BACB /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 655078F9275CCDA90034BACB /* SwiftUICharts */; };
 		655078FC275D1AC80034BACB /* History_Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655078FB275D1AC80034BACB /* History_Filter.swift */; };
 		65635FD3275A5EBC0076A9C8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65635FD2275A5EBC0076A9C8 /* User.swift */; };
@@ -86,6 +87,7 @@
 		650C7C89275A0C620096215D /* USportUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = USportUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		650C7C8D275A0C620096215D /* USportUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USportUITests.swift; sourceTree = "<group>"; };
 		650C7C8F275A0C620096215D /* USportUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USportUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		6517FB2D275E3DE40090D2EC /* Manager_Kcal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manager_Kcal.swift; sourceTree = "<group>"; };
 		655078FB275D1AC80034BACB /* History_Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History_Filter.swift; sourceTree = "<group>"; };
 		65635FD2275A5EBC0076A9C8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		65635FD4275A5FF00076A9C8 /* PreviewAPP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewAPP.swift; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 				650C7C76275A0C610096215D /* Assets.xcassets */,
 				650C7C78275A0C610096215D /* Preview Content */,
 				6576E6AC275A14EB0022FD08 /* Sport.swift */,
+				6517FB2D275E3DE40090D2EC /* Manager_Kcal.swift */,
 				65FEBAC8275DE75C000D034F /* IO_Dictionary.swift */,
 				65FEBACA275DE791000D034F /* IO_Dictionary_History.swift */,
 				65F0EAFE275A5ED600649843 /* Manager_APP.swift */,
@@ -368,6 +371,7 @@
 				65F0EAFF275A5ED600649843 /* Manager_APP.swift in Sources */,
 				1BEEFD9C275BA535005A14CE /* Homepage.swift in Sources */,
 				65FEBACB275DE791000D034F /* IO_Dictionary_History.swift in Sources */,
+				6517FB2E275E3DE40090D2EC /* Manager_Kcal.swift in Sources */,
 				65635FDD275A69C00076A9C8 /* EditWorkout.swift in Sources */,
 				650C7C75275A0C5F0096215D /* ContentView.swift in Sources */,
 				1B04606F275A6EC100F0BF22 /* ChoiceButton.swift in Sources */,

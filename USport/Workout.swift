@@ -7,6 +7,8 @@
 
 import Foundation
 
+typealias Codable_Workout = Decodable & Encodable
+
 class Workout : Activity
 {
     @Published var Day : Int
@@ -59,3 +61,11 @@ class Workout : Activity
         return self.IntensityOfLevel[self.Intesity_Level]
     }
 }
+
+struct WorkoutEnc: Codable_Workout
+{
+    var Day : String = ""
+    
+    var Intesity_Level : String = ""
+}
+

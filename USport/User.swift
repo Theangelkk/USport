@@ -9,19 +9,6 @@ import Foundation
 
 typealias Codable = Decodable & Encodable
 
-let dir = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-
-let fileURL = dir?.appendingPathComponent("User").appendingPathExtension("json")
-
-struct UserEnc: Codable{
-    var nickname : String = ""
-    var height : String = ""
-    var weight : String = ""
-    var workout : String = ""
-    
-    
-}
-
 class User : ObservableObject
 {
     @Published var nickname : String
@@ -34,6 +21,11 @@ class User : ObservableObject
     
     @Published var Type_of_Sport : Sport?
     
+    let dir = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+    
+    var path_Json_user : URL? = URL(fileURLWithPath: "prova")
+    
+    var io_dict : IO_Dictionary<UserEnc>? = nil
     
     init()
     {
@@ -41,16 +33,10 @@ class User : ObservableObject
         self.height = 0
         self.weight = 0.0
         self.Type_of_Sport = nil
-    }
-    
-    init(n_workout : Int)
-    {
-        self.nickname = "Default"
-        self.height = 0
-        self.weight = 0.0
-        self.Type_of_Sport = nil
         
-        self.create_n_workouts(n_workouts: n_workout)
+        self.path_Json_user = dir?.appendingPathComponent("User").appendingPathExtension("json")
+        
+        self.io_dict = IO_Dictionary<UserEnc>(newValue_path_dictionary: path_Json_user)
     }
     
     init(nickname : String, height : Int, weight : Float, type_of_sport : Sport)
@@ -64,6 +50,20 @@ class User : ObservableObject
         self.set_height(height: height)
         self.set_weight(weight: weight)
         self.Type_of_Sport = type_of_sport
+        
+        self.path_Json_user = dir?.appendingPathComponent("User").appendingPathExtension("json")
+        
+        self.io_dict = IO_Dictionary<UserEnc>(newValue_path_dictionary: path_Json_user)
+    }
+    
+    init(n_workout : Int)
+    {
+        self.nickname = "Default"
+        self.height = 0
+        self.weight = 0.0
+        self.Type_of_Sport = nil
+        
+        self.create_n_workouts(n_workouts: n_workout)
     }
     
     func set_nickname(nick : String) -> Bool
@@ -125,33 +125,24 @@ class User : ObservableObject
     
     func encode_json()
     {
-        
-        /*let usr: User = User(nickname: nickname,height: height, weight: weight, workout: workout)
-
-        let usrenc: UserEnc = UserEnc(nickname: usr.nickname, height: usr.height, weight: usr.weight, workout: usr.workout)
+        /*
+        usr_enc : UserEnc = UserEnc(nickname: self.nickname, height: String(self.height), weight: String(self.weight), workout: <#T##String#>)
          */
-        
-        let encoder = JSONEncoder()
-        if let jsonData = try? encoder.encode("usrenc") {
-            if let jsonString = String(data: jsonData, encoding: .utf8) {
-                do {
-                    try jsonString.write(to: fileURL!, atomically: true, encoding: .utf8)
-                } catch {
-                    // Handle error
-                }
-            }
-        }
+        print("prova")
     }
     func decode_json()
     {
-        do {
-                let data = try Data(contentsOf: fileURL!)
-                let decoder = JSONDecoder()
-                let jsonData = try decoder.decode(UserEnc.self,from: data)
-                print(jsonData)
-                } catch {
-                    print("error:\(error)")
-                }
+        io_dict?.read()
     }
+}
+
+struct UserEnc: Codable
+{
+    var nickname : String = ""
+    var height : String = ""
+    var weight : String = ""
     
+    var workouts : [WorkoutEnc] = []
+    
+    var Type_of_Sport : SportEnc?
 }

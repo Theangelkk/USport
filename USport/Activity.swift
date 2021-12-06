@@ -7,6 +7,8 @@
 
 import Foundation
 
+typealias Codable_Activity = Decodable & Encodable
+
 class Activity : ObservableObject
 {
     @Published var Title : String
@@ -87,4 +89,13 @@ class Activity : ObservableObject
         
         return false
     }
+}
+
+struct ActivityEnc: Codable_Activity
+{
+    var Title : String
+    
+    var Start_Time : String
+    
+    var End_Time : String
 }

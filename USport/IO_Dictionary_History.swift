@@ -7,7 +7,7 @@
 
 import Foundation
 
-class IO_Dictionary_History : IO_Dictionary
+class IO_Dictionary_History : ObservableObject
 {
     // Day, Day Mounth Year --> From JSON
     let dict : [String : [String]] = [

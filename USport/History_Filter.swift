@@ -71,7 +71,7 @@ struct History_Filter: View {
 
 struct History_Filter_Previews: PreviewProvider
 {
-    @StateObject static var dict_history : IO_Dictionary_History = IO_Dictionary_History(newValue_path_dictionary: "history.json")
+    @StateObject static var dict_history : IO_Dictionary_History = IO_Dictionary_History()
     
     @State static var kcal_daily : String = "0"
     @State static var kcal_sport : String = "0"
