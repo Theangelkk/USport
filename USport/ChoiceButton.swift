@@ -13,25 +13,32 @@ struct ChoiceButton: View
     
     var nameSport : String
     var ImageName : String
+    
+    @State var esit : Bool = false
         
     var body: some View {
         
         Button(action: {
-            
-            if (sportSelected != nameSport)
-            {
-                sportSelected = nameSport
-            }
-            
+            sportSelected = nameSport
         })
         {
-            
-            Image(ImageName)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .clipShape(Rectangle())
-                .border(.blue)
-            
+            if self.sportSelected != self.nameSport
+            {
+                Image(ImageName)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .clipShape(Rectangle())
+                    .border(Color.black)
+            }
+            else
+            {
+                Image(ImageName)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .clipShape(Rectangle())
+                    .border(Color.blue)
+            }
+                
         }
         .shadow(color: Color.black, radius: 6, x: 10, y: 10)
     }

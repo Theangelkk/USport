@@ -106,4 +106,9 @@ class User : ObservableObject
     {
         self.Type_of_Sport = Sport(type_of_sport: nameSport)
     }
+    
+    func save_json()
+    {
+        print("Save JSON User... TODO")
+    }
 }
