@@ -18,6 +18,7 @@ import SwiftUI
 
 struct Homepage: View {
     
+    @State var chose_period = 0
     var currentKcal : CGFloat = 1200.0
     var totalKcal : CGFloat = 2500.0
     
@@ -30,6 +31,14 @@ struct Homepage: View {
                     
                     VStack{
                         Spacer()
+                        
+                        Picker("which period do you want to evaluate", selection: $chose_period) {
+                                        Text("Monthly").tag(0)
+                                        Text("Daily").tag(1)
+                                        Text("Weekly").tag(2)
+                        }.pickerStyle(.segmented)
+                            .position(x: 195, y: 3)
+                        
                         
                     HStack{
                         
@@ -220,3 +229,4 @@ struct Ring_Graph: View
     }
 
 }
+
