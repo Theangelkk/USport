@@ -40,22 +40,22 @@ struct ChoseSport: View {
                     
                     Group{
                         HStack{
-                            ChoiceButton(sportSelected: $sportSelected, nameSport: "Football", ImageName: "omino_nuoto")
+                            ChoiceButton(sportSelected: $sportSelected, nameSport: "Volleyball", ImageName: "omino_pallavolo")
                             
-                            ChoiceButton(sportSelected: $sportSelected, nameSport: "Volleyball", ImageName: "omino_palestra")
+                            ChoiceButton(sportSelected: $sportSelected, nameSport: "Tennis", ImageName: "omino_tennis")
                             
                         }.padding()
                     
                         HStack{
-                            ChoiceButton(sportSelected: $sportSelected, nameSport: "Basket", ImageName: "omino_nuoto")
+                            ChoiceButton(sportSelected: $sportSelected, nameSport: "Swimming", ImageName: "omino_swim1")
                             
-                            ChoiceButton(sportSelected: $sportSelected, nameSport: "Tennis", ImageName: "omino_palestra")
+                            ChoiceButton(sportSelected: $sportSelected, nameSport: "Gymnasium", ImageName: "omino_gym")
                         }.padding()
                     
                         HStack{
-                            ChoiceButton(sportSelected: $sportSelected, nameSport: "Tennis", ImageName: "omino_nuoto")
+                            ChoiceButton(sportSelected: $sportSelected, nameSport: "Football", ImageName: "omino_calcio")
                             
-                            ChoiceButton(sportSelected: $sportSelected, nameSport: "Volleyball", ImageName: "omino_palestra")
+                            ChoiceButton(sportSelected: $sportSelected, nameSport: "Basket", ImageName: "omino_basket")
                         }.padding()
                     }
                     .position(x: geometry.size.width/2, y: -50)
