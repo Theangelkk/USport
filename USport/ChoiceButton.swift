@@ -31,7 +31,7 @@ struct ChoiceButton: View
                     .border(Color.black)
                     .overlay(
                         Text(nameSport)
-                            .position(x: 55, y: 140)
+                            .position(x: 58.5, y: 145)
                     )
             }
             else
