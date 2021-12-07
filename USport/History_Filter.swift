@@ -10,15 +10,14 @@ import SwiftUI
 struct History_Filter: View {
     
     @Environment(\.presentationMode) var presentationMode
-    
-    @EnvironmentObject var dict_History : IO_Dictionary_History
-    
+ 
     @State var selectedDate = Date()
     
+    @Binding var items_days : [Double]
     @Binding var Kcal_Daily : String
     @Binding var Kcal_Sport : String
 
-    var rkManager1 = RKManager(calendar: Calendar.current, minimumDate: Date(), maximumDate: Date().addingTimeInterval(60*60*24*365), mode: 1)
+    var rkManager1 = RKManager(calendar: Calendar.current, minimumDate: Table_Cal_Daily.get_first_date(), maximumDate: Date(), mode: 1)
     
     @State var singleIsPresented = false
         
@@ -58,27 +57,38 @@ struct History_Filter: View {
     
     func saveDate()
     {
-        var startDate : String = self.getTextFromDate(date: self.rkManager1.startDate)
-              
-        var endDate : String = self.getTextFromDate(date: self.rkManager1.endDate)
+        var ris_all_cal : [Double] = [Double]()
         
-        var res = self.dict_History.getKcal_RangeDate(startDate: startDate, endDate: endDate)
-        
-        self.Kcal_Daily = String(res.Total_Daily)
-        self.Kcal_Sport = String(res.Total_Sport)
+        if self.rkManager1.startDate != nil && self.rkManager1.endDate != nil
+        {
+            let res = Table_Cal_Daily.range_cal_days(start_date: self.rkManager1.startDate, end_date: self.rkManager1.endDate)
+            
+            self.Kcal_Daily = String(res.Total_cal_daily)
+            self.Kcal_Sport = String(res.Total_cal_sport)
+            
+            for i in 0..<res.list_objs.count
+            {
+                var sum : Double = 0.0
+                
+                sum += Double(res.list_objs[i].cal_daily)
+                sum += Double(res.list_objs[i].cal_sport)
+                
+                ris_all_cal.append(sum)
+            }
+            
+            self.items_days = ris_all_cal
+        }
     }
 }
 
 struct History_Filter_Previews: PreviewProvider
 {
-    @StateObject static var dict_history : IO_Dictionary_History = IO_Dictionary_History()
-    
+    @State static var items : [Double] = [Double]()
     @State static var kcal_daily : String = "0"
     @State static var kcal_sport : String = "0"
     
     static var previews: some View
     {
-        History_Filter(Kcal_Daily: self.$kcal_daily, Kcal_Sport: self.$kcal_sport)
-            .environmentObject(dict_history)
+        History_Filter(items_days: $items, Kcal_Daily: self.$kcal_daily, Kcal_Sport: self.$kcal_sport)
     }
 }

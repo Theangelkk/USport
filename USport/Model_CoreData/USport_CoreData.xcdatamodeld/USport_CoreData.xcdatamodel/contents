@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19461" systemVersion="20F71" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Table_Cal_Daily" representedClassName="Table_Cal_Daily" syncable="YES">
+        <attribute name="cal_daily" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="cal_sport" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="name_day" optional="YES" attributeType="String"/>
+    </entity>
+    <elements>
+        <element name="Table_Cal_Daily" positionX="-45" positionY="0" width="128" height="89"/>
+    </elements>
+</model>

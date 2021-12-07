@@ -10,10 +10,9 @@ import SwiftUICharts
 
 struct History: View {
 
-    @State var Kcal_Daily : String = "1500"
-    @State var Kcal_Sport : String = "2200"
-    
-    let data : [Double] = [12,22,6,1,2,18]
+    @State var items_days : [Double] = [Double]()
+    @State var Kcal_Daily : String = "--"
+    @State var Kcal_Sport : String = "--"
     
     var body: some View
     {
@@ -25,7 +24,7 @@ struct History: View {
             
             Section
             {
-                LineView(data: data)
+                LineView(data: items_days)
                     .padding()
                     .position(x: geometry.size.width/2, y: geometry.size.height/2.1)
             
@@ -70,7 +69,7 @@ struct History: View {
         }
         .navigationBarTitle("History", displayMode: .inline)
         
-        .navigationBarItems(trailing: NavigationLink(destination: History_Filter(Kcal_Daily: self.$Kcal_Daily, Kcal_Sport: self.$Kcal_Sport)
+        .navigationBarItems(trailing: NavigationLink(destination: History_Filter(items_days: $items_days, Kcal_Daily: self.$Kcal_Daily, Kcal_Sport: self.$Kcal_Sport)
         ){
                 Image(systemName: "calendar")
         })

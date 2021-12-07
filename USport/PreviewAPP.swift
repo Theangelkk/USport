@@ -16,6 +16,35 @@ struct PreviewAPP: View {
     @State private var opacity : Double = 1
     @State private var scale : CGFloat = 1
     
+    init()
+    {
+        CoreDataManager.start()
+        
+        Table_Cal_Daily.remove_all()
+        
+        Table_Cal_Daily.test(n_days: 10)
+        
+        /*
+        var items : [Table_Cal_Daily] = Table_Cal_Daily.get_all_items()
+        
+        for i in 0..<items.count
+        {
+            print("Day \(i)")
+            print("Date: \(items[i].date)")
+            print("Name of Day: \(items[i].name_day)")
+            print("Cal Daily: \(items[i].cal_daily)")
+            print("Cal Sport: \(items[i].cal_sport)")
+        }
+        
+        print("first day = \(Table_Cal_Daily.get_first_date())")
+        
+        print("avg day = \(Table_Cal_Daily.average_cal_days())")
+        print("avg week = \(Table_Cal_Daily.average_cal_week())")
+        
+        print("Number of elements: \(items.count)")
+         */
+    }
+    
     var body: some View
     {
         Group

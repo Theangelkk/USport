@@ -31,9 +31,18 @@ class Manager_Kcal
     
     var RMR : Float = 0.0
     
+    let userCalendar : Calendar = Calendar.current
+    
+    let requestedComponents : Set<Calendar.Component> = [ .year, .month, .day, .hour, .minute, .second ]
+    
+    let formatter = DateFormatter()
+    
     init(user : User)
     {
         self.user = user
+        
+        self.formatter.locale = .current
+        self.formatter.dateFormat = "EEEE"
     }
     
     // Link: https://www.healthline.com/health/fitness-exercise/how-many-calories-do-i-burn-a-day#calorie-calculator
@@ -97,4 +106,26 @@ class Manager_Kcal
         return Float(Float(self.steps_counter) * cal_step) 
         
     }
+    
+    func add_new_historical_data()
+    {
+        let obj = Table_Cal_Daily(context: CoreDataManager.persistentContainer!.viewContext)
+        
+        obj.date = Date()
+        
+        var dataTimeComponets = self.userCalendar.dateComponents(self.requestedComponents, from: obj.date!)
+        
+        dataTimeComponets.hour! = 0
+        dataTimeComponets.minute! = 0
+        dataTimeComponets.second! = 0
+        
+        obj.name_day! = obj.date == nil ? "" : self.formatter.string(from: obj.date!)
+        
+        obj.cal_daily = self.get_Kcal_Daily()
+        
+        obj.cal_sport = self.get_Kcal_pedometer()
+        
+        Table_Cal_Daily.save_item_on_CoreData()
+    }
+    
 }
