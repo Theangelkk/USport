@@ -35,7 +35,7 @@ struct Profile: View {
                     self.isShowPhotoLibrary = true
                     
                 })
-                {  //Ricordiamoci di carcare l'immagine!!!
+                {  //Ricordiamoci di caricare l'immagine!!!
                     Image("profile_icon")
                         .resizable()
                         .aspectRatio(contentMode: .fit)

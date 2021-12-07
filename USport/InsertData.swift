@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftUICharts
 
 struct InsertData: View
 {
@@ -82,30 +83,62 @@ struct InsertData: View
             {
                 Form
                 {
-                    TextField("Nickname",text: $nickname)
+                    HStack (alignment: .center, spacing: 10) {
+                        Image_t(Image_name: "nick")
+                        
+                        TextField ("Nickname", text: $nickname)
+                        }
                     
-                    Picker(selection: $idx_gender, label: Text("Gender"))
-                            {
-                                ForEach(0 ..< UserAPP.type_of_gender.count)
+                    
+                    HStack (alignment: .center, spacing: 10) {
+                        Image_t(Image_name: "sex")
+                        
+                        Picker(selection: $idx_gender, label: Text("Gender"))
                                 {
-                                    Text(UserAPP.type_of_gender[$0])
+                                    ForEach(0 ..< UserAPP.type_of_gender.count)
+                                    {
+                                        Text(UserAPP.type_of_gender[$0])
+                                    }
                                 }
-                            }
+                        }
                     
-                    TextField("Age",text: $age)
-                    TextField("Height",text: $height)
-                    TextField("Weight", text: $weight)
+                    HStack (alignment: .center, spacing: 10) {
+                        Image_t(Image_name: "age")
+                        
+                        TextField ("Age", text: $age)
+                        }
                     
-                    Picker(selection: $idx_activity, label: Text("Activity"))
-                            {
-                                ForEach(0 ..< UserAPP.type_of_activity.count)
+                    HStack (alignment: .center, spacing: 10) {
+                        Image_t(Image_name: "height")
+                        
+                        TextField ("Height", text: $height)
+                        }
+                    
+                    HStack (alignment: .center, spacing: 10) {
+                        Image_t(Image_name: "weight")
+                        
+                        TextField ("Weight", text: $weight)
+                        }
+
+                    
+                    HStack (alignment: .center, spacing: 10) {
+                            Image_t(Image_name: "level")
+                        
+                        Picker(selection: $idx_activity, label: Text("Activity"))
                                 {
-                                    Text(UserAPP.type_of_activity[$0])
+                                    ForEach(0 ..< UserAPP.type_of_activity.count)
+                                    {
+                                        Text(UserAPP.type_of_activity[$0])
+                                    }
                                 }
-                            }
+                        }
                     
-                    
-                    TextField("Number of Workout", text: $number_workout)
+                    HStack (alignment: .center, spacing: 10) {
+                        
+                        Image_t(Image_name: "workout")
+                        
+                        TextField ("Number of workouts", text: $number_workout)
+                        }
                 }
             
                 .navigationBarTitle("Insert your data")
@@ -131,7 +164,22 @@ struct InsertData: View
     }
 }
 
-/*struct InsertData_Previews: PreviewProvider {
+struct Image_t : View {
+    
+    var Image_name : String
+    
+    var body: some View{
+        
+        Image(Image_name)
+            .resizable()
+            .frame(width: 30, height: 30, alignment: .center)
+            .foregroundColor(.black)
+            .frame(minWidth: 0, maxWidth: 30)
+            .frame(minHeight: 0, maxHeight: 33)
+    }
+}
+
+struct InsertData_Previews: PreviewProvider {
     
     @StateObject static var UserAPP : User = User()
     @State static var nameSport : String = "Football"
@@ -142,4 +190,4 @@ struct InsertData: View
             .environmentObject(UserAPP)
     }
 }
-*/
+
