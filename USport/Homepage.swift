@@ -14,8 +14,10 @@ import SwiftUI
 struct Homepage: View {
     
     @State var chose_period = 0
-    var currentKcal : CGFloat = 1200.0
-    var totalKcal : CGFloat = 2500.0
+    @State var currentKcal : Float = 1200.0
+    @State var totalKcal : Float = 2500.0
+    
+    var names_button_bar : [String] = ["Daily", "Weekly", "Monthty"]
     
     var body: some View {
         ZStack{
@@ -29,33 +31,24 @@ struct Homepage: View {
                         
                         Text("USport")
                             .foregroundColor(Color.blue)
-                                .font(.system(size: 70))
+                                .font(.system(size: 50))
                                 .bold()
-                                .position(x: geometry.size.width/2, y: -32)
+                                .position(x: geometry.size.width/2, y: -geometry.size.height/12)
                         
-                        Picker("which period do you want to evaluate", selection: $chose_period) {
-                            Button(action:{
-                                
-                            }){
-                                        Text("Monthly").tag(0)
+                        Picker("Which period do you want to evaluate", selection: $chose_period)
+                        {
+                            ForEach(0..<self.names_button_bar.count)
+                            {
+                                i in
+                                ButtonBar(name_button: self.names_button_bar[i], idx: i)
                             }
-                            
-                            Button(action: {
-                                
-                            }){
-                                        Text("Daily").tag(1)
-                            }
-                            
-                            Button(action: {
-                                
-                            }){
-                                Text("Weekly").tag(2)
-                            }
+                                    
                         }.pickerStyle(.segmented)
-                            .position(x: 195, y: -80)
+                            .position(x: geometry.size.width/2.1, y: -geometry.size.height/4.5)
+                            .frame(width: geometry.size.width - 15, height: geometry.size.height/90)
                         
                         
-                        Ring_Graph(geometry: geometry, currentKcal: currentKcal, totalKcal: totalKcal)
+                        Ring_Graph(geometry: geometry, currentKcal: $currentKcal, totalKcal: $totalKcal)
                         
                         HStack{
                             NavigationLink(destination: History())
@@ -135,43 +128,18 @@ struct Homepage_Previews: PreviewProvider {
 
 struct Ring_Graph: View
 {
+    var currentKcal : Binding<Float>
+    var totalKcal : Binding<Float>
+    
     var geometry : GeometryProxy
     
-    var currentKcal : CGFloat = 1200.0
-    var totalKcal : CGFloat = 2500.0
-    
-    var target_perc : CGFloat = 0.0
-    @State var actual_perc : CGFloat = 0.0
-    
-    var target_to_circle : CGFloat = 0.0
-    @State var actual_to_cirle : CGFloat = 0.0
-    
-    init(geometry : GeometryProxy, currentKcal : CGFloat, totalKcal : CGFloat)
+    init(geometry : GeometryProxy, currentKcal : Binding<Float>, totalKcal : Binding<Float>)
     {
         self.geometry = geometry
         self.currentKcal = currentKcal
         self.totalKcal = totalKcal
-        
-        self.target_perc = CGFloat( self.currentKcal / self.totalKcal ) * CGFloat(100)
-        
-        self.target_to_circle = CGFloat(self.currentKcal / self.totalKcal)
     }
     
-    func animation_circle() -> String
-    {
-        if(self.actual_to_cirle < self.target_to_circle)
-        {
-            self.actual_to_cirle += 0.01
-        }
-        
-        if(self.actual_perc < self.target_perc)
-        {
-            self.actual_perc += 0.01
-        }
-        
-        return ""
-    }
-        
     var body: some View
     {
         ZStack
@@ -180,23 +148,36 @@ struct Ring_Graph: View
             Circle()
                 .trim(from: 0, to: 1)
                 .stroke(Color.black.opacity(0.10), lineWidth: 10)
-                .frame(width: geometry.size.width/1.7,
-                       height: geometry.size.height/3.5)
-                .position(x: geometry.size.width/3, y: geometry.size.height/7)
+                .frame(width: geometry.size.width/1.5,
+                       height: geometry.size.height)
+                .position(x: geometry.size.width/1.5, y: geometry.size.height/10.5)
         
             Circle()
-                .trim(from: 0, to: self.target_to_circle)
+                .trim(from: 0, to: CGFloat( self.currentKcal.wrappedValue / self.totalKcal.wrappedValue ) )
                 .stroke(Color.red, style: StrokeStyle(lineWidth: 10, lineCap: .round))
-                .frame(width: geometry.size.width/1.7,
-                       height: geometry.size.height/3.5)
-                .position(x: geometry.size.width/3, y: geometry.size.height/7)
+                .frame(width: geometry.size.width/1.5,
+                       height: geometry.size.height)
+                .position(x: geometry.size.width/1.5, y: geometry.size.height/10.5)
             
             
-            Text("\( String(format: "%.1f", self.target_perc))%")
-                .font(.system(size: 50))
+            Text("\( String(format: "%.1f", CGFloat( self.currentKcal.wrappedValue / self.totalKcal.wrappedValue ) * CGFloat(100)))%")
+                .font(.system(size: 65))
                 .foregroundColor(.black)
                 .fontWeight(.bold)
-                .position(x: geometry.size.width/3, y: geometry.size.height/50)
+                .position(x: geometry.size.width/2, y: -geometry.size.height/30)
+                .rotationEffect(.init(degrees: 90))
+            
+            
+            let actual_cal : Int = Int(self.currentKcal.wrappedValue)
+            let total_cal : Int = Int(self.totalKcal.wrappedValue)
+            
+            
+            Text("\(actual_cal) / \(total_cal) cal")
+                .font(.system(size: 24))
+                .foregroundColor(.black)
+                .fontWeight(.bold)
+                .multilineTextAlignment(.center)
+                .position(x: geometry.size.width/2.05, y: geometry.size.height/13)
                 .rotationEffect(.init(degrees: 90))
         }
         .rotationEffect(.init(degrees: -90))
@@ -212,3 +193,21 @@ struct Ring_Graph: View
 
 }
 
+
+struct ButtonBar: View
+{
+    var name_button : String
+    var idx : Int
+    
+    var body: some View
+    {
+        Button(action: {
+            
+        }){
+            Text(self.name_button)
+                .fontWeight(.bold)
+                .tag(idx)
+                
+        }
+    }
+}
