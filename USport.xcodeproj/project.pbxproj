@@ -58,6 +58,8 @@
 		65A5BEA0275D248A00819933 /* RKManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A5BE8B275D248A00819933 /* RKManager.swift */; };
 		65F0EAFF275A5ED600649843 /* Manager_APP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F0EAFE275A5ED600649843 /* Manager_APP.swift */; };
 		65FEBAC9275DE75C000D034F /* IO_Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FEBAC8275DE75C000D034F /* IO_Dictionary.swift */; };
+		65FEBACB275DE791000D034F /* IO_Dictionary_History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FEBACA275DE791000D034F /* IO_Dictionary_History.swift */; };
+		7DDB5D80275F9ADD008B071D /* Healthkit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDB5D7F275F9ADD008B071D /* Healthkit.swift */; };
 		7DFC1FCC275CC1AD00335F63 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFC1FCB275CC1AD00335F63 /* Profile.swift */; };
 /* End PBXBuildFile section */
 
@@ -118,6 +120,8 @@
 		65A5BE8B275D248A00819933 /* RKManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RKManager.swift; sourceTree = "<group>"; };
 		65F0EAFE275A5ED600649843 /* Manager_APP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manager_APP.swift; sourceTree = "<group>"; };
 		65FEBAC8275DE75C000D034F /* IO_Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IO_Dictionary.swift; sourceTree = "<group>"; };
+		65FEBACA275DE791000D034F /* IO_Dictionary_History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IO_Dictionary_History.swift; sourceTree = "<group>"; };
+		7DDB5D7F275F9ADD008B071D /* Healthkit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Healthkit.swift; sourceTree = "<group>"; };
 		7DFC1FCB275CC1AD00335F63 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -183,6 +187,7 @@
 				65635FDA275A69870076A9C8 /* AddWorkout.swift */,
 				65635FDC275A69C00076A9C8 /* EditWorkout.swift */,
 				7DFC1FCB275CC1AD00335F63 /* Profile.swift */,
+				7DDB5D7F275F9ADD008B071D /* Healthkit.swift */,
 				1B04606E275A6EC100F0BF22 /* ChoiceButton.swift */,
 				1B8AE4D0275E72730021E9AA /* EditActivity.swift */,
 				1B8AE4CC275E54880021E9AA /* ChoseActivity.swift */,
@@ -415,6 +420,7 @@
 				65A5BE95275D248A00819933 /* RKViewController.swift in Sources */,
 				65A5BE9E275D248A00819933 /* RKManager.swift in Sources */,
 				65635FD3275A5EBC0076A9C8 /* User.swift in Sources */,
+				7DDB5D80275F9ADD008B071D /* Healthkit.swift in Sources */,
 				65635FDB275A69870076A9C8 /* AddWorkout.swift in Sources */,
 				658439DB275F961F00A8DAEE /* USport_CoreData.xcdatamodeld in Sources */,
 			);

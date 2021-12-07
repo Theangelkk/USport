@@ -94,7 +94,7 @@ struct Homepage: View {
                         HStack{
                 
                             Button(action: {
-                                
+                                //EditActivity()
                             }, label: {
                                 Rectangle()
                                     .cornerRadius(30)
@@ -126,7 +126,6 @@ struct Homepage: View {
         }
     }
 }
-
 
 struct Homepage_Previews: PreviewProvider {
     static var previews: some View {

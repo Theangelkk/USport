@@ -31,18 +31,24 @@ struct Profile: View {
             geometry in
             
             VStack{
+                 VStack {
                 Button(action: {
                     self.isShowPhotoLibrary = true
                     
                 })
-                {  //Ricordiamoci di carcare l'immagine!!!
+                {  //Ricordiamoci di caricare l'immagine!!!
                     Image("profile_icon")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(width: geometry.size.width/4, height: geometry.size.height/4)
+                        .frame(width: geometry.size.width/2.5, height: geometry.size.height/3)
                         .background(Color.white.opacity(0.0))
                 } .background(Color.white.opacity(0.0))
-                
+                    
+                Text("Nickname")
+                         .font(.system(size: 30, weight: .bold, design: .serif))
+                         .italic()
+                    
+                }
                 Form
                 {
                     

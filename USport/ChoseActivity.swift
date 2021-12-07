@@ -27,8 +27,7 @@ struct ChoseActivity: View {
                 .blur(radius: 5)
                 .opacity(0.15)
                 .frame(width: geometry.size.width)
-                    
-                
+            
                 VStack
                 {
                     Spacer()
@@ -64,7 +63,6 @@ struct ChoseActivity: View {
                         }.padding()
                     }
                     .position(x: geometry.size.width/2, y: -50)
-                    
                 }
                 
                 ButtonNext(changeView: $changeView)
@@ -86,6 +84,7 @@ struct ChoseActivity_Previews: PreviewProvider
     static var previews: some View
     {
         ChoseActivity()
+.previewInterfaceOrientation(.portraitUpsideDown)
     }
 }
 

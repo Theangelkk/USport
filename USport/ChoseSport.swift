@@ -27,7 +27,6 @@ struct ChoseSport: View {
                 .opacity(0.15)
                 .frame(width: geometry.size.width)
                 
-                
                 VStack
                 {
                     Spacer()
@@ -76,11 +75,10 @@ struct ChoseSport: View {
 }
 
 
-/*struct ChoseSport_Previews: PreviewProvider
+struct ChoseSport_Previews: PreviewProvider
 {
     static var previews: some View
     {
         ChoseSport()
     }
 }
-*/
