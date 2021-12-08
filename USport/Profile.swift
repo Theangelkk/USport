@@ -28,6 +28,8 @@ struct Profile: View {
         
         GeometryReader
         {
+            // Mettere un immagine di sfondo
+            
             geometry in
             
             VStack{

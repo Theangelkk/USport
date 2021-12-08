@@ -17,6 +17,8 @@ struct AddWorkout: View
     {
         GeometryReader
         {
+            // Mettere un immagine di sfondo
+            
             geometry in
             
             NavigationView

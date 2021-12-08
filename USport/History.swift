@@ -16,6 +16,8 @@ struct History: View {
     
     var body: some View
     {
+        // Mettere un immagine di sfondo
+        
         GeometryReader
         {
             geometry in
@@ -43,28 +45,29 @@ struct History: View {
                     .frame(width: geometry.size.width/2.8, height: geometry.size.height/3.4)
                     .position(x: geometry.size.width/3.2, y: geometry.size.height/1.65)
                 
-                Text("\(self.Kcal_Daily) Kcal")
-                    .fontWeight(.bold)
-                    .multilineTextAlignment(.center)
-                    .font(.system(size: 36))
-                    .frame(width: geometry.size.width/3, height: 100)
-                    .position(x: geometry.size.width/1.5, y: geometry.size.height/1.60)
-                
-        
                 Text("\(self.Kcal_Sport) Kcal")
                     .fontWeight(.bold)
                     .multilineTextAlignment(.center)
                     .font(.system(size: 36))
                     .frame(width: geometry.size.width/3, height: 100)
+                    .position(x: geometry.size.width/1.5, y: geometry.size.height/1.60)
+                    .shadow(color: Color.black.opacity(0.40), radius: 5, x: 5, y: 10)
+                
+        
+                Text("\(self.Kcal_Daily) Kcal")
+                    .fontWeight(.bold)
+                    .multilineTextAlignment(.center)
+                    .font(.system(size: 36))
+                    .frame(width: geometry.size.width/3, height: 100)
                     .position(x: geometry.size.width/1.5, y: geometry.size.height/1.18)
+                    .shadow(color: Color.black.opacity(0.40), radius: 5, x: 5, y: 10)
                 
                 Image("life_person")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: geometry.size.width/2.8, height: geometry.size.height/3.4)
                     .position(x: geometry.size.width/3.2, y: geometry.size.height/1.20)
-               
-                
+
             }
         }
         .navigationBarTitle("History", displayMode: .inline)

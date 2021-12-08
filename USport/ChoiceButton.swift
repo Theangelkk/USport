@@ -14,6 +14,8 @@ struct ChoiceButton: View
     var nameSport : String
     var ImageName : String
     
+    var geometry : GeometryProxy
+    
     @State var esit : Bool = false
         
     var body: some View {
@@ -31,7 +33,9 @@ struct ChoiceButton: View
                     .border(Color.black)
                     .overlay(
                         Text(nameSport)
-                            .position(x: 58.5, y: 145)
+                            .font(.system(size: 20))
+                            .position(x: geometry.size.width/6, y: geometry.size.height/5.4)
+                            .foregroundColor(.black)
                     )
             }
             else
@@ -40,10 +44,12 @@ struct ChoiceButton: View
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .clipShape(Rectangle())
-                    .border(Color.blue)
+                    .border(Color.blue, width: 4.0)
                     .overlay(
                         Text(nameSport)
-                            .position(x: 55, y: 140)
+                            .font(.system(size: 20))
+                            .position(x: geometry.size.width/6, y: geometry.size.height/5.4)
+                            .foregroundColor(.blue)
                     )
             }
                 

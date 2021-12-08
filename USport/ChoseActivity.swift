@@ -10,72 +10,64 @@ import Foundation
 
 struct ChoseActivity: View {
     
-    @State var sportSelected : String = "Default"
-    @State var changeView : Bool = false
+    @Environment(\.presentationMode) var presentationMode
     
+    @State var sportSelected : String = "Default"
+
     var body: some View {
+        
         ZStack
         {
-            GeometryReader{
-                
+            // Mettere un immagine di sfondo
+            
+            GeometryReader
+            {
+
                 geometry in
                 
-                Image("Logo")
-                .resizable()
-                .aspectRatio(contentMode:.fill)
-                .edgesIgnoringSafeArea([.top,.bottom])
-                .blur(radius: 5)
-                .opacity(0.15)
-                .frame(width: geometry.size.width)
-            
                 VStack
                 {
-                    Spacer()
-                   
-                    HStack{
-                    
-                    
-                    Text("Chose your activity")
-                        .foregroundColor(Color.blue)
-                        .font(.system(size: 37))
-                            .bold()
-                            .position(x: geometry.size.width/2, y:20)
-                    }
-                                
                     Group{
                         HStack{
-                            ChoiceButton(sportSelected: $sportSelected, nameSport: "Volleyball", ImageName: "omino_pallavolo")
+                            ChoiceButton(sportSelected: $sportSelected, nameSport: "Volleyball", ImageName: "omino_pallavolo", geometry : geometry)
                             
-                            ChoiceButton(sportSelected: $sportSelected, nameSport: "Tennis", ImageName: "omino_tennis")
+                            ChoiceButton(sportSelected: $sportSelected, nameSport: "Tennis", ImageName: "omino_tennis", geometry : geometry)
                             
                         }.padding()
                     
                         HStack{
-                            ChoiceButton(sportSelected: $sportSelected, nameSport: "Swim", ImageName: "omino_swim1")
+                            ChoiceButton(sportSelected: $sportSelected, nameSport: "Swim", ImageName: "omino_swim1", geometry : geometry)
                             
-                            ChoiceButton(sportSelected: $sportSelected, nameSport: "Gym", ImageName: "omino_gym")
+                            ChoiceButton(sportSelected: $sportSelected, nameSport: "Gym", ImageName: "omino_gym", geometry : geometry)
                         }.padding()
                     
                         HStack{
-                            ChoiceButton(sportSelected: $sportSelected, nameSport: "Football", ImageName: "omino_calcio")
+                            ChoiceButton(sportSelected: $sportSelected, nameSport: "Football", ImageName: "omino_calcio", geometry : geometry)
                             
-                            ChoiceButton(sportSelected: $sportSelected, nameSport: "Basket", ImageName: "omino_basket")
+                            ChoiceButton(sportSelected: $sportSelected, nameSport: "Basket", ImageName: "omino_basket", geometry : geometry)
                         }.padding()
                     }
-                    .position(x: geometry.size.width/2, y: -50)
+                    .position(x: geometry.size.width/2, y:  geometry.size.height/6)
+                    .frame(width: geometry.size.width, height: geometry.size.height/4)
                 }
                 
-                ButtonNext(changeView: $changeView)
-                    .position(x: geometry.size.width/2, y: (geometry.size.height)-60)
-                
-                
-                if(changeView == true)
+                Button(action:
                 {
-                    InsertData(nameSport : $sportSelected)
+                    self.presentationMode.wrappedValue.dismiss()
+                })
+                {
+                    Text("Next")
+                        .font(.system(size: 25))
+                        .fontWeight(.heavy)
                 }
+                .buttonStyle(CustomButtonStyle())
+                .position(x: geometry.size.width/2, y: (geometry.size.height)-60)
+                
             }
+            .navigationBarTitle("Chose your activity", displayMode: .inline)
         }
     }
+
 }
 
 
@@ -84,7 +76,6 @@ struct ChoseActivity_Previews: PreviewProvider
     static var previews: some View
     {
         ChoseActivity()
-.previewInterfaceOrientation(.portraitUpsideDown)
     }
 }
 

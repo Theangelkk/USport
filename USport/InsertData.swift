@@ -54,12 +54,7 @@ struct InsertData: View
                         self.UserAPP.set_type_of_activity(idx: idx_activity)
                         
                         self.UserAPP.set_age(age: int_age)
-                        
-                        var mang = Manager_Kcal(user: UserAPP)
-                        
-                        print(mang.get_Kcal_Daily())
-                        print(mang.get_Kcal_pedometer())
-                        
+                    
                         if(changeView == true)
                         {
                             // Save JSON User.json... TODO
@@ -77,70 +72,56 @@ struct InsertData: View
         
         GeometryReader
         {
+            // Mettere un immagine di sfondo
+            
             geometry in
         
             NavigationView
             {
                 Form
                 {
-                    HStack (alignment: .center, spacing: 10) {
-                        Image_t(Image_name: "nick")
-                        
-                        TextField ("Nickname", text: $nickname)
-                        }
+                    TextField_Elem(name_image: "nick", init_text: "Nickname", text: $nickname, geometry: geometry)
                     
                     
-                    HStack (alignment: .center, spacing: 10) {
+                    HStack (alignment: .center, spacing: 15)
+                    {
                         Image_t(Image_name: "sex")
                         
                         Picker(selection: $idx_gender, label: Text("Gender"))
-                                {
-                                    ForEach(0 ..< UserAPP.type_of_gender.count)
-                                    {
-                                        Text(UserAPP.type_of_gender[$0])
-                                    }
-                                }
+                        {
+                            ForEach(0 ..< UserAPP.type_of_gender.count)
+                            {
+                                Text(UserAPP.type_of_gender[$0])
+                                    .font(.system(size: 17))
+                            }
                         }
+                    }
+                    .padding(.vertical, 5.0)
                     
-                    HStack (alignment: .center, spacing: 10) {
-                        Image_t(Image_name: "age")
-                        
-                        TextField ("Age", text: $age)
-                        }
+                    TextField_Elem(name_image: "age", init_text: "Age", text: $age, geometry: geometry)
                     
-                    HStack (alignment: .center, spacing: 10) {
-                        Image_t(Image_name: "height")
-                        
-                        TextField ("Height", text: $height)
-                        }
+                    TextField_Elem(name_image: "height", init_text: "Height", text: $height, geometry: geometry)
                     
-                    HStack (alignment: .center, spacing: 10) {
-                        Image_t(Image_name: "weight")
-                        
-                        TextField ("Weight", text: $weight)
-                        }
-
+                    TextField_Elem(name_image: "weight", init_text: "Weight", text: $weight, geometry: geometry)
                     
-                    HStack (alignment: .center, spacing: 10) {
+                    HStack (alignment: .center, spacing: 15)
+                    {
                             Image_t(Image_name: "level")
                         
                         Picker(selection: $idx_activity, label: Text("Activity"))
+                            {
+                                ForEach(0 ..< UserAPP.type_of_activity.count)
                                 {
-                                    ForEach(0 ..< UserAPP.type_of_activity.count)
-                                    {
-                                        Text(UserAPP.type_of_activity[$0])
-                                    }
+                                    Text(UserAPP.type_of_activity[$0])
+                                        .font(.system(size: 17))
                                 }
-                        }
+                            }
+                    }
+                    .padding(.vertical, 5.0)
                     
-                    HStack (alignment: .center, spacing: 10) {
-                        
-                        Image_t(Image_name: "workout")
-                        
-                        TextField ("Number of workouts", text: $number_workout)
-                        }
+                    TextField_Elem(name_image: "workout", init_text: "workout", text: $number_workout, geometry: geometry)
+                    
                 }
-            
                 .navigationBarTitle("Insert your data")
             }
             
@@ -191,3 +172,23 @@ struct InsertData_Previews: PreviewProvider {
     }
 }
 
+
+struct TextField_Elem: View
+{
+    var name_image : String
+    var init_text : String
+    @Binding var text : String
+    
+    var geometry : GeometryProxy
+    
+    var body: some View {
+        HStack (alignment: .center, spacing: 15)
+        {
+            Image_t(Image_name: name_image)
+            
+            TextField (init_text, text: $text)
+                .font(.system(size: 17))
+        }
+        .padding(.vertical, 5.0)
+    }
+}

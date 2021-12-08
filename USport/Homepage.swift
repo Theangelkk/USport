@@ -20,7 +20,11 @@ struct Homepage: View {
     var names_button_bar : [String] = ["Daily", "Weekly", "Monthty"]
     
     var body: some View {
-        ZStack{
+        
+        ZStack
+        {
+            // Mettere un immagine di sfondo
+            
             GeometryReader{
                 geometry in
                 
@@ -34,6 +38,7 @@ struct Homepage: View {
                                 .font(.system(size: 50))
                                 .bold()
                                 .position(x: geometry.size.width/2, y: -geometry.size.height/12)
+                                .shadow(color: Color.black.opacity(0.40), radius: 5, x: 5, y: 10)
                         
                         Picker("Which period do you want to evaluate", selection: $chose_period)
                         {
@@ -46,9 +51,11 @@ struct Homepage: View {
                         }.pickerStyle(.segmented)
                             .position(x: geometry.size.width/2.1, y: -geometry.size.height/4.5)
                             .frame(width: geometry.size.width - 15, height: geometry.size.height/90)
+                            .shadow(color: Color.black.opacity(0.40), radius: 5, x: 5, y: 10)
                         
                         
                         Ring_Graph(geometry: geometry, currentKcal: $currentKcal, totalKcal: $totalKcal)
+                            .shadow(color: Color.black.opacity(0.30), radius: 5, x: 5, y: 10)
                         
                         HStack{
                             NavigationLink(destination: History())
@@ -64,6 +71,7 @@ struct Homepage: View {
                                     .controlSize(.large)
                                     )
                             }
+                            .shadow(color: Color.black.opacity(0.40), radius: 5, x: 5, y: 10)
                             
                             NavigationLink(destination: History())
                             {
@@ -73,43 +81,43 @@ struct Homepage: View {
                                     .overlay(
                                         Label("History", systemImage: "list.bullet")
                                             
-                                    .font(.system(size: 30))
+                                    .font(.system(size: 38))
                                     .foregroundColor(Color.white)
                                     .buttonStyle(.borderedProminent)
                                     .controlSize(.large))
-                                    
-                                    
-                                    
+                                
                             }
+                            .shadow(color: Color.black.opacity(0.40), radius: 5, x: 5, y: 10)
                             
                         }.padding()
                         
                         HStack{
                 
-                            Button(action: {
-                                //EditActivity()
-                            }, label: {
+                            NavigationLink(destination: ChoseActivity())
+                            {
                                 Rectangle()
                                     .cornerRadius(30)
                                     .foregroundColor(Color.green)
                                     .overlay(
                                         Label("Add new activity", systemImage: "plus.circle")
-                                            .font(.system(size: 30))
+                                            .font(.system(size: 32))
                                     .foregroundColor(Color.white)
                                     .buttonStyle(.borderedProminent)
                                     .controlSize(.large)
                                     )
-                            })
+                            }
+                            .shadow(color: Color.black.opacity(0.40), radius: 5, x: 5, y: 10)
                             
                             NavigationLink(destination: Profile())
                             {
                                 Image("profile_icon")
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
-                                        .frame(width: geometry.size.width/4, height: geometry.size.height/1)
-                                        .position(x: geometry.size.width/4, y: geometry.size.height/20)
+                                        .frame(width: geometry.size.width/3, height: geometry.size.height/1)
+                                        .position(x: geometry.size.width/4.3, y: geometry.size.height/12)
                                 
                             }
+                            .shadow(color: Color.black.opacity(0.40), radius: 5, x: 5, y: 10)
 
                         }.padding()
                         
@@ -181,7 +189,6 @@ struct Ring_Graph: View
                 .rotationEffect(.init(degrees: 90))
         }
         .rotationEffect(.init(degrees: -90))
-        .shadow(color: Color.black.opacity(0.10), radius: 30, x: 10, y: 10)
     }
     
     func getPercent(Current : CGFloat, Goal : CGFloat) -> String
