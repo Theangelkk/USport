@@ -9,8 +9,6 @@ import SwiftUI
 
 struct AddWorkout: View
 {
-    @EnvironmentObject var UserAPP : User
-    
     @State var changeView : Bool = false
     
     var body: some View
@@ -27,10 +25,10 @@ struct AddWorkout: View
                 {
                     List
                     {
-                        ForEach(0..<self.UserAPP.workouts.count)
+                        ForEach(0..<USportApp.UserAPP!.workouts.count)
                         {
                             idx in
-                            ButtonWorkout(idx_workout: idx, titleButton: self.UserAPP.workouts[idx].Title )
+                            ButtonWorkout(idx_workout: idx, titleButton: USportApp.UserAPP!.workouts[idx].Title )
                             
                         }
                     }
@@ -43,6 +41,8 @@ struct AddWorkout: View
                         Button(action:
                         {
                             changeView = true
+                            
+                            UserCoreData.save_user_on_CoreData(user: USportApp.UserAPP!, delete_old: true)
                         })
                         {
                             Text("Done")
@@ -54,6 +54,7 @@ struct AddWorkout: View
             if(changeView == true)
             {
                 Homepage()
+                    .environmentObject(USportApp.UserAPP!)
             }
         }
     }

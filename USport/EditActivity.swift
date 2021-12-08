@@ -9,7 +9,6 @@ import SwiftUI
 
 struct EditActivity: View
 {
-    @EnvironmentObject var UserAPP : User
     @Environment(\.presentationMode) var presentationMode
     
     @Binding var new_workout : Workout
@@ -93,7 +92,7 @@ struct EditActivity: View
         new_workout.Start_Time = self.start
         esit_endTime = new_workout.set_EndTime(end: self.end)
     
-        self.UserAPP.workouts[self.idx_workout] = new_workout
+        USportApp.UserAPP!.workouts[self.idx_workout] = new_workout
         
         let all_esit : Bool = esit_title && esit_endTime
         

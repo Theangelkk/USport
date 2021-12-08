@@ -21,7 +21,6 @@ class Sport : ObservableObject
     
     @Published var Name_Sport : String
     
-    
     init()
     {
         self.Coeff_Kcal_Low = 0
@@ -98,6 +97,57 @@ class Sport : ObservableObject
         self.Img_Icon = "Tennis_icon"
         self.Name_Sport = "Tennis"
     }
+    
+    func get_cal_sport(user : User, intensity : String, startTime : Date, endTime : Date) -> Float
+    {
+        let userCalendar : Calendar = Calendar.current
+        
+        let requestedComponents : Set<Calendar.Component> = [.year, .month, .day, .hour, .minute, .second ]
+        
+        let coeff_male : Float = 1.10
+        let coeff_famale : Float = 1.07
+        
+        let coeff_male_1 : Float = -128.0
+        let coeff_famale_1 : Float = -148.0
+        
+        var lean_mass : Float = 0.0
+        
+        if(user.gender == "Male")
+        {
+            lean_mass = Float(Float(coeff_male * user.weight) - coeff_male_1 * Float(pow(user.weight, 2) * Float(user.height)))
+        }
+        else
+        {
+            lean_mass = Float(Float(coeff_famale * user.weight) - coeff_famale_1 * Float(pow(user.weight, 2) * Float(user.height)))
+        }
+        
+        var cal_hour : Float = 0.0
+        
+        if(intensity == "Low")
+        {
+            cal_hour = self.Coeff_Kcal_Low * lean_mass
+        }
+        else if(intensity == "Medium")
+        {
+            cal_hour = self.Coeff_Kcal_Medium * lean_mass
+        }
+        else
+        {
+            cal_hour = self.Coeff_Kcal_High * lean_mass
+        }
+        
+        let cal_min : Float = cal_hour / 60.0
+        
+        let dataTimeComponets_StartTime = userCalendar.dateComponents(requestedComponents, from: startTime)
+        let dataTimeComponets_EndTime = userCalendar.dateComponents(requestedComponents, from: endTime)
+        
+        let diff_hour_in_min : Int = (dataTimeComponets_EndTime.hour! - dataTimeComponets_StartTime.hour!) * 60
+        
+        let diff_min : Int = (dataTimeComponets_EndTime.minute! - dataTimeComponets_StartTime.minute!)
+        
+        return Float(diff_min + diff_hour_in_min) * cal_min
+        
+    }
 }
 
 struct SportEnc: Codable_Sport
@@ -111,6 +161,4 @@ struct SportEnc: Codable_Sport
     var Img_Icon : String
     
     var Name_Sport : String
-    
-    
 }

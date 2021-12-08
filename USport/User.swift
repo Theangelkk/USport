@@ -7,8 +7,6 @@
 
 import Foundation
 
-typealias Codable = Decodable & Encodable
-
 class User : ObservableObject
 {
     @Published var nickname : String
@@ -27,12 +25,6 @@ class User : ObservableObject
     
     @Published var Type_Activity : String
     
-    let dir = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-    
-    var path_Json_user : URL? = URL(fileURLWithPath: "prova")
-    
-    var io_dict : IO_Dictionary<UserEnc>? = nil
-    
     var type_of_gender : [String] = ["Male", "Famale"]
     
     var type_of_activity : [String] = ["Sedentary lifestyle", "Slightly active", "Moderately active", "Active lifestyle", "Very active lifestyle"]
@@ -46,12 +38,6 @@ class User : ObservableObject
         self.Age = 0
         self.Type_Activity = "Default"
         self.gender = "Default"
-        
-        
-        
-        self.path_Json_user = dir?.appendingPathComponent("User").appendingPathExtension("json")
-        
-        self.io_dict = IO_Dictionary<UserEnc>(newValue_path_dictionary: path_Json_user)
     }
     
     init(nickname : String, age: Int, gender: String, activity : String, height : Int, weight : Float, type_of_sport : Sport)
@@ -63,10 +49,6 @@ class User : ObservableObject
         self.Age = 0
         self.Type_Activity = "Default"
         self.gender = "Default"
-        
-        self.path_Json_user = dir?.appendingPathComponent("User").appendingPathExtension("json")
-        
-        self.io_dict = IO_Dictionary<UserEnc>(newValue_path_dictionary: path_Json_user)
     }
     
     init(n_workout : Int)
@@ -78,6 +60,8 @@ class User : ObservableObject
         self.Age = 0
         self.Type_Activity = "Default"
         self.gender = "Default"
+        
+        self.create_n_workouts(n_workouts: n_workout)
         
     }
     
@@ -155,32 +139,4 @@ class User : ObservableObject
     {
         self.Type_of_Sport = nameSport
     }
-    
-    func encode_json()
-    {
-
-        let usr_enc : UserEnc = UserEnc(nickname: self.nickname, height: String(self.height), weight: String(self.weight), age: String(self.Age), gender: self.gender, type_activity: self.Type_Activity, Type_of_Sport: self.Type_of_Sport)
-        
-        let fileURL = dir?.appendingPathComponent("User").appendingPathExtension("json")
-        let enc : IO_Dictionary = IO_Dictionary<UserEnc>(newValue_path_dictionary: fileURL)
-        
-        enc.write(obj: usr_enc)
-         
-    }
-    func decode_json()
-    {
-        io_dict?.read()
-    }
-}
-
-struct UserEnc: Codable
-{
-    var nickname : String = ""
-    var height : String = ""
-    var weight : String = ""
-    var age: String = ""
-    var gender: String = ""
-    var type_activity: String = ""
-    var Type_of_Sport : String = ""
-
 }

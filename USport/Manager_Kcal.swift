@@ -60,7 +60,7 @@ class Manager_Kcal
             self.RMR -= self.coeff_RMR_Famale
         }
         
-        self.RMR * self.coeff_Activity[self.user.Type_Activity]!
+        self.RMR = self.RMR * self.coeff_Activity[self.user.Type_Activity]!
         
     }
     
@@ -86,25 +86,53 @@ class Manager_Kcal
         }
         
         // -------------------- Convert numbers of steps to miles -----------------------------
-        var one_mile_steps : Int = Int(160934 / lenght_step)
+        let one_mile_steps : Int = Int(160934 / lenght_step)
         
-        var mile_distance : Float = Float(self.steps_counter) / Float(one_mile_steps)
+        let mile_distance : Float = Float(self.steps_counter) / Float(one_mile_steps)
         
         // ------------------------------ Walking VO2 -----------------------------------------
-        var speed : Float = 0.1
-        var grade : Float = 0.0
+        let speed : Float = 0.1
+        let grade : Float = 0.0
         
-        var VO2 : Float = (speed * 0.1) + (speed*grade+1.8) + 3.5
+        let VO2 : Float = (speed * 0.1) + (speed*grade+1.8) + 3.5
         
         // Walking calories per minute (kcal/min) = ((VO2 * weight(kg)) / 1000) * 5
-        var walking_kcal_min : Float = (((VO2 * Float(self.user.weight)) / Float(1000)) * Float(5))
+        let walking_kcal_min : Float = (((VO2 * Float(self.user.weight)) / Float(1000)) * Float(5))
         
-        var duration_1000steps_min : Float = 9.8
+        let duration_1000steps_min : Float = 9.8
         
-        var cal_step : Float = (duration_1000steps_min * walking_kcal_min) / 1000.0
+        let cal_step : Float = (duration_1000steps_min * walking_kcal_min) / 1000.0
         
-        return Float(Float(self.steps_counter) * cal_step) 
+        return Float(Float(self.steps_counter) * cal_step)
         
+    }
+    
+    func actual_cal_day() -> Float
+    {
+        let formatter = DateFormatter()
+        
+        formatter.locale = .current
+        formatter.dateFormat = "EEEE"
+        
+        let cal_day : Float = self.get_Kcal_Daily() + self.get_Kcal_pedometer()
+        
+        var cal_sport : Float = 0.0
+        
+        for i in 0..<user.workouts.count
+        {
+            let workout = user.workouts[i]
+            
+            let name_today : String = formatter.string(from: Date())
+            
+            if name_today == workout.days[workout.Day]
+            {
+                let sport : Sport = Sport(type_of_sport: user.Type_of_Sport)
+                
+                cal_sport += sport.get_cal_sport(user: user, intensity: workout.IntensityOfLevel[workout.Intesity_Level], startTime: workout.Start_Time, endTime: workout.End_Time)
+            }
+        }
+        
+        return cal_day + cal_sport
     }
     
     func add_new_historical_data()
@@ -127,5 +155,4 @@ class Manager_Kcal
         
         Table_Cal_Daily.save_item_on_CoreData()
     }
-    
 }

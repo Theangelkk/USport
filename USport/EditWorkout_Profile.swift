@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct EditWorkout: View
+struct EditWorkout_Profile: View
 {
     @Environment(\.presentationMode) var presentationMode
     
@@ -21,6 +21,8 @@ struct EditWorkout: View
     
     @State var start : Date
     @State var end : Date
+    
+    @State var changeView : Bool = false
     
     var day = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
     
@@ -63,26 +65,31 @@ struct EditWorkout: View
                                     }
                                 }
                     }
-                    
+                
                 } .accentColor(.red) //evidenzia il testo in rosso quando viene cliccato
-            
+                
                 // Button Cancel
                 .navigationBarBackButtonHidden(true)
             
                 .navigationBarItems(leading: Button(action :
                 {
-                    self.adWorkout()
-    
-                    
+                    self.editWorkout()
+
                 }){
                         Image(systemName: "arrow.left")
                 })
                 .navigationBarTitle(Text(name_workout), displayMode: .inline)
+            
+                if USportApp.UserAPP!.workouts.count > 1
+                {
+                    ButtonDelete(idx: idx_workout, changeView: $changeView)
+                    .position(x: geometry.size.width/2, y: geometry.size.height/1.8)
+                }
             }
     }
     
     // Magari con notifica se sbaglia ad inserire
-    func adWorkout()
+    func editWorkout()
     {
         var esit_title : Bool = false
         var esit_endTime : Bool = false
@@ -99,13 +106,15 @@ struct EditWorkout: View
         
         if(all_esit == true)
         {
+            UserCoreData.save_user_on_CoreData(user: USportApp.UserAPP!, delete_old: true)
+            
             self.presentationMode.wrappedValue.dismiss()
         }
     }
 }
  
-struct EditWorkout_Previews: PreviewProvider {
-    
+struct EditWorkout_Profile_Previews: PreviewProvider
+{
     @StateObject static var UserAPP : User = User(n_workout: 1)
     @State static var nameSport : String = "Football"
     
@@ -114,8 +123,74 @@ struct EditWorkout_Previews: PreviewProvider {
     
     static var previews: some View
     {
-        EditWorkout(new_workout: $workout, idx_workout: $idx, name_workout: self.UserAPP.workouts[0].Title, daySelected: self.UserAPP.workouts[0].Day, intensitySelected: self.UserAPP.workouts[0].Intesity_Level, start: self.UserAPP.workouts[0].Start_Time, end: self.UserAPP.workouts[0].End_Time)
+        EditWorkout_Profile(new_workout: $workout, idx_workout: $idx, name_workout: self.UserAPP.workouts[0].Title, daySelected: self.UserAPP.workouts[0].Day, intensitySelected: self.UserAPP.workouts[0].Intesity_Level, start: self.UserAPP.workouts[0].Start_Time, end: self.UserAPP.workouts[0].End_Time)
             .environmentObject(UserAPP)
     }
 }
 
+struct ButtonDelete: View
+{
+    @Environment(\.presentationMode) var presentationMode
+    
+    var idx : Int
+    
+    @Binding var changeView : Bool
+    
+    var body: some View
+    {
+        Button(action: {
+            
+            USportApp.UserAPP!.workouts.remove(at: idx)
+            self.presentationMode.wrappedValue.dismiss()
+            
+        })
+        {
+            Text("Delete")
+                .font(.system(size: 25))
+                .fontWeight(.heavy)
+        }
+        .buttonStyle(CustomButtonStyle_Delete())
+    }
+}
+
+/*
+    Custom Design "Next" Button
+ */
+struct CustomButtonStyle_Delete: ButtonStyle
+{
+    private struct CustomButtonStyleView<V: View>: View
+    {
+        @State private var isOverButton = false
+
+        let content: () -> V
+
+        var body: some View {
+            ZStack {
+                content()
+                    .frame(minWidth: 0, maxWidth: .infinity)
+                    .padding()
+                    .foregroundColor(.white)
+                    .background(Color.red)
+                    .shadow(color: Color.black, radius: 20, x: 5, y: 5)
+            }
+            .padding(3)
+            .onHover { over in
+                self.isOverButton = over
+                print("isOverButton:", self.isOverButton, "over:", over)
+            }
+            .overlay(VStack {
+                if self.isOverButton {
+                    Rectangle()
+                        .stroke(Color.blue, lineWidth: 2)
+                } else
+                {
+                    EmptyView()
+                }
+            })
+        }
+    }
+
+    func makeBody(configuration: Self.Configuration) -> some View {
+        CustomButtonStyleView { configuration.label }
+    }
+}

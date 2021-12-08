@@ -7,9 +7,7 @@
 
 import Foundation
 
-typealias Codable_Activity = Decodable & Encodable
-
-class Activity : ObservableObject
+public class Activity : NSObject, ObservableObject
 {
     @Published var Title : String
     
@@ -19,13 +17,15 @@ class Activity : ObservableObject
     
     let userCalendar : Calendar = Calendar.current
     
-    let requestedComponents : Set<Calendar.Component> = [ .year, .month, .day, .hour, .minute, .second ]
+    let requestedComponents : Set<Calendar.Component> = [.year, .month, .day, .hour, .minute, .second ]
     
-    init()
+    override init()
     {
         self.Title = "Workout"
         self.Start_Time = Date()
         self.End_Time = Date()
+        
+        super.init()
         
         var dataTimeComponets_StartTime = self.userCalendar.dateComponents(self.requestedComponents, from: self.Start_Time)
         dataTimeComponets_StartTime.minute! += 30
@@ -41,6 +41,8 @@ class Activity : ObservableObject
         
         self.Title = newValue_Title
         self.Start_Time = newValue_StartTime
+        
+        super.init()
         
         var dataTimeComponets_StartTime = self.userCalendar.dateComponents(self.requestedComponents, from: self.Start_Time)
         dataTimeComponets_StartTime.minute! += 30
@@ -89,13 +91,4 @@ class Activity : ObservableObject
         
         return false
     }
-}
-
-struct ActivityEnc: Codable_Activity
-{
-    var Title : String
-    
-    var Start_Time : String
-    
-    var End_Time : String
 }

@@ -11,18 +11,29 @@ import AssetsLibrary
 
 struct Profile: View {
     
+    @Environment(\.presentationMode) var presentationMode
+    
     @State private var isShowPhotoLibrary = false
     @State private var image = UIImage()
+        
+    @State var sex = ["Male", "Female"]
+    @State var workout : Int = USportApp.UserAPP!.workouts.count
+    @State var weight : String = String(USportApp.UserAPP!.weight)
+    @State var height : String = String(USportApp.UserAPP!.height)
     
-    @EnvironmentObject var UserAPP : User
-    
-    @State var dateOfBirth = Date()
-    @State var sex = ["Male", "Female", "Unknown"]
-    @State var workout = 3
-    @State var weight = 0
-    @State var height = 0
     @State var sexSelected = 0
     @State var shouldActivateNotifications = false
+    
+    init()
+    {
+        for i in 0..<sex.count
+        {
+            if USportApp.UserAPP!.gender == sex[i]
+            {
+                sexSelected = i
+            }
+        }
+    }
     
     var body: some View {
         
@@ -32,79 +43,122 @@ struct Profile: View {
             
             geometry in
             
-            VStack{
-                 VStack {
-                Button(action: {
-                    self.isShowPhotoLibrary = true
-                    
-                })
-                {  //Ricordiamoci di caricare l'immagine!!!
-                    Image("profile_icon")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: geometry.size.width/2.5, height: geometry.size.height/3)
-                        .background(Color.white.opacity(0.0))
-                } .background(Color.white.opacity(0.0))
-                    
-                Text("Nickname")
-                         .font(.system(size: 30, weight: .bold, design: .serif))
-                         .italic()
-                    
+            VStack
+            {
+                /*
+                VStack
+                {
+                    Button(action: {
+                        self.isShowPhotoLibrary = true
+                        
+                    })
+                    {  //Ricordiamoci di caricare l'immagine!!!
+                        Image("profile_icon")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: geometry.size.width/2.5, height: geometry.size.height/3)
+                            .background(Color.white.opacity(0.0))
+                    } .background(Color.white.opacity(0.0)
                 }
+                */
                 Form
                 {
-                    
-                    
                     Section(header: Text(""))
                     {
-                        DatePicker("Date of Birth", selection: $dateOfBirth, displayedComponents: .date)
-                        
                         Picker(selection: $sexSelected, label: Text("Sex"))
+                        {
+                                ForEach(0 ..< sex.count)
                                 {
-                                    ForEach(0 ..< sex.count)
-                                    {
-                                        Text(self.sex[$0])
-                                    } .foregroundColor(.blue)
-                                }
+                                    Text(self.sex[$0])
+                                } .foregroundColor(.blue)
+                        }
+                        
+                        TextField_Elem_Profile(name_image: "weight", init_text: weight, text: $weight, geometry: geometry)
+                        
+    
+                        TextField_Elem_Profile(name_image: "height", init_text: height, text: $height, geometry: geometry)
+                        
+                        NavigationLink(destination: AddWorkout_Profile())
+                        {
+                            Text("Workouts")
+                        }
+                        
                         Toggle("Notifications", isOn: $shouldActivateNotifications)
                             .toggleStyle(SwitchToggleStyle(tint: .green))
-                        HStack
-                        {
-                            Text("Workout")
-                            Spacer()
-                            //Workout è impostato a 3 solo per motivi di corretta visualizzazione, il numero reale è derivato da n_workouts di AddWorkout.swift //
-                            Text("\(workout)")
-                            Spacer()
-                        }
-                        HStack
-                        {
-                            Text("Weight")
-                            Spacer()
-                            //Workout è impostato a 3 solo per motivi di corretta visualizzazione, il numero reale è derivato da n_workouts di AddWorkout.swift //
-                            Text("\(weight)Kg")
-                            Spacer()
-                        }
-                        HStack
-                        {
-                            Text("Height")
-                            Spacer()
-                            //Workout è impostato a 3 solo per motivi di corretta visualizzazione, il numero reale è derivato da n_workouts di AddWorkout.swift //
-                            Text("\(height)cm")
-                            Spacer()
-                        }
                         
                     } .foregroundColor(.black)
                 }
             }
-            .sheet(isPresented: $isShowPhotoLibrary) {
-                ImagePicker(sourceType: .photoLibrary, selectedImage: self.$image) }
+            .navigationBarTitle(USportApp.UserAPP!.nickname, displayMode: .inline)
+            
+            // Button Cancel
+            .navigationBarBackButtonHidden(true)
+        
+            .navigationBarItems(leading: Button(action :
+            {
+                self.saveData()
+                self.presentationMode.wrappedValue.dismiss()
+                
+            }){
+                    Image(systemName: "arrow.left")
+            })
+            .navigationBarTitle("Chose dates", displayMode: .inline)
+            
+            /*.sheet(isPresented: $isShowPhotoLibrary) {
+                ImagePicker(sourceType: .photoLibrary, selectedImage: self.$image) }*/
+        }
+    }
+    
+    func saveData()
+    {
+        let float_weight : Float = Float(self.weight) ?? 0.0
+        let int_height : Int = Int(self.height) ?? 0
+                
+        if(int_height > 0 && int_height < 270 && float_weight > 0.0 && float_weight < 250.0)
+        {
+            let int_n_workouts : Int = USportApp.UserAPP!.workouts.count
+                    
+            if(int_n_workouts > 0 && int_n_workouts < 8)
+            {
+                USportApp.UserAPP!.set_weight(weight: float_weight)
+                USportApp.UserAPP!.set_height(height: int_height)
+                
+                //USportApp.UserAPP!.create_n_workouts(n_workouts: int_n_workouts)
+        
+                USportApp.UserAPP!.set_gender(idx: sexSelected)
+                            
+                //USportApp.UserAPP!.set_type_of_activity(idx: idx_activity)
+                
+                UserCoreData.save_user_on_CoreData(user: USportApp.UserAPP!, delete_old: true)
+            }
         }
     }
 }
 
 struct Profile_Previews: PreviewProvider {
-    static var previews: some View {
+    static var previews: some View
+    {
         Profile()
+    }
+}
+
+struct TextField_Elem_Profile: View
+{
+    var name_image : String
+    var init_text : String
+    @Binding var text : String
+    
+    var geometry : GeometryProxy
+    
+    var body: some View {
+        HStack (alignment: .center, spacing: 15)
+        {
+            Image_t(Image_name: name_image)
+            
+            TextField (init_text, text: $text)
+                .font(.system(size: 17))
+        }
+        .padding(.vertical, 5.0)
     }
 }
 

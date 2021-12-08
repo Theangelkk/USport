@@ -11,8 +11,6 @@ import UserNotificationsUI
 
 struct InsertData: View
 {
-    @EnvironmentObject var UserAPP : User
-    
     @StateObject var delegate = Notification()
     
     @Binding var nameSport : String
@@ -31,6 +29,8 @@ struct InsertData: View
     // Magari far uscire una notifica di errore... TODO
     func checkFieds()
     {
+        var esit : Bool = false
+        
         if (self.nickname != "")
         {
             let float_weight : Float = Float(self.weight) ?? 0.0
@@ -45,36 +45,29 @@ struct InsertData: View
                     let int_age : Int = Int(self.age) ?? 0
                     if(int_age > 10 && int_age < 120)
                     {
-                        changeView = self.UserAPP.set_nickname(nick: self.nickname)
-                        self.UserAPP.set_weight(weight: float_weight)
-                        self.UserAPP.set_height(height: int_height)
-                        self.UserAPP.create_n_workouts(n_workouts: int_n_workouts)
+                        USportApp.UserAPP = User()
                         
-                        self.UserAPP.addSport(nameSport: self.nameSport)
+                        changeView = USportApp.UserAPP!.set_nickname(nick: self.nickname)
+                        USportApp.UserAPP!.set_weight(weight: float_weight)
+                        USportApp.UserAPP!.set_height(height: int_height)
+                        USportApp.UserAPP!.create_n_workouts(n_workouts: int_n_workouts)
                         
-                        self.UserAPP.set_gender(idx: idx_gender)
+                        USportApp.UserAPP!.addSport(nameSport: self.nameSport)
                         
-                        self.UserAPP.set_type_of_activity(idx: idx_activity)
+                        USportApp.UserAPP!.set_gender(idx: idx_gender)
                         
-                        self.UserAPP.set_age(age: int_age)
-                    
-                        if(changeView == true)
-                        {
-                            // Save JSON User.json... TODO
-                            self.UserAPP.encode_json()
-                        }
+                        USportApp.UserAPP!.set_type_of_activity(idx: idx_activity)
                         
+                        USportApp.UserAPP!.set_age(age: int_age)
                         
-                    }else {
-                        delegate.createNotification()
+                        esit = true
                     }
-                }else {
-                    delegate.createNotification()
                 }
-            }else {
-                delegate.createNotification()
             }
-        }else {
+        }
+        
+        if esit == false
+        {
             delegate.createNotification()
         }
     }
@@ -100,9 +93,10 @@ struct InsertData: View
                         
                         Picker(selection: $idx_gender, label: Text("Gender"))
                         {
-                            ForEach(0 ..< UserAPP.type_of_gender.count)
+                            
+                            ForEach(0 ..< USportApp.UserAPP!.type_of_gender.count)
                             {
-                                Text(UserAPP.type_of_gender[$0])
+                                Text(USportApp.UserAPP!.type_of_gender[$0])
                                     .font(.system(size: 17))
                             }
                         }
@@ -121,9 +115,9 @@ struct InsertData: View
                         
                         Picker(selection: $idx_activity, label: Text("Activity"))
                             {
-                                ForEach(0 ..< UserAPP.type_of_activity.count)
+                                ForEach(0 ..< USportApp.UserAPP!.type_of_activity.count)
                                 {
-                                    Text(UserAPP.type_of_activity[$0])
+                                    Text(USportApp.UserAPP!.type_of_activity[$0])
                                         .font(.system(size: 17))
                                 }
                             }
@@ -154,6 +148,7 @@ struct InsertData: View
             if(changeView == true)
             {
                 AddWorkout()
+                    .environmentObject(USportApp.UserAPP!)
             }
         }
     }

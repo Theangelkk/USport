@@ -10,15 +10,20 @@
 
 
 import SwiftUI
+import HealthKit
 
-struct Homepage: View {
+struct Homepage: View
+{
+    @State var managerKcal : Manager_Kcal? = nil
     
     @State var chose_period = 0
-    @State var currentKcal : Float = 1200.0
-    @State var totalKcal : Float = 2500.0
+    @State var currentKcal : Float = 0.0
+    @State var totalKcal : Float = 0.0
     
     var names_button_bar : [String] = ["Daily", "Weekly", "Monthty"]
     
+    var buttonBar : ButtonBar = ButtonBar()
+        
     var body: some View {
         
         ZStack
@@ -45,14 +50,21 @@ struct Homepage: View {
                             ForEach(0..<self.names_button_bar.count)
                             {
                                 i in
-                                ButtonBar(name_button: self.names_button_bar[i], idx: i)
+                                Text(self.names_button_bar[i])
                             }
                                     
-                        }.pickerStyle(.segmented)
+                        }
+                        .onChange(of: self.chose_period, perform:
+                                    { (value) in
+                            buttonBar.onChange(value, homepage: self)
+                                    })
+                        .onAppear { buttonBar.onChange(0, homepage: self) }
+                        
+                        .pickerStyle(.segmented)
                             .position(x: geometry.size.width/2.1, y: -geometry.size.height/4.5)
                             .frame(width: geometry.size.width - 15, height: geometry.size.height/90)
                             .shadow(color: Color.black.opacity(0.40), radius: 5, x: 5, y: 10)
-                        
+                            
                         
                         Ring_Graph(geometry: geometry, currentKcal: $currentKcal, totalKcal: $totalKcal)
                             .shadow(color: Color.black.opacity(0.30), radius: 5, x: 5, y: 10)
@@ -128,12 +140,6 @@ struct Homepage: View {
     }
 }
 
-struct Homepage_Previews: PreviewProvider {
-    static var previews: some View {
-        Homepage()
-    }
-}
-
 struct Ring_Graph: View
 {
     var currentKcal : Binding<Float>
@@ -200,21 +206,33 @@ struct Ring_Graph: View
 
 }
 
-
-struct ButtonBar: View
+class ButtonBar
 {
-    var name_button : String
-    var idx : Int
-    
-    var body: some View
+    var homepage : Homepage? = nil
+    var idx : Int = 0
+
+    init()
     {
-        Button(action: {
-            
-        }){
-            Text(self.name_button)
-                .fontWeight(.bold)
-                .tag(idx)
-                
-        }
+        self.homepage = nil
+    }
+    
+    func onChange(_ tag: Int, homepage : Homepage)
+    {
+        self.homepage = homepage
+        self.homepage!.managerKcal = Manager_Kcal(user: USportApp.UserAPP!)
+        
+        self.homepage!.currentKcal = self.homepage!.managerKcal!.actual_cal_day()
+        self.homepage!.totalKcal = Table_Cal_Daily.average_cal_days()
     }
 }
+
+struct Homepage_Previews: PreviewProvider
+{
+    @StateObject static var UserAPP : User = User(n_workout: 3)
+    
+    static var previews: some View {
+        Homepage()
+            .environmentObject(UserAPP)
+    }
+}
+

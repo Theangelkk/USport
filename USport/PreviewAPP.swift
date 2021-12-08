@@ -7,18 +7,36 @@
 
 import SwiftUI
 
-struct PreviewAPP: View {
-    
+struct PreviewAPP: View
+{
     @State private var showMainView = false
     
     // Variabili per le animazioni
     @State private var angle : Double = 360
     @State private var opacity : Double = 1
     @State private var scale : CGFloat = 1
-    
+        
     init()
     {
+        DrawingWorkouts.register()
+        
         CoreDataManager.start()
+        
+        let usr : UserCoreData? = UserCoreData.get_user()
+        
+        if usr != nil
+        {
+            USportApp.UserAPP = User()
+            
+            USportApp.UserAPP!.nickname = String(usr!.nickname!)
+            USportApp.UserAPP!.Age = Int(usr!.age)
+            USportApp.UserAPP!.gender = usr!.gender!
+            USportApp.UserAPP!.height = Int(usr!.height)
+            USportApp.UserAPP!.weight = usr!.weight
+            USportApp.UserAPP!.Type_of_Sport = usr!.type_of_sport!
+            USportApp.UserAPP!.Type_Activity = usr!.type_of_activity!
+            USportApp.UserAPP!.workouts = usr!.workouts!.workouts
+        }
         
         Table_Cal_Daily.remove_all()
         
@@ -51,7 +69,14 @@ struct PreviewAPP: View {
         {
             if showMainView
             {
-                ChoseSport()
+                if USportApp.UserAPP != nil
+                {
+                    Homepage()
+                }
+                else
+                {
+                    ChoseSport()
+                }
             }
             else
             {

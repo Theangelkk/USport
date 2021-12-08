@@ -10,14 +10,13 @@ import SwiftUI
 @main
 struct USportApp: App
 {
-    @StateObject var UserAPP : User = User()
+    static var UserAPP : User? = nil
     
     var body: some Scene
     {
         WindowGroup
         {
             PreviewAPP()
-                .environmentObject(UserAPP)
         }
     }
 }

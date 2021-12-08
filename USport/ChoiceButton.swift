@@ -22,6 +22,8 @@ struct ChoiceButton: View
         
         Button(action: {
             sportSelected = nameSport
+            
+            USportApp.UserAPP = User()
         })
         {
             if self.sportSelected != self.nameSport

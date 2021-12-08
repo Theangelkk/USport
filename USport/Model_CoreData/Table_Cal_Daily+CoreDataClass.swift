@@ -15,7 +15,7 @@ public class Table_Cal_Daily: NSManagedObject
 {
     static let userCalendar : Calendar = Calendar.current
     
-    static let requestedComponents : Set<Calendar.Component> = [ .year, .month, .day, .hour, .minute, .second ]
+    static let requestedComponents : Set<Calendar.Component> = [.year, .month, .day, .hour, .minute, .second ]
     
     static let formatter = DateFormatter()
     
