@@ -12,6 +12,7 @@
 		1B8AE4D1275E72730021E9AA /* EditActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8AE4D0275E72730021E9AA /* EditActivity.swift */; };
 		1BEEFD9C275BA535005A14CE /* Homepage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEEFD9B275BA535005A14CE /* Homepage.swift */; };
 		1BEEFD9E275BA58D005A14CE /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEEFD9D275BA58D005A14CE /* History.swift */; };
+		1BEFC52F2760FAC700A508BA /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEFC52E2760FAC700A508BA /* Notification.swift */; };
 		650C7C73275A0C5F0096215D /* USportApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650C7C72275A0C5F0096215D /* USportApp.swift */; };
 		650C7C75275A0C5F0096215D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650C7C74275A0C5F0096215D /* ContentView.swift */; };
 		650C7C77275A0C610096215D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 650C7C76275A0C610096215D /* Assets.xcassets */; };
@@ -58,7 +59,6 @@
 		65A5BEA0275D248A00819933 /* RKManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A5BE8B275D248A00819933 /* RKManager.swift */; };
 		65F0EAFF275A5ED600649843 /* Manager_APP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F0EAFE275A5ED600649843 /* Manager_APP.swift */; };
 		65FEBAC9275DE75C000D034F /* IO_Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FEBAC8275DE75C000D034F /* IO_Dictionary.swift */; };
-		65FEBACB275DE791000D034F /* IO_Dictionary_History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FEBACA275DE791000D034F /* IO_Dictionary_History.swift */; };
 		7DDB5D80275F9ADD008B071D /* Healthkit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDB5D7F275F9ADD008B071D /* Healthkit.swift */; };
 		7DFC1FCC275CC1AD00335F63 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFC1FCB275CC1AD00335F63 /* Profile.swift */; };
 /* End PBXBuildFile section */
@@ -86,6 +86,7 @@
 		1B8AE4D0275E72730021E9AA /* EditActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditActivity.swift; sourceTree = "<group>"; };
 		1BEEFD9B275BA535005A14CE /* Homepage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Homepage.swift; sourceTree = "<group>"; };
 		1BEEFD9D275BA58D005A14CE /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
+		1BEFC52E2760FAC700A508BA /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		650C7C6F275A0C5F0096215D /* USport.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = USport.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		650C7C72275A0C5F0096215D /* USportApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USportApp.swift; sourceTree = "<group>"; };
 		650C7C74275A0C5F0096215D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -120,7 +121,6 @@
 		65A5BE8B275D248A00819933 /* RKManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RKManager.swift; sourceTree = "<group>"; };
 		65F0EAFE275A5ED600649843 /* Manager_APP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manager_APP.swift; sourceTree = "<group>"; };
 		65FEBAC8275DE75C000D034F /* IO_Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IO_Dictionary.swift; sourceTree = "<group>"; };
-		65FEBACA275DE791000D034F /* IO_Dictionary_History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IO_Dictionary_History.swift; sourceTree = "<group>"; };
 		7DDB5D7F275F9ADD008B071D /* Healthkit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Healthkit.swift; sourceTree = "<group>"; };
 		7DFC1FCB275CC1AD00335F63 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -186,6 +186,7 @@
 				65635FD8275A696E0076A9C8 /* InsertData.swift */,
 				65635FDA275A69870076A9C8 /* AddWorkout.swift */,
 				65635FDC275A69C00076A9C8 /* EditWorkout.swift */,
+				1BEFC52E2760FAC700A508BA /* Notification.swift */,
 				7DFC1FCB275CC1AD00335F63 /* Profile.swift */,
 				7DDB5D7F275F9ADD008B071D /* Healthkit.swift */,
 				1B04606E275A6EC100F0BF22 /* ChoiceButton.swift */,
@@ -406,6 +407,7 @@
 				1B04606F275A6EC100F0BF22 /* ChoiceButton.swift in Sources */,
 				65A5BE98275D248A00819933 /* RKDate.swift in Sources */,
 				65A5BE8C275D248A00819933 /* RKColorSettings.swift in Sources */,
+				1BEFC52F2760FAC700A508BA /* Notification.swift in Sources */,
 				65635FD9275A696E0076A9C8 /* InsertData.swift in Sources */,
 				65635FD7275A69530076A9C8 /* ChoseSport.swift in Sources */,
 				1B8AE4CD275E54890021E9AA /* ChoseActivity.swift in Sources */,
@@ -602,7 +604,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"USport/Preview Content\"";
-				DEVELOPMENT_TEAM = FP6BQ47Z26;
+				DEVELOPMENT_TEAM = M3672A53US;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -615,7 +617,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Angelo-TeamB-iOS-Programming.USport";
+				PRODUCT_BUNDLE_IDENTIFIER = "Alessandro-TeamB-iOS-Programming.USport";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -631,7 +633,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"USport/Preview Content\"";
-				DEVELOPMENT_TEAM = FP6BQ47Z26;
+				DEVELOPMENT_TEAM = M3672A53US;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -644,7 +646,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Angelo-TeamB-iOS-Programming.USport";
+				PRODUCT_BUNDLE_IDENTIFIER = "Alessandro-TeamB-iOS-Programming.USport";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

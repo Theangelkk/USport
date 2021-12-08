@@ -7,10 +7,13 @@
 
 import SwiftUI
 import SwiftUICharts
+import UserNotificationsUI
 
 struct InsertData: View
 {
     @EnvironmentObject var UserAPP : User
+    
+    @StateObject var delegate = Notification()
     
     @Binding var nameSport : String
     
@@ -62,9 +65,17 @@ struct InsertData: View
                         }
                         
                         
+                    }else {
+                        delegate.createNotification()
                     }
+                }else {
+                    delegate.createNotification()
                 }
+            }else {
+                delegate.createNotification()
             }
+        }else {
+            delegate.createNotification()
         }
     }
     
@@ -136,6 +147,9 @@ struct InsertData: View
             }
             .buttonStyle(CustomButtonStyle())
             .position(x: geometry.size.width/2, y: (geometry.size.height)-60)
+            .onAppear {
+                delegate.requestAuthorization()
+            }
             
             if(changeView == true)
             {
@@ -171,6 +185,7 @@ struct InsertData_Previews: PreviewProvider {
             .environmentObject(UserAPP)
     }
 }
+
 
 
 struct TextField_Elem: View
