@@ -135,6 +135,7 @@
 		65A5BE89275D248A00819933 /* RKDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RKDate.swift; sourceTree = "<group>"; };
 		65A5BE8A275D248A00819933 /* RKCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RKCell.swift; sourceTree = "<group>"; };
 		65A5BE8B275D248A00819933 /* RKManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RKManager.swift; sourceTree = "<group>"; };
+		65AB8D15276234FA00081B05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		7DDB5D7F275F9ADD008B071D /* Healthkit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Healthkit.swift; sourceTree = "<group>"; };
 		7DFC1FCB275CC1AD00335F63 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -189,6 +190,7 @@
 		650C7C71275A0C5F0096215D /* USport */ = {
 			isa = PBXGroup;
 			children = (
+				65AB8D15276234FA00081B05 /* Info.plist */,
 				658439E0275F968100A8DAEE /* Model_CoreData */,
 				650C7C72275A0C5F0096215D /* USportApp.swift */,
 				65635FD4275A5FF00076A9C8 /* PreviewAPP.swift */,
@@ -651,6 +653,9 @@
 				DEVELOPMENT_TEAM = M3672A53US;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = USport/Info.plist;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "This app requires to access your Health data";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "This app requires to access your Health data";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -680,6 +685,9 @@
 				DEVELOPMENT_TEAM = M3672A53US;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = USport/Info.plist;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "This app requires to access your Health data";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "This app requires to access your Health data";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

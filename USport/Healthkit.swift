@@ -27,8 +27,6 @@ struct Healthkit_Previews: PreviewProvider {
     }
 }
 
-
-
 class HealthStore {
     var healthStore: HKHealthStore?
     //Inizzializzatore per ogni nuova istanza creata
