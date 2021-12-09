@@ -9,10 +9,16 @@ import SwiftUI
 
 struct AddWorkout_Profile: View
 {
+    @EnvironmentObject var managerUser : ManagerUser
+    
     @Environment(\.presentationMode) var presentationMode
     
-    @State var changeView : Bool = false
+    var type_sport : String
     
+    @State var firstTime : Bool = true
+    
+    @State var changeView : Bool = false
+
     var body: some View
     {
         GeometryReader
@@ -25,13 +31,15 @@ struct AddWorkout_Profile: View
             {
                 List
                 {
-                    ForEach(0..<USportApp.UserAPP!.workouts.count)
+                    ForEach(0..<managerUser.UserAPP.workouts.count)
                     {
                         idx in
-                        ButtonWorkout_Profile(idx_workout: idx, titleButton: USportApp.UserAPP!.workouts[idx].Title)
+                        
+                        ButtonWorkout_Profile(idx_workout: idx, workouts : $managerUser.UserAPP.workouts, type_sport: type_sport, new_workout : managerUser.UserAPP.workouts[idx])
                     }
                 }
             }
+    
             // Button Cancel
             .navigationBarBackButtonHidden(true)
         
@@ -48,6 +56,40 @@ struct AddWorkout_Profile: View
     }
 }
 
+struct ButtonWorkout_Profile: View
+{
+    @EnvironmentObject var managerUser : ManagerUser
+    
+    var idx_workout : Int
+    @Binding var workouts : [Workout]
+    
+    var type_sport : String
+    
+    @State var new_workout : Workout
+    
+    @State private var esit : Bool = false
+    @State var firstTime : Bool = true
+    
+    var body: some View
+    {
+        NavigationLink(destination: EditWorkout_Profile(new_workout : $new_workout, name_workout_tmp: workouts[self.idx_workout].Title, daySelected_tmp: workouts[self.idx_workout].Day, intensitySelected_tmp: workouts[self.idx_workout].Intesity_Level, start_tmp: workouts[self.idx_workout].Start_Time, end_tmp: workouts[self.idx_workout].End_Time))
+        
+        {
+            Text(workouts[self.idx_workout].Title)
+                .frame(maxWidth: .infinity, alignment: .center)
+                .font(.system(size: 20))
+                .foregroundColor(Color.black)
+        }
+        .onAppear
+        {
+            
+            managerUser.UserAPP.workouts[idx_workout] = new_workout
+            
+        }
+    }
+}
+
+/*
 struct AddWorkout_Profile_Previews: PreviewProvider
 {
     @StateObject static var UserAPP : User = User(n_workout: 3)
@@ -58,24 +100,4 @@ struct AddWorkout_Profile_Previews: PreviewProvider
             .environmentObject(self.UserAPP)
     }
 }
-
-struct ButtonWorkout_Profile: View
-{
-    
-    @State var idx_workout : Int
-    var titleButton : String
-    
-    @State private var esit : Bool = false
-    @State var workout : Workout = Workout()
-    
-    var body: some View {
-        
-        NavigationLink(destination: EditWorkout_Profile(new_workout: $workout, idx_workout: self.$idx_workout, name_workout: USportApp.UserAPP!.workouts[self.idx_workout].Title, daySelected: USportApp.UserAPP!.workouts[self.idx_workout].Day, intensitySelected: USportApp.UserAPP!.workouts[self.idx_workout].Intesity_Level, start: USportApp.UserAPP!.workouts[self.idx_workout].Start_Time, end: USportApp.UserAPP!.workouts[self.idx_workout].End_Time))
-        {
-            Text(self.titleButton)
-                .frame(maxWidth: .infinity, alignment: .center)
-                .font(.system(size: 20))
-                .foregroundColor(Color.black)
-        }
-    }
-}
+*/

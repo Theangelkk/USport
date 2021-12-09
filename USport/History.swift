@@ -36,8 +36,8 @@ struct History: View {
             {
                 RoundedRectangle(cornerRadius: 3)
                     .stroke(Color.blue, lineWidth: 3)
-                .frame(width: geometry.size.width - 30, height: geometry.size.height/2.2)
-                .position(x: geometry.size.width/2, y: geometry.size.height/1.4)
+                    .frame(width: geometry.size.width - 30, height: geometry.size.height/2.2)
+                    .position(x: geometry.size.width/2, y: geometry.size.height/1.4)
                 
                 Image("omino_pallavolo")
                     .resizable()
@@ -53,7 +53,6 @@ struct History: View {
                     .position(x: geometry.size.width/1.5, y: geometry.size.height/1.60)
                     .shadow(color: Color.black.opacity(0.40), radius: 5, x: 5, y: 10)
                 
-        
                 Text("\(self.Kcal_Daily) Kcal")
                     .fontWeight(.bold)
                     .multilineTextAlignment(.center)

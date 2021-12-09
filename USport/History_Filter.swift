@@ -32,6 +32,7 @@ struct History_Filter: View {
             Text(self.getTextFromDate(date: self.rkManager1.startDate))
             Text(self.getTextFromDate(date: self.rkManager1.endDate))
         }
+        
         // Button Cancel
         .navigationBarBackButtonHidden(true)
     
@@ -44,7 +45,6 @@ struct History_Filter: View {
                 Image(systemName: "arrow.left")
         })
         .navigationBarTitle("Chose dates", displayMode: .inline)
-        
     }
     
     func getTextFromDate(date: Date!) -> String

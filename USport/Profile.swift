@@ -9,31 +9,26 @@ import SwiftUI
 import UIKit
 import AssetsLibrary
 
-struct Profile: View {
-    
+struct Profile: View
+{
     @Environment(\.presentationMode) var presentationMode
     
-    @State private var isShowPhotoLibrary = false
-    @State private var image = UIImage()
-        
+    @EnvironmentObject var managerUser : ManagerUser
+    
+    //@State private var isShowPhotoLibrary = false
+    //@State private var image = UIImage()
+            
+    @State var workouts : [Workout] = []
+    
     @State var sex = ["Male", "Female"]
-    @State var workout : Int = USportApp.UserAPP!.workouts.count
-    @State var weight : String = String(USportApp.UserAPP!.weight)
-    @State var height : String = String(USportApp.UserAPP!.height)
+    @State var workout : Int = 0
+    @State var weight : String = ""
+    @State var height : String = ""
     
     @State var sexSelected = 0
     @State var shouldActivateNotifications = false
     
-    init()
-    {
-        for i in 0..<sex.count
-        {
-            if USportApp.UserAPP!.gender == sex[i]
-            {
-                sexSelected = i
-            }
-        }
-    }
+    @State var firstTime : Bool = true
     
     var body: some View {
         
@@ -67,10 +62,11 @@ struct Profile: View {
                     {
                         Picker(selection: $sexSelected, label: Text("Sex"))
                         {
-                                ForEach(0 ..< sex.count)
+                                ForEach(0..<sex.count)
                                 {
                                     Text(self.sex[$0])
-                                } .foregroundColor(.blue)
+                                }
+                                .foregroundColor(.blue)
                         }
                         
                         TextField_Elem_Profile(name_image: "weight", init_text: weight, text: $weight, geometry: geometry)
@@ -78,7 +74,8 @@ struct Profile: View {
     
                         TextField_Elem_Profile(name_image: "height", init_text: height, text: $height, geometry: geometry)
                         
-                        NavigationLink(destination: AddWorkout_Profile())
+                        NavigationLink(destination: AddWorkout_Profile(type_sport: managerUser.UserAPP.workouts[0].Type_of_Sport)
+                                        .environmentObject(managerUser))
                         {
                             Text("Workouts")
                         }
@@ -86,10 +83,11 @@ struct Profile: View {
                         Toggle("Notifications", isOn: $shouldActivateNotifications)
                             .toggleStyle(SwitchToggleStyle(tint: .green))
                         
-                    } .foregroundColor(.black)
+                    }
+                    .foregroundColor(.black)
                 }
             }
-            .navigationBarTitle(USportApp.UserAPP!.nickname, displayMode: .inline)
+            .navigationBarTitle(managerUser.UserAPP.nickname, displayMode: .inline)
             
             // Button Cancel
             .navigationBarBackButtonHidden(true)
@@ -107,6 +105,34 @@ struct Profile: View {
             /*.sheet(isPresented: $isShowPhotoLibrary) {
                 ImagePicker(sourceType: .photoLibrary, selectedImage: self.$image) }*/
         }
+        .onAppear
+        {
+            self.load()
+        }
+    }
+    
+    func load()
+    {
+        workout = managerUser.UserAPP.workouts.count
+        weight = String(managerUser.UserAPP.weight)
+        height = String(managerUser.UserAPP.height)
+        
+        for i in 0..<sex.count
+        {
+            if managerUser.UserAPP.gender == sex[i]
+            {
+                sexSelected = i
+            }
+        }
+        
+        if self.firstTime
+        {
+            self.workouts = managerUser.UserAPP.workouts
+            self.firstTime = false
+        }
+            
+        managerUser.UserAPP.workouts = self.workouts
+        
     }
     
     func saveData()
@@ -116,29 +142,22 @@ struct Profile: View {
                 
         if(int_height > 0 && int_height < 270 && float_weight > 0.0 && float_weight < 250.0)
         {
-            let int_n_workouts : Int = USportApp.UserAPP!.workouts.count
+            let int_n_workouts : Int = managerUser.UserAPP.workouts.count
                     
             if(int_n_workouts > 0 && int_n_workouts < 8)
             {
-                USportApp.UserAPP!.set_weight(weight: float_weight)
-                USportApp.UserAPP!.set_height(height: int_height)
+                managerUser.UserAPP.set_weight(weight: float_weight)
+                managerUser.UserAPP.set_height(height: int_height)
                 
-                //USportApp.UserAPP!.create_n_workouts(n_workouts: int_n_workouts)
+                managerUser.UserAPP.set_gender(idx: sexSelected)
+                
+                managerUser.UserAPP.workouts = self.workouts
         
-                USportApp.UserAPP!.set_gender(idx: sexSelected)
-                            
                 //USportApp.UserAPP!.set_type_of_activity(idx: idx_activity)
                 
-                UserCoreData.save_user_on_CoreData(user: USportApp.UserAPP!, delete_old: true)
+                UserCoreData.save_user_on_CoreData(user: managerUser.UserAPP, delete_old: true)
             }
         }
-    }
-}
-
-struct Profile_Previews: PreviewProvider {
-    static var previews: some View
-    {
-        Profile()
     }
 }
 
@@ -150,7 +169,8 @@ struct TextField_Elem_Profile: View
     
     var geometry : GeometryProxy
     
-    var body: some View {
+    var body: some View
+    {
         HStack (alignment: .center, spacing: 15)
         {
             Image_t(Image_name: name_image)
@@ -162,6 +182,14 @@ struct TextField_Elem_Profile: View
     }
 }
 
+struct Profile_Previews: PreviewProvider {
+    static var previews: some View
+    {
+        Profile()
+    }
+}
+
+/*
 struct ImagePicker: UIViewControllerRepresentable {
  
     var sourceType: UIImagePickerController.SourceType = .photoLibrary
@@ -209,7 +237,6 @@ struct ImagePicker: UIViewControllerRepresentable {
     }
 }
 
-/*
 class ImageSaver: NSObject {
     func writeToPhotoAlbum(image: UIImage) {
         UIImageWriteToSavedPhotosAlbum(image, self, #selector(saveCompleted), nil)

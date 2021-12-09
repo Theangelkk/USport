@@ -11,6 +11,8 @@ import UserNotificationsUI
 
 struct InsertData: View
 {
+    @EnvironmentObject var managerUser : ManagerUser
+    
     @StateObject var delegate = Notification()
     
     @Binding var nameSport : String
@@ -26,7 +28,6 @@ struct InsertData: View
     @State var idx_activity : Int = 0
     @State var age : String = ""
     
-    // Magari far uscire una notifica di errore... TODO
     func checkFieds()
     {
         var esit : Bool = false
@@ -43,22 +44,22 @@ struct InsertData: View
                 if(int_n_workouts > 0 && int_n_workouts < 8)
                 {
                     let int_age : Int = Int(self.age) ?? 0
+                    
                     if(int_age > 10 && int_age < 120)
                     {
-                        USportApp.UserAPP = User()
+                        changeView = managerUser.UserAPP.set_nickname(nick: self.nickname)
                         
-                        changeView = USportApp.UserAPP!.set_nickname(nick: self.nickname)
-                        USportApp.UserAPP!.set_weight(weight: float_weight)
-                        USportApp.UserAPP!.set_height(height: int_height)
-                        USportApp.UserAPP!.create_n_workouts(n_workouts: int_n_workouts)
+                        managerUser.UserAPP.set_weight(weight: float_weight)
+                        managerUser.UserAPP.set_height(height: int_height)
+                        managerUser.UserAPP.create_n_workouts(n_workouts: int_n_workouts)
                         
-                        USportApp.UserAPP!.addSport(nameSport: self.nameSport)
+                        managerUser.UserAPP.addSport(nameSport: self.nameSport)
                         
-                        USportApp.UserAPP!.set_gender(idx: idx_gender)
+                        managerUser.UserAPP.set_gender(idx: idx_gender)
                         
-                        USportApp.UserAPP!.set_type_of_activity(idx: idx_activity)
+                        managerUser.UserAPP.set_type_of_activity(idx: idx_activity)
                         
-                        USportApp.UserAPP!.set_age(age: int_age)
+                        managerUser.UserAPP.set_age(age: int_age)
                         
                         esit = true
                     }
@@ -94,9 +95,9 @@ struct InsertData: View
                         Picker(selection: $idx_gender, label: Text("Gender"))
                         {
                             
-                            ForEach(0 ..< USportApp.UserAPP!.type_of_gender.count)
+                            ForEach(0..<managerUser.UserAPP.type_of_gender.count)
                             {
-                                Text(USportApp.UserAPP!.type_of_gender[$0])
+                                Text(managerUser.UserAPP.type_of_gender[$0])
                                     .font(.system(size: 17))
                             }
                         }
@@ -115,9 +116,9 @@ struct InsertData: View
                         
                         Picker(selection: $idx_activity, label: Text("Activity"))
                             {
-                                ForEach(0 ..< USportApp.UserAPP!.type_of_activity.count)
+                                ForEach(0..<managerUser.UserAPP.type_of_activity.count)
                                 {
-                                    Text(USportApp.UserAPP!.type_of_activity[$0])
+                                    Text(managerUser.UserAPP.type_of_activity[$0])
                                         .font(.system(size: 17))
                                 }
                             }
@@ -141,14 +142,15 @@ struct InsertData: View
             }
             .buttonStyle(CustomButtonStyle())
             .position(x: geometry.size.width/2, y: (geometry.size.height)-60)
-            .onAppear {
+            .onAppear
+            {
                 delegate.requestAuthorization()
             }
             
             if(changeView == true)
             {
                 AddWorkout()
-                    .environmentObject(USportApp.UserAPP!)
+                    .environmentObject(managerUser)
             }
         }
     }
@@ -169,20 +171,6 @@ struct Image_t : View {
     }
 }
 
-struct InsertData_Previews: PreviewProvider {
-    
-    @StateObject static var UserAPP : User = User()
-    @State static var nameSport : String = "Football"
-    
-    static var previews: some View
-    {
-        InsertData(nameSport: $nameSport)
-            .environmentObject(UserAPP)
-    }
-}
-
-
-
 struct TextField_Elem: View
 {
     var name_image : String
@@ -200,5 +188,17 @@ struct TextField_Elem: View
                 .font(.system(size: 17))
         }
         .padding(.vertical, 5.0)
+    }
+}
+
+struct InsertData_Previews: PreviewProvider {
+    
+    @StateObject static var UserAPP : User = User()
+    @State static var nameSport : String = "Football"
+    
+    static var previews: some View
+    {
+        InsertData(nameSport: $nameSport)
+            .environmentObject(UserAPP)
     }
 }

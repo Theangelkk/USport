@@ -24,6 +24,7 @@ public class Workout : Activity, NSSecureCoding
         case Intensity_Level = "Intensity_Level"
         case Start_Time = "Start_Time"
         case End_Time = "End_Time"
+        case type_of_sport = "Type_of_Sport"
     }
     
     override init()
@@ -35,12 +36,12 @@ public class Workout : Activity, NSSecureCoding
         
     }
     
-    init(newValue_Day : Int, newValue_Title: String, newValue_StartTime: Date, newValue_EndTime: Date, newValue_Intesity_Level : Int)
+    init(newValue_Day : Int, newValue_Title: String, newValue_StartTime: Date, newValue_EndTime: Date, newValue_Intesity_Level : Int, type_of_sport : String)
     {
         self.Day = 0
         self.Intesity_Level = 0
         
-        super.init(newValue_Title: newValue_Title, newValue_StartTime: newValue_StartTime)
+        super.init(newValue_Title: newValue_Title, newValue_StartTime: newValue_StartTime, type_of_sport: type_of_sport)
     }
     
     public required convenience init?(coder: NSCoder)
@@ -52,7 +53,9 @@ public class Workout : Activity, NSSecureCoding
         let mStart_Time = coder.decodeObject(of: NSDate.self, forKey: Key.Start_Time.rawValue) as? Date
         let mEnd_Time = coder.decodeObject(of: NSDate.self, forKey: Key.End_Time.rawValue) as? Date
         
-        self.init(newValue_Day: mDay, newValue_Title: mTitle!, newValue_StartTime: mStart_Time!, newValue_EndTime: mEnd_Time!, newValue_Intesity_Level: mIntensity_Level)
+        let mSport = coder.decodeObject(forKey: Key.type_of_sport.rawValue) as? String
+        
+        self.init(newValue_Day: mDay, newValue_Title: mTitle!, newValue_StartTime: mStart_Time!, newValue_EndTime: mEnd_Time!, newValue_Intesity_Level: mIntensity_Level, type_of_sport : mSport!)
     }
     
     public func encode(with coder: NSCoder)
@@ -62,6 +65,7 @@ public class Workout : Activity, NSSecureCoding
         coder.encode(Start_Time, forKey: Key.Start_Time.rawValue)
         coder.encode(End_Time, forKey: Key.End_Time.rawValue)
         coder.encode(Intesity_Level, forKey: Key.Intensity_Level.rawValue)
+        coder.encode(Type_of_Sport, forKey: Key.type_of_sport.rawValue)
     }
     
     func set_Day(idx : Int)

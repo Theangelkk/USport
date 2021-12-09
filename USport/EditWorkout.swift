@@ -10,17 +10,18 @@ import SwiftUI
 struct EditWorkout: View
 {
     @Environment(\.presentationMode) var presentationMode
-    
+        
     @Binding var new_workout : Workout
     
-    @Binding var idx_workout : Int
-    @State  var name_workout: String
+    @State var name_workout_tmp: String = ""
     
-    @State var daySelected : Int
-    @State var intensitySelected : Int
+    @State var daySelected_tmp : Int = 0
+    @State var intensitySelected_tmp : Int = 0
     
-    @State var start : Date
-    @State var end : Date
+    @State var start_tmp : Date = Date()
+    @State var end_tmp : Date = Date()
+    
+    @State var firstTime : Bool = true
     
     var day = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
     
@@ -38,33 +39,34 @@ struct EditWorkout: View
                 {
                     Section(header: Text(""))
                     {
-                        TextField("Workout", text: $name_workout)
+                        TextField("Workout", text: $name_workout_tmp)
                     }
                 
                     Section(header: Text("Actions"))
                     {
-                        Picker(selection: $daySelected, label: Text("Selected day")){
-                    //Scorre l'array di giorni
-                                ForEach(0 ..< day.count)
+                        Picker(selection: $daySelected_tmp, label: Text("Selected day"))
+                        {
+                            ForEach(0..<day.count)
+                            {
+                                Text(self.day[$0])
+                            }
+                        }
+                
+                        DatePicker("Start", selection: $start_tmp, displayedComponents: .hourAndMinute)
+                        
+                        DatePicker("End", selection: $end_tmp, displayedComponents: .hourAndMinute)
+                            
+                        Picker(selection: $intensitySelected_tmp, label: Text("Intensity of Level"))
+                            {
+                                ForEach(0..<IntensityOfLevel.count)
                                 {
-                                    Text(self.day[$0])
+                                    Text(self.IntensityOfLevel[$0])
                                 }
                             }
-                
-                        DatePicker("Start", selection: $start, displayedComponents: .hourAndMinute)
-                        DatePicker("End", selection: $end, displayedComponents: .hourAndMinute)
-                            
-                        Picker(selection: $intensitySelected, label: Text("Intensity of Level"))
-                                {
-                                    //Scorre l'array dei livelli
-                                    ForEach(0 ..< IntensityOfLevel.count)
-                                    {
-                                        Text(self.IntensityOfLevel[$0])
-                                    }
-                                }
                     }
                     
-                } .accentColor(.red) //evidenzia il testo in rosso quando viene cliccato
+                }
+                .accentColor(.red)
             
                 // Button Cancel
                 .navigationBarBackButtonHidden(true)
@@ -72,40 +74,41 @@ struct EditWorkout: View
                 .navigationBarItems(leading: Button(action :
                 {
                     self.adWorkout()
-    
-                    
                 }){
                         Image(systemName: "arrow.left")
                 })
-                .navigationBarTitle(Text(name_workout), displayMode: .inline)
+                .navigationBarTitle(Text(name_workout_tmp), displayMode: .inline)
             }
     }
-    
-    // Magari con notifica se sbaglia ad inserire
+
     func adWorkout()
     {
         var esit_title : Bool = false
         var esit_endTime : Bool = false
+          
+        esit_title = new_workout.set_Title(title: self.name_workout_tmp)
         
-        esit_title = new_workout.set_Title(title: self.name_workout)
-        new_workout.set_Day(idx: self.daySelected)
-        new_workout.set_IntensityOfLevel(idx: self.intensitySelected)
-        new_workout.Start_Time = self.start
-        esit_endTime = new_workout.set_EndTime(end: self.end)
-    
-        USportApp.UserAPP!.workouts[self.idx_workout] = new_workout
+        new_workout.set_Day(idx: self.daySelected_tmp)
         
+        new_workout.set_IntensityOfLevel(idx: self.intensitySelected_tmp)
+        
+        new_workout.Start_Time = self.start_tmp
+        
+        esit_endTime = new_workout.set_EndTime(end: self.end_tmp)
+            
         let all_esit : Bool = esit_title && esit_endTime
         
         if(all_esit == true)
         {
             self.presentationMode.wrappedValue.dismiss()
         }
+        
     }
 }
- 
-struct EditWorkout_Previews: PreviewProvider {
-    
+
+/*
+struct EditWorkout_Previews: PreviewProvider
+{
     @StateObject static var UserAPP : User = User(n_workout: 1)
     @State static var nameSport : String = "Football"
     
@@ -118,4 +121,4 @@ struct EditWorkout_Previews: PreviewProvider {
             .environmentObject(UserAPP)
     }
 }
-
+*/

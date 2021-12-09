@@ -15,6 +15,8 @@ public class Activity : NSObject, ObservableObject
     
     @Published var End_Time : Date
     
+    @Published var Type_of_Sport : String
+    
     let userCalendar : Calendar = Calendar.current
     
     let requestedComponents : Set<Calendar.Component> = [.year, .month, .day, .hour, .minute, .second ]
@@ -25,6 +27,8 @@ public class Activity : NSObject, ObservableObject
         self.Start_Time = Date()
         self.End_Time = Date()
         
+        self.Type_of_Sport = "Default"
+        
         super.init()
         
         var dataTimeComponets_StartTime = self.userCalendar.dateComponents(self.requestedComponents, from: self.Start_Time)
@@ -33,7 +37,7 @@ public class Activity : NSObject, ObservableObject
         self.End_Time = self.userCalendar.date(from: dataTimeComponets_StartTime)!
     }
     
-    init(newValue_Title : String, newValue_StartTime : Date)
+    init(newValue_Title : String, newValue_StartTime : Date, type_of_sport : String)
     {
         self.Title = "Workout"
         self.Start_Time = Date()
@@ -41,6 +45,8 @@ public class Activity : NSObject, ObservableObject
         
         self.Title = newValue_Title
         self.Start_Time = newValue_StartTime
+        
+        self.Type_of_Sport = type_of_sport
         
         super.init()
         
@@ -80,13 +86,8 @@ public class Activity : NSObject, ObservableObject
         
         if (dataTimeComponets_StartTime.hour! < dataTimeComponets_EndTime.hour!)
         {
-            let diff : Int = abs(dataTimeComponets_EndTime.minute! - dataTimeComponets_StartTime.minute!)
-            
-            if(diff >= 30)
-            {
-                self.End_Time = end
-                return true
-            }
+            self.End_Time = end
+            return true
         }
         
         return false

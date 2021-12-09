@@ -12,6 +12,8 @@ import CoreData
 @objc(UserCoreData)
 public class UserCoreData: NSManagedObject
 {
+    static var actual_userCoreData : UserCoreData? = nil
+    
     func copy_User(usr : User)
     {
         self.nickname = usr.nickname
@@ -23,9 +25,6 @@ public class UserCoreData: NSManagedObject
         self.type_of_activity = usr.Type_Activity
         
         self.workouts = Workouts(workouts: usr.workouts)
-        
-        print(self)
-        print("pippo")
     }
     
     //--------------------------- CORE DATA FUNCTIONS --------------------------------------
@@ -37,8 +36,7 @@ public class UserCoreData: NSManagedObject
         {
             var ans : [UserCoreData] = try CoreDataManager.persistentContainer!.viewContext.fetch(request)
             
-            print(ans)
-            print(ans.count)
+            print("N User = \(ans.count)")
             
             if ans.count > 0
             {
@@ -57,19 +55,21 @@ public class UserCoreData: NSManagedObject
     
     static func save_user_on_CoreData(user : User, delete_old : Bool)
     {
-        if delete_old == true
+        if UserCoreData.actual_userCoreData == nil
         {
-            let usr : UserCoreData? = UserCoreData.get_user()
+            UserCoreData.actual_userCoreData = UserCoreData.get_user()
         
-            if usr != nil
+            if UserCoreData.actual_userCoreData == nil
             {
-                UserCoreData.remove_user(obj: usr!)
+                UserCoreData.actual_userCoreData = UserCoreData(context: CoreDataManager.persistentContainer!.viewContext)
             }
         }
         
-        var new_userCoreData : UserCoreData = UserCoreData(context: CoreDataManager.persistentContainer!.viewContext)
+        UserCoreData.actual_userCoreData!.copy_User(usr: user)
         
-        new_userCoreData.copy_User(usr: user)
+        print(UserCoreData.actual_userCoreData!)
+        
+        print(UserCoreData.actual_userCoreData!.workouts!.workouts[0].Day)
         
         do
         {
@@ -84,5 +84,14 @@ public class UserCoreData: NSManagedObject
     static func remove_user(obj : UserCoreData)
     {
         CoreDataManager.persistentContainer!.viewContext.delete(obj)
+        
+        do
+        {
+            try CoreDataManager.persistentContainer!.viewContext.save()
+        }
+        catch
+        {
+            print("Failed to save context UserCoreData")
+        }
     }
 }

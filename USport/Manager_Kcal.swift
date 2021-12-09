@@ -107,7 +107,7 @@ class Manager_Kcal
         
     }
     
-    func actual_cal_day() -> Float
+    func actual_cal_day(user : User) -> Float
     {
         let formatter = DateFormatter()
         
@@ -132,7 +132,21 @@ class Manager_Kcal
             }
         }
         
-        return cal_day + cal_sport
+        let activities : [ActivityCoreData] = ActivityCoreData.activities_of_today()
+        
+        var cal_activities : Float = 0.0
+        
+        for i in 0..<activities.count
+        {
+            let sport_act = Sport(type_of_sport: activities[i].type_of_sport!)
+            
+            let start_time_act : Date = activities[i].start_date!
+            let end_time_act : Date = activities[i].end_date!
+            
+            cal_activities += sport_act.get_cal_sport(user: user, intensity: "Medium", startTime: start_time_act, endTime: end_time_act)
+        }
+        
+        return cal_day + cal_sport + cal_activities
     }
     
     func add_new_historical_data()

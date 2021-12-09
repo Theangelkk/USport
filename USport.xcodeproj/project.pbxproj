@@ -41,6 +41,9 @@
 		658439DE275F967500A8DAEE /* Table_Cal_Daily+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658439DC275F967500A8DAEE /* Table_Cal_Daily+CoreDataClass.swift */; };
 		658439DF275F967500A8DAEE /* Table_Cal_Daily+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658439DD275F967500A8DAEE /* Table_Cal_Daily+CoreDataProperties.swift */; };
 		658439E2275F973F00A8DAEE /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658439E1275F973F00A8DAEE /* CoreDataManager.swift */; };
+		65A025412761E62900F1C323 /* ActivityCoreData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A0253F2761E62900F1C323 /* ActivityCoreData+CoreDataClass.swift */; };
+		65A025422761E62900F1C323 /* ActivityCoreData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A025402761E62900F1C323 /* ActivityCoreData+CoreDataProperties.swift */; };
+		65A025442761F9E800F1C323 /* ManagerUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A025432761F9E800F1C323 /* ManagerUser.swift */; };
 		65A5BE8C275D248A00819933 /* RKColorSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A5BE85275D248A00819933 /* RKColorSettings.swift */; };
 		65A5BE8D275D248A00819933 /* RKColorSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A5BE85275D248A00819933 /* RKColorSettings.swift */; };
 		65A5BE8E275D248A00819933 /* RKColorSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A5BE85275D248A00819933 /* RKColorSettings.swift */; };
@@ -120,6 +123,9 @@
 		658439DC275F967500A8DAEE /* Table_Cal_Daily+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Table_Cal_Daily+CoreDataClass.swift"; sourceTree = "<group>"; };
 		658439DD275F967500A8DAEE /* Table_Cal_Daily+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Table_Cal_Daily+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		658439E1275F973F00A8DAEE /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		65A0253F2761E62900F1C323 /* ActivityCoreData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ActivityCoreData+CoreDataClass.swift"; sourceTree = "<group>"; };
+		65A025402761E62900F1C323 /* ActivityCoreData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ActivityCoreData+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		65A025432761F9E800F1C323 /* ManagerUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerUser.swift; sourceTree = "<group>"; };
 		65A5BE85275D248A00819933 /* RKColorSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RKColorSettings.swift; sourceTree = "<group>"; };
 		65A5BE86275D248A00819933 /* RKWeekdayHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RKWeekdayHeader.swift; sourceTree = "<group>"; };
 		65A5BE87275D248A00819933 /* RKMonth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RKMonth.swift; sourceTree = "<group>"; };
@@ -184,9 +190,9 @@
 				658439E0275F968100A8DAEE /* Model_CoreData */,
 				650C7C72275A0C5F0096215D /* USportApp.swift */,
 				65635FD4275A5FF00076A9C8 /* PreviewAPP.swift */,
+				65635FD6275A69530076A9C8 /* ChoseSport.swift */,
 				65635FD8275A696E0076A9C8 /* InsertData.swift */,
 				65635FDA275A69870076A9C8 /* AddWorkout.swift */,
-				65635FD6275A69530076A9C8 /* ChoseSport.swift */,
 				65635FDC275A69C00076A9C8 /* EditWorkout.swift */,
 				1BEEFD9B275BA535005A14CE /* Homepage.swift */,
 				1BEEFD9D275BA58D005A14CE /* History.swift */,
@@ -215,6 +221,7 @@
 				65A5BE87275D248A00819933 /* RKMonth.swift */,
 				65A5BE88275D248A00819933 /* RKViewController.swift */,
 				65A5BE86275D248A00819933 /* RKWeekdayHeader.swift */,
+				65A025432761F9E800F1C323 /* ManagerUser.swift */,
 			);
 			path = USport;
 			sourceTree = "<group>";
@@ -256,6 +263,7 @@
 		658439E0275F968100A8DAEE /* Model_CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				65A0253E2761E60000F1C323 /* Activity */,
 				65687C8B276133C40098F38F /* User */,
 				65687C882761339D0098F38F /* USport_CoreData.xcdatamodeld */,
 				658439DC275F967500A8DAEE /* Table_Cal_Daily+CoreDataClass.swift */,
@@ -263,6 +271,15 @@
 				658439E1275F973F00A8DAEE /* CoreDataManager.swift */,
 			);
 			path = Model_CoreData;
+			sourceTree = "<group>";
+		};
+		65A0253E2761E60000F1C323 /* Activity */ = {
+			isa = PBXGroup;
+			children = (
+				65A0253F2761E62900F1C323 /* ActivityCoreData+CoreDataClass.swift */,
+				65A025402761E62900F1C323 /* ActivityCoreData+CoreDataProperties.swift */,
+			);
+			path = Activity;
 			sourceTree = "<group>";
 		};
 		65BEAB64275CC165007381A8 /* Frameworks */ = {
@@ -409,6 +426,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				65A5BE8F275D248A00819933 /* RKWeekdayHeader.swift in Sources */,
+				65A025412761E62900F1C323 /* ActivityCoreData+CoreDataClass.swift in Sources */,
 				655078FC275D1AC80034BACB /* History_Filter.swift in Sources */,
 				65A5BE92275D248A00819933 /* RKMonth.swift in Sources */,
 				65687C8F276133CE0098F38F /* UserCoreData+CoreDataClass.swift in Sources */,
@@ -429,9 +447,11 @@
 				65687C8E276133CE0098F38F /* UserCoreData+CoreDataProperties.swift in Sources */,
 				65687C83276132C50098F38F /* EditWorkout_Profile.swift in Sources */,
 				65635FD9275A696E0076A9C8 /* InsertData.swift in Sources */,
+				65A025442761F9E800F1C323 /* ManagerUser.swift in Sources */,
 				65635FD7275A69530076A9C8 /* ChoseSport.swift in Sources */,
 				1B8AE4CD275E54890021E9AA /* ChoseActivity.swift in Sources */,
 				65687C81276132BD0098F38F /* AddWorkout_Profile.swift in Sources */,
+				65A025422761E62900F1C323 /* ActivityCoreData+CoreDataProperties.swift in Sources */,
 				6576E6AD275A14EB0022FD08 /* Sport.swift in Sources */,
 				658439E2275F973F00A8DAEE /* CoreDataManager.swift in Sources */,
 				1BEEFD9E275BA58D005A14CE /* History.swift in Sources */,

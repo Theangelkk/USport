@@ -13,48 +13,51 @@ struct ChoseActivity: View {
     @Environment(\.presentationMode) var presentationMode
     
     @State var sportSelected : String = "Default"
-
-    var body: some View {
-        
+    @State var changeView : Bool = false
+    
+    var body: some View
+    {
         ZStack
         {
             // Mettere un immagine di sfondo
             
             GeometryReader
             {
-
                 geometry in
                 
                 VStack
                 {
-                    Group{
-                        HStack{
-                            ChoiceButton(sportSelected: $sportSelected, nameSport: "Volleyball", ImageName: "omino_pallavolo", geometry : geometry)
+                    Group
+                    {
+                        HStack
+                        {
+                            ChoiceButton_Activity(sportSelected: $sportSelected, nameSport: "Volleyball", ImageName: "omino_pallavolo", geometry : geometry)
                             
-                            ChoiceButton(sportSelected: $sportSelected, nameSport: "Tennis", ImageName: "omino_tennis", geometry : geometry)
+                            ChoiceButton_Activity(sportSelected: $sportSelected, nameSport: "Tennis", ImageName: "omino_tennis", geometry : geometry)
                             
                         }.padding()
                     
-                        HStack{
-                            ChoiceButton(sportSelected: $sportSelected, nameSport: "Swim", ImageName: "omino_swim1", geometry : geometry)
+                        HStack
+                        {
+                            ChoiceButton_Activity(sportSelected: $sportSelected, nameSport: "Swim", ImageName: "omino_swim1", geometry : geometry)
                             
-                            ChoiceButton(sportSelected: $sportSelected, nameSport: "Gym", ImageName: "omino_gym", geometry : geometry)
+                            ChoiceButton_Activity(sportSelected: $sportSelected, nameSport: "Gym", ImageName: "omino_gym", geometry : geometry)
+                            
                         }.padding()
                     
-                        HStack{
-                            ChoiceButton(sportSelected: $sportSelected, nameSport: "Football", ImageName: "omino_calcio", geometry : geometry)
+                        HStack
+                        {
+                            ChoiceButton_Activity(sportSelected: $sportSelected, nameSport: "Football", ImageName: "omino_calcio", geometry : geometry)
                             
-                            ChoiceButton(sportSelected: $sportSelected, nameSport: "Basket", ImageName: "omino_basket", geometry : geometry)
+                            ChoiceButton_Activity(sportSelected: $sportSelected, nameSport: "Basket", ImageName: "omino_basket", geometry : geometry)
+                            
                         }.padding()
                     }
                     .position(x: geometry.size.width/2, y:  geometry.size.height/6)
                     .frame(width: geometry.size.width, height: geometry.size.height/4)
                 }
                 
-                Button(action:
-                {
-                    self.presentationMode.wrappedValue.dismiss()
-                })
+                NavigationLink(destination: EditActivity(nameSport : $sportSelected))
                 {
                     Text("Next")
                         .font(.system(size: 25))
@@ -69,8 +72,6 @@ struct ChoseActivity: View {
     }
 
 }
-
-
 struct ChoseActivity_Previews: PreviewProvider
 {
     static var previews: some View

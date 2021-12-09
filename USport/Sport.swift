@@ -114,7 +114,10 @@ class Sport : ObservableObject
         
         if(user.gender == "Male")
         {
-            lean_mass = Float(Float(coeff_male * user.weight) - coeff_male_1 * Float(pow(user.weight, 2) * Float(user.height)))
+            let v1 = Float(coeff_male * user.weight)
+            let v2 = Float(pow(Float(user.weight/Float(user.height)), 2))
+                           
+            lean_mass = Float(v1 - coeff_male_1 *  v2)
         }
         else
         {
@@ -129,6 +132,7 @@ class Sport : ObservableObject
         }
         else if(intensity == "Medium")
         {
+        
             cal_hour = self.Coeff_Kcal_Medium * lean_mass
         }
         else
@@ -145,7 +149,9 @@ class Sport : ObservableObject
         
         let diff_min : Int = (dataTimeComponets_EndTime.minute! - dataTimeComponets_StartTime.minute!)
         
-        return Float(diff_min + diff_hour_in_min) * cal_min
+        var all_cal = Float(diff_min + diff_hour_in_min) * cal_min
+        
+        return all_cal
         
     }
 }

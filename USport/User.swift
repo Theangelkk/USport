@@ -65,6 +65,25 @@ class User : ObservableObject
         
     }
     
+    func load_UserCoreData(usr : UserCoreData?)
+    {
+        self.nickname = String(usr!.nickname!)
+        
+        self.Age = Int(usr!.age)
+        
+        self.gender = usr!.gender!
+        
+        self.height = Int(usr!.height)
+        
+        self.weight = usr!.weight
+        
+        self.Type_of_Sport = usr!.type_of_sport!
+        
+        self.Type_Activity = usr!.type_of_activity!
+        
+        self.workouts = usr!.workouts!.workouts
+    }
+    
     func set_nickname(nick : String) -> Bool
     {
         if(nick != "")

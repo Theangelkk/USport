@@ -11,21 +11,15 @@ struct EditActivity: View
 {
     @Environment(\.presentationMode) var presentationMode
     
-    @Binding var new_workout : Workout
+    @Binding var nameSport : String
     
-    @Binding var idx_workout : Int
-    @State  var name_workout: String
+    @State var new_activity : Activity = Activity()
     
-    @State var daySelected : Int
-    @State var intensitySelected : Int
+    @State  var name_activity: String = "Activity"
     
-    @State var start : Date
-    @State var end : Date
+    @State var start : Date = Date()
+    @State var end : Date = Date()
     
-    var day = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
-    
-    var IntensityOfLevel = ["Low", "Medium", "High"]
-        
     var body: some View
     {
         GeometryReader
@@ -35,86 +29,69 @@ struct EditActivity: View
             geometry in
             
             Form
+            {
+                Section(header: Text(""))
                 {
-                    Section(header: Text(""))
-                    {
-                        TextField("Workout", text: $name_workout)
-                    }
-                
-                    Section(header: Text("Actions"))
-                    {
-                        Picker(selection: $daySelected, label: Text("Selected day")){
-                    //Scorre l'array di giorni
-                                ForEach(0 ..< day.count)
-                                {
-                                    Text(self.day[$0])
-                                }
-                            }
-                
-                        DatePicker("Start", selection: $start, displayedComponents: .hourAndMinute)
-                        DatePicker("End", selection: $end, displayedComponents: .hourAndMinute)
-                            
-                        Picker(selection: $intensitySelected, label: Text("Intensity of Level"))
-                                {
-                                    //Scorre l'array dei livelli
-                                    ForEach(0 ..< IntensityOfLevel.count)
-                                    {
-                                        Text(self.IntensityOfLevel[$0])
-                                    }
-                                }
-                    }
-                    
-                } .accentColor(.red) //evidenzia il testo in rosso quando viene cliccato
+                    TextField("Activity", text: $name_activity)
+                }
             
-                // Button Cancel
-                .navigationBarBackButtonHidden(true)
-            
-                .navigationBarItems(leading: Button(action :
+                Section(header: Text("Actions"))
                 {
-                    self.adWorkout()
+                    DatePicker("Start", selection: $start, displayedComponents: .hourAndMinute)
                     
-                }){
-                        Image(systemName: "arrow.left")
-                })
-                .navigationBarTitle(Text(name_workout), displayMode: .inline)
+                    DatePicker("End", selection: $end, displayedComponents: .hourAndMinute)
+                }
             }
+            
+            // Button Cancel
+            .navigationBarBackButtonHidden(true)
+        
+            .navigationBarItems(leading: Button(action :
+            {
+                addActivity()
+                self.presentationMode.wrappedValue.dismiss()
+                
+            }){
+                    Image(systemName: "arrow.left")
+            })
+            .navigationBarTitle(Text(name_activity), displayMode: .inline)
+            
+        }
+        .accentColor(.red)
+        
     }
     
-    // Magari con notifica se sbaglia ad inserire
-    func adWorkout()
+    func addActivity()
     {
         var esit_title : Bool = false
         var esit_endTime : Bool = false
         
-        esit_title = new_workout.set_Title(title: self.name_workout)
-        new_workout.set_Day(idx: self.daySelected)
-        new_workout.set_IntensityOfLevel(idx: self.intensitySelected)
-        new_workout.Start_Time = self.start
-        esit_endTime = new_workout.set_EndTime(end: self.end)
-    
-        USportApp.UserAPP!.workouts[self.idx_workout] = new_workout
+        esit_title = new_activity.set_Title(title: self.name_activity)
         
+        new_activity.Start_Time = self.start
+        
+        esit_endTime = new_activity.set_EndTime(end: self.end)
+        
+        new_activity.Type_of_Sport = nameSport
+    
         let all_esit : Bool = esit_title && esit_endTime
         
         if(all_esit == true)
         {
+            ActivityCoreData.save_user_on_CoreData(activity: new_activity)
             self.presentationMode.wrappedValue.dismiss()
         }
     }
 }
  
-struct EditActivity_Previews: PreviewProvider {
-    
+struct EditActivity_Previews: PreviewProvider
+{
     @StateObject static var UserAPP : User = User(n_workout: 1)
     @State static var nameSport : String = "Football"
-    
-    @State static var idx : Int = 0
-    @State static var workout : Workout = Workout()
-    
+        
     static var previews: some View
     {
-        EditActivity(new_workout: $workout, idx_workout: $idx, name_workout: self.UserAPP.workouts[0].Title, daySelected: self.UserAPP.workouts[0].Day, intensitySelected: self.UserAPP.workouts[0].Intesity_Level, start: self.UserAPP.workouts[0].Start_Time, end: self.UserAPP.workouts[0].End_Time)
-            .environmentObject(UserAPP)
+        EditActivity(nameSport: $nameSport)
     }
 }
 

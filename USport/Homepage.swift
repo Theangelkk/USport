@@ -14,6 +14,8 @@ import HealthKit
 
 struct Homepage: View
 {
+    @EnvironmentObject var managerUser : ManagerUser
+    
     @State var managerKcal : Manager_Kcal? = nil
     
     @State var chose_period = 0
@@ -24,17 +26,18 @@ struct Homepage: View
     
     var buttonBar : ButtonBar = ButtonBar()
         
-    var body: some View {
-        
+    var body: some View
+    {
         ZStack
         {
             // Mettere un immagine di sfondo
             
-            GeometryReader{
+            GeometryReader
+            {
                 geometry in
                 
-                NavigationView{
-                    
+                NavigationView
+                {
                     VStack{
                         Spacer()
                         
@@ -65,11 +68,11 @@ struct Homepage: View
                             .frame(width: geometry.size.width - 15, height: geometry.size.height/90)
                             .shadow(color: Color.black.opacity(0.40), radius: 5, x: 5, y: 10)
                             
-                        
                         Ring_Graph(geometry: geometry, currentKcal: $currentKcal, totalKcal: $totalKcal)
                             .shadow(color: Color.black.opacity(0.30), radius: 5, x: 5, y: 10)
                         
-                        HStack{
+                        HStack
+                        {
                             NavigationLink(destination: History())
                             {
                                 Rectangle()
@@ -85,7 +88,8 @@ struct Homepage: View
                             }
                             .shadow(color: Color.black.opacity(0.40), radius: 5, x: 5, y: 10)
                             
-                            NavigationLink(destination: History())
+                            NavigationLink(destination: History()
+                                            .environmentObject(managerUser))
                             {
                                 Rectangle()
                                     .cornerRadius(30)
@@ -97,15 +101,14 @@ struct Homepage: View
                                     .foregroundColor(Color.white)
                                     .buttonStyle(.borderedProminent)
                                     .controlSize(.large))
-                                
                             }
                             .shadow(color: Color.black.opacity(0.40), radius: 5, x: 5, y: 10)
                             
                         }.padding()
                         
-                        HStack{
-                
-                            NavigationLink(destination: ChoseActivity())
+                        HStack
+                        {
+                            NavigationLink(destination: ChoseActivity().environmentObject(managerUser))
                             {
                                 Rectangle()
                                     .cornerRadius(30)
@@ -120,19 +123,19 @@ struct Homepage: View
                             }
                             .shadow(color: Color.black.opacity(0.40), radius: 5, x: 5, y: 10)
                             
-                            NavigationLink(destination: Profile())
+                            NavigationLink(destination:
+                                            Profile().environmentObject(managerUser)
+                            )
                             {
                                 Image("profile_icon")
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
                                         .frame(width: geometry.size.width/3, height: geometry.size.height/1)
                                         .position(x: geometry.size.width/4.3, y: geometry.size.height/12)
-                                
                             }
                             .shadow(color: Color.black.opacity(0.40), radius: 5, x: 5, y: 10)
 
                         }.padding()
-                        
                     }
                 }
             }
@@ -174,17 +177,15 @@ struct Ring_Graph: View
                 .position(x: geometry.size.width/1.5, y: geometry.size.height/10.5)
             
             
-            Text("\( String(format: "%.1f", CGFloat( self.currentKcal.wrappedValue / self.totalKcal.wrappedValue ) * CGFloat(100)))%")
+            Text("\(String(format: "%.1f", CGFloat( self.currentKcal.wrappedValue / self.totalKcal.wrappedValue ) * CGFloat(100)))%")
                 .font(.system(size: 65))
                 .foregroundColor(.black)
                 .fontWeight(.bold)
                 .position(x: geometry.size.width/2, y: -geometry.size.height/30)
                 .rotationEffect(.init(degrees: 90))
             
-            
             let actual_cal : Int = Int(self.currentKcal.wrappedValue)
             let total_cal : Int = Int(self.totalKcal.wrappedValue)
-            
             
             Text("\(actual_cal) / \(total_cal) cal")
                 .font(.system(size: 24))
@@ -219,9 +220,10 @@ class ButtonBar
     func onChange(_ tag: Int, homepage : Homepage)
     {
         self.homepage = homepage
-        self.homepage!.managerKcal = Manager_Kcal(user: USportApp.UserAPP!)
+        self.homepage!.managerKcal = Manager_Kcal(user: homepage.managerUser.UserAPP)
         
-        self.homepage!.currentKcal = self.homepage!.managerKcal!.actual_cal_day()
+        self.homepage!.currentKcal = self.homepage!.managerKcal!.actual_cal_day(user : self.homepage!.managerUser.UserAPP)
+        
         self.homepage!.totalKcal = Table_Cal_Daily.average_cal_days()
     }
 }
@@ -230,7 +232,8 @@ struct Homepage_Previews: PreviewProvider
 {
     @StateObject static var UserAPP : User = User(n_workout: 3)
     
-    static var previews: some View {
+    static var previews: some View
+    {
         Homepage()
             .environmentObject(UserAPP)
     }
