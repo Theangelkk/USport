@@ -167,6 +167,34 @@ public class Table_Cal_Daily: NSManagedObject
         }
     }
     
+    static func get_last_date() -> Date
+    {
+        var items : [Table_Cal_Daily] = [Table_Cal_Daily]()
+        
+        // Request to submit to CoreData
+        let request : NSFetchRequest<Table_Cal_Daily> = Table_Cal_Daily.fetchRequest()
+        
+        request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
+                
+        do
+        {
+            items = try CoreDataManager.persistentContainer!.viewContext.fetch(request)
+        }
+        catch
+        {
+            items = []
+        }
+        
+        if(items.count > 0)
+        {
+            return items[0].date!
+        }
+        else
+        {
+            return Date()
+        }
+    }
+    
     static func avg_cal(items : [Table_Cal_Daily]) -> Float
     {
         var Total_cal_daily : Float = 0.0

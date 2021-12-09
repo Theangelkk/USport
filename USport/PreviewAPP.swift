@@ -6,10 +6,12 @@
 //
 
 import SwiftUI
+import HealthKit
 
 struct PreviewAPP: View
 {
     @EnvironmentObject var managerUser : ManagerUser
+
     
     @State private var showMainView = false
     
@@ -17,9 +19,18 @@ struct PreviewAPP: View
     @State private var angle : Double = 360
     @State private var opacity : Double = 1
     @State private var scale : CGFloat = 1
+    
+    private var healthStore: HealthStore?
+    @State private var steps: [Step] = [Step]()
+    
+    let typesToRead: Set<HKObjectType> = [.activitySummaryType(), .workoutType(), .correlationType(forIdentifier: .food)!]
+
+    let typesToWrite: Set<HKSampleType> = [.correlationType(forIdentifier: .food)!, .quantityType(forIdentifier: .activeEnergyBurned)!]
         
     init()
     {
+        self.healthStore = HealthStore()
+        
         DrawingWorkouts.register()
         
         CoreDataManager.start()
@@ -77,6 +88,16 @@ struct PreviewAPP: View
                                           axis: (x: 0.0, y: 1.0, z: 0.0))
                         .opacity(opacity)
                         .scaleEffect(scale)
+                }
+                .onAppear
+                {
+                    self.healthStore!.authorizeHealthKitAccess(toRead: typesToRead, toWrite: typesToWrite) { (
+                        authorization, error) in
+                        guard error == nil else {
+                            // Not authorized, do something about it (for example UI message)
+                            return
+                        }
+                    }
                 }
             }
         }

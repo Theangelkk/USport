@@ -25,7 +25,7 @@ struct Homepage: View
     var names_button_bar : [String] = ["Daily", "Weekly", "Monthty"]
     
     var buttonBar : ButtonBar = ButtonBar()
-        
+
     var body: some View
     {
         ZStack
@@ -66,7 +66,6 @@ struct Homepage: View
                         .pickerStyle(.segmented)
                             .position(x: geometry.size.width/2.1, y: -geometry.size.height/4.5)
                             .frame(width: geometry.size.width - 15, height: geometry.size.height/90)
-                            .shadow(color: Color.black.opacity(0.40), radius: 5, x: 5, y: 10)
                             
                         Ring_Graph(geometry: geometry, currentKcal: $currentKcal, totalKcal: $totalKcal)
                             .shadow(color: Color.black.opacity(0.30), radius: 5, x: 5, y: 10)

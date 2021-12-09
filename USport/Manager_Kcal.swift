@@ -37,12 +37,17 @@ class Manager_Kcal
     
     let formatter = DateFormatter()
     
+    var healthStore: HealthStore?
+    
     init(user : User)
     {
         self.user = user
         
         self.formatter.locale = .current
         self.formatter.dateFormat = "EEEE"
+        
+        self.healthStore = HealthStore()
+
     }
     
     // Link: https://www.healthline.com/health/fitness-exercise/how-many-calories-do-i-burn-a-day#calorie-calculator
@@ -71,7 +76,7 @@ class Manager_Kcal
         return self.RMR * self.coeff_Activity[self.user.Type_Activity]!
     }
     
-    func get_Kcal_pedometer() -> Float
+    func get_Kcal_pedometer(steps : Int) -> Float
     {
         // -------------------- Formula to convert height to lenght step ---------------------
         var lenght_step : Float = 0.0
@@ -88,7 +93,7 @@ class Manager_Kcal
         // -------------------- Convert numbers of steps to miles -----------------------------
         let one_mile_steps : Int = Int(160934 / lenght_step)
         
-        let mile_distance : Float = Float(self.steps_counter) / Float(one_mile_steps)
+        let mile_distance : Float = Float(steps) / Float(one_mile_steps)
         
         // ------------------------------ Walking VO2 -----------------------------------------
         let speed : Float = 0.1
@@ -103,8 +108,7 @@ class Manager_Kcal
         
         let cal_step : Float = (duration_1000steps_min * walking_kcal_min) / 1000.0
         
-        return Float(Float(self.steps_counter) * cal_step)
-        
+        return Float(Float(steps) * cal_step)
     }
     
     func actual_cal_day(user : User) -> Float
@@ -114,7 +118,9 @@ class Manager_Kcal
         formatter.locale = .current
         formatter.dateFormat = "EEEE"
         
-        let cal_day : Float = self.get_Kcal_Daily() + self.get_Kcal_pedometer()
+        let steps : [Step] = self.steps_counter_HealthKit(n_days_prev: 1, end_date: Date())
+        
+        let cal_day : Float = self.get_Kcal_Daily() + self.get_Kcal_pedometer(steps: steps[0].count)
         
         var cal_sport : Float = 0.0
         
@@ -149,11 +155,14 @@ class Manager_Kcal
         return cal_day + cal_sport + cal_activities
     }
     
-    func add_new_historical_data()
+    func add_new_historical_data(date : Date, cal_daily : Float, cal_sport : Float, name_day : String)
     {
-        let obj = Table_Cal_Daily(context: CoreDataManager.persistentContainer!.viewContext)
+        let obj : Table_Cal_Daily = Table_Cal_Daily(context: CoreDataManager.persistentContainer!.viewContext)
         
-        obj.date = Date()
+        obj.date = date
+        obj.name_day = name_day
+        obj.cal_daily = cal_daily
+        obj.cal_sport = cal_sport
         
         var dataTimeComponets = self.userCalendar.dateComponents(self.requestedComponents, from: obj.date!)
         
@@ -162,11 +171,88 @@ class Manager_Kcal
         dataTimeComponets.second! = 0
         
         obj.name_day! = obj.date == nil ? "" : self.formatter.string(from: obj.date!)
-        
-        obj.cal_daily = self.get_Kcal_Daily()
-        
-        obj.cal_sport = self.get_Kcal_pedometer()
-        
+                
         Table_Cal_Daily.save_item_on_CoreData()
+    }
+    
+    func steps_counter_HealthKit(n_days_prev : Int, end_date : Date) -> [Step]
+    {
+        var steps : [Step] = [Step]()
+        
+        if let healthStore = healthStore
+        {
+            healthStore.requestAuthorization
+            {
+                success in
+                
+                if success
+                {
+                    healthStore.calculateSteps
+                    {
+                        statisricsCollection in
+                        
+                        if let statisricsCollection = statisricsCollection
+                        {
+                            steps = healthStore.updateUIFromStatistics(statisricsCollection, n_days_prev: n_days_prev, end: end_date)
+                        }
+                    }
+                }
+            }
+        }
+        
+        return steps
+    }
+    
+    func save_days_past()
+    {
+        let formatter = DateFormatter()
+        
+        formatter.locale = .current
+        formatter.dateFormat = "EEEE"
+        
+        let last_date_stored : Date = Table_Cal_Daily.get_last_date()
+        var yesterday: Date
+        {
+            return Calendar.current.date(byAdding: .day, value: -1, to: Date())!
+        }
+        
+        let diffs = Calendar.current.dateComponents([.year, .month, .day], from: last_date_stored, to: yesterday)
+        
+        var days : Int = 0
+        
+        days += Int(diffs.day!)
+        days += Int(diffs.month! * 30)
+        
+        let steps : [Step] = self.steps_counter_HealthKit(n_days_prev: days, end_date: yesterday)
+        
+        var actual_date : Date = last_date_stored
+        
+        var total_cal_daily : Float = 0.0
+        var total_cal_sport : Float = 0.0
+        
+        for i in 0..<days
+        {
+            actual_date = Calendar.current.date(byAdding: .day, value: +1, to: actual_date)!
+            
+            total_cal_daily += self.get_Kcal_Daily()
+            
+            total_cal_daily += self.get_Kcal_pedometer(steps: steps[i].count)
+            
+            for j in 0..<self.user.workouts.count
+            {
+                let name_day_sport = self.user.workouts[j].name_day()
+                let name_today : String = formatter.string(from: actual_date)
+                
+                if name_today == name_day_sport
+                {
+                    let intensity = self.user.workouts[j].IntensityOfLevel[self.user.workouts[j].Intesity_Level]
+                    
+                    let sport = Sport(type_of_sport: self.user.workouts[j].Type_of_Sport)
+                    total_cal_sport += sport.get_cal_sport(user: user, intensity: intensity, startTime: self.user.workouts[j].Start_Time, endTime: self.user.workouts[j].End_Time)
+                }
+                
+                self.add_new_historical_data(date: actual_date, cal_daily: total_cal_daily, cal_sport: total_cal_sport, name_day: name_today)
+            }
+        }
     }
 }

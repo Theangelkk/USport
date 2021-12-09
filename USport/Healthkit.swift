@@ -34,16 +34,20 @@ struct Healthkit_Previews: PreviewProvider {
 }
 
 //Classe HealthStore
-class HealthStore {
+class HealthStore : ObservableObject
+{
+    @Published var healthStore: HKHealthStore?
+    @Published var query: HKStatisticsCollectionQuery?
     
-    var healthStore: HKHealthStore?
-    var query: HKStatisticsCollectionQuery?
     //inizzializzatore, controllo se i dati sanitari sono disponibili, se si creiamo un'istanza di salute
-    init() {
-        if HKHealthStore.isHealthDataAvailable() {
+    init()
+    {
+        if HKHealthStore.isHealthDataAvailable()
+        {
             healthStore = HKHealthStore()
         }
     }
+    
     //accedere ai dati
     func calculateSteps(completion: @escaping (HKStatisticsCollection?) -> Void) {
         
@@ -66,6 +70,52 @@ class HealthStore {
         
         if let healthStore = healthStore, let query = self.query {
             healthStore.execute(query)
+        }
+    }
+
+    func updateUIFromStatistics(_ statisticsCollection: HKStatisticsCollection, n_days_prev : Int, end : Date) -> [Step]
+    {
+        var steps : [Step] = [Step]()
+        
+        let startDate = Calendar.current.date(byAdding: .day, value: n_days_prev, to: end)!
+        
+        let endDate = Date()
+        
+        statisticsCollection.enumerateStatistics(from: startDate, to: endDate)
+        {
+            (statistics, stop) in
+            
+            let count = statistics.sumQuantity()?.doubleValue(for: .count())
+            
+            let step = Step(count: Int(count ?? 0), date: statistics.startDate)
+            
+            steps.append(step)
+        }
+        
+        return steps
+    }
+    
+    func requestAuthorization(completion: @escaping (Bool) -> Void)
+    {
+        let stepType = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)!
+
+        guard let healthStore = self.healthStore
+        
+        else { return completion(false)}
+        
+        healthStore.requestAuthorization(toShare: [], read: [stepType])
+        {
+            (success, error) in
+            
+            completion(success)
+        }
+    }
+    
+    func authorizeHealthKitAccess(toRead readable: Set<HKObjectType>?, toWrite writable: Set<HKSampleType>?, completion: @escaping (Bool, HKError.Code?) -> Void)
+    {
+        guard HKHealthStore.isHealthDataAvailable() else {
+            completion(false, .errorHealthDataUnavailable)
+            return
         }
     }
 }
