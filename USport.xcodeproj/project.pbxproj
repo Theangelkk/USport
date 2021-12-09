@@ -10,6 +10,7 @@
 		1B04606F275A6EC100F0BF22 /* ChoiceButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B04606E275A6EC100F0BF22 /* ChoiceButton.swift */; };
 		1B8AE4CD275E54890021E9AA /* ChoseActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8AE4CC275E54880021E9AA /* ChoseActivity.swift */; };
 		1B8AE4D1275E72730021E9AA /* EditActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8AE4D0275E72730021E9AA /* EditActivity.swift */; };
+		1B8C6AC627620B6D00F2E7FC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8C6AC527620B6D00F2E7FC /* ViewController.swift */; };
 		1BEEFD9C275BA535005A14CE /* Homepage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEEFD9B275BA535005A14CE /* Homepage.swift */; };
 		1BEEFD9E275BA58D005A14CE /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEEFD9D275BA58D005A14CE /* History.swift */; };
 		1BEFC52F2760FAC700A508BA /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEFC52E2760FAC700A508BA /* Notification.swift */; };
@@ -87,6 +88,7 @@
 		1B04606E275A6EC100F0BF22 /* ChoiceButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceButton.swift; sourceTree = "<group>"; };
 		1B8AE4CC275E54880021E9AA /* ChoseActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoseActivity.swift; sourceTree = "<group>"; };
 		1B8AE4D0275E72730021E9AA /* EditActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditActivity.swift; sourceTree = "<group>"; };
+		1B8C6AC527620B6D00F2E7FC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1BEEFD9B275BA535005A14CE /* Homepage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Homepage.swift; sourceTree = "<group>"; };
 		1BEEFD9D275BA58D005A14CE /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
 		1BEFC52E2760FAC700A508BA /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 				65635FD6275A69530076A9C8 /* ChoseSport.swift */,
 				65635FDC275A69C00076A9C8 /* EditWorkout.swift */,
 				1BEEFD9B275BA535005A14CE /* Homepage.swift */,
+				1B8C6AC527620B6D00F2E7FC /* ViewController.swift */,
 				1BEEFD9D275BA58D005A14CE /* History.swift */,
 				655078FB275D1AC80034BACB /* History_Filter.swift */,
 				7DFC1FCB275CC1AD00335F63 /* Profile.swift */,
@@ -428,6 +431,7 @@
 				1BEFC52F2760FAC700A508BA /* Notification.swift in Sources */,
 				65687C8E276133CE0098F38F /* UserCoreData+CoreDataProperties.swift in Sources */,
 				65687C83276132C50098F38F /* EditWorkout_Profile.swift in Sources */,
+				1B8C6AC627620B6D00F2E7FC /* ViewController.swift in Sources */,
 				65635FD9275A696E0076A9C8 /* InsertData.swift in Sources */,
 				65635FD7275A69530076A9C8 /* ChoseSport.swift in Sources */,
 				1B8AE4CD275E54890021E9AA /* ChoseActivity.swift in Sources */,
