@@ -33,7 +33,6 @@ struct Healthkit_Previews: PreviewProvider {
     }
 }
 
-
 //Classe HealthStore
 class HealthStore {
     
