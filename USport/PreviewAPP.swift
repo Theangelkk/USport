@@ -89,20 +89,11 @@ struct PreviewAPP: View
                         .opacity(opacity)
                         .scaleEffect(scale)
                 }
-                .onAppear
-                {
-                    self.healthStore!.authorizeHealthKitAccess(toRead: typesToRead, toWrite: typesToWrite) { (
-                        authorization, error) in
-                        guard error == nil else {
-                            // Not authorized, do something about it (for example UI message)
-                            return
-                        }
-                    }
-                }
             }
         }
         .onAppear
         {
+            self.enableHealth()
             self.load()
             
             withAnimation(.linear(duration: 2))
@@ -115,6 +106,28 @@ struct PreviewAPP: View
             withAnimation(.linear.delay(1.75))
             {
                 showMainView = true
+            }
+        }
+    }
+    
+    func enableHealth()
+    {
+        if let healthStore = healthStore
+        {
+            healthStore.requestAuthorization
+            {
+                success in
+                if success
+                {
+                    healthStore.calculateSteps
+                    {
+                        statisticsCollection in
+                        if let statisticsCollection = statisticsCollection
+                        {
+                            self.healthStore!.updateUIFromStatistics(statisticsCollection, n_days_prev: 0, end: Date())
+                        }
+                    }
+                }
             }
         }
     }
