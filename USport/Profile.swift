@@ -70,6 +70,7 @@ struct Profile: View
                                     }
                                     .foregroundColor(.blue)
                             }
+
                             
                             TextField_Elem_Profile(name_image: "weight", init_text: weight, text: $weight, geometry: geometry)
                             

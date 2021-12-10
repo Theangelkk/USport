@@ -63,8 +63,8 @@ struct History_Filter: View {
         {
             let res = Table_Cal_Daily.range_cal_days(start_date: self.rkManager1.startDate, end_date: self.rkManager1.endDate)
             
-            self.Kcal_Daily = String(res.Total_cal_daily)
-            self.Kcal_Sport = String(res.Total_cal_sport)
+            self.Kcal_Daily = String(Int(res.Total_cal_daily))
+            self.Kcal_Sport = String(Int(res.Total_cal_sport))
             
             for i in 0..<res.list_objs.count
             {
@@ -77,6 +77,24 @@ struct History_Filter: View {
             }
             
             self.items_days = ris_all_cal
+            
+            /*
+            var items : [Table_Cal_Daily] = Table_Cal_Daily.get_all_items()
+            
+            for i in 0..<items.count
+            {
+                print("Day \(i)")
+                print("Date: \(items[i].date)")
+                print("Name of Day: \(items[i].name_day)")
+                print("Cal Daily: \(items[i].cal_daily)")
+                print("Cal Sport: \(items[i].cal_sport)")
+            }
+            
+            print("avg day = \(Table_Cal_Daily.average_cal_days())")
+            print("avg week = \(Table_Cal_Daily.average_cal_week())")
+            
+            print("Number of elements: \(items.count)")
+            */
         }
     }
 }
