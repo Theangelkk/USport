@@ -12,6 +12,10 @@ struct Dashboard: View
     @EnvironmentObject var managerUser : ManagerUser
     @EnvironmentObject var healthStore : HealthKitManager
     
+    @State var other_circle : Float = 1.0
+
+    @State var text : String = "daily"
+    
     @State var managerKcal : Manager_Kcal? = nil
     
     @State var chose_period = 0
@@ -24,7 +28,7 @@ struct Dashboard: View
     {
         TabView {
                             
-            Homepage(managerKcal: $managerKcal, chose_period : $chose_period, currentKcal: $currentKcal, totalKcal: $totalKcal, buttonBar: $buttonBar).tabItem {
+            Homepage(managerKcal: $managerKcal, chose_period : $chose_period, currentKcal: $currentKcal, totalKcal: $totalKcal, other_circle: $other_circle, text: $text, buttonBar: $buttonBar).tabItem {
                 Label("Summary", systemImage: "magazine")
                             }
             .environmentObject(managerUser)
@@ -67,7 +71,8 @@ struct Dashboard: View
             self.managerKcal!.user = self.managerUser.UserAPP
             self.managerKcal!.steps = self.managerUser.steps
             
-            self.buttonBar = ButtonBar(currentKcal: $currentKcal, totalKcal: $totalKcal, managerKcal: $managerKcal)
+            self.buttonBar =
+            ButtonBar(currentKcal: $currentKcal, totalKcal: $totalKcal, managerKcal: $managerKcal, other_circle: $other_circle, text: $text)
         }
     }
 }
