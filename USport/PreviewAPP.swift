@@ -11,26 +11,18 @@ import HealthKit
 struct PreviewAPP: View
 {
     @EnvironmentObject var managerUser : ManagerUser
-
+    @StateObject var healthStore: HealthKitManager = HealthKitManager()
     
     @State private var showMainView = false
     
-    // Variabili per le animazioni
     @State private var angle : Double = 360
     @State private var opacity : Double = 1
     @State private var scale : CGFloat = 1
     
-    private var healthStore: HealthStore?
-    @State private var steps: [Step] = [Step]()
+    @State private var firstTime : Bool = true
     
-    let typesToRead: Set<HKObjectType> = [.activitySummaryType(), .workoutType(), .correlationType(forIdentifier: .food)!]
-
-    let typesToWrite: Set<HKSampleType> = [.correlationType(forIdentifier: .food)!, .quantityType(forIdentifier: .activeEnergyBurned)!]
-        
     init()
-    {
-        self.healthStore = HealthStore()
-        
+    {        
         DrawingWorkouts.register()
         
         CoreDataManager.start()
@@ -39,7 +31,6 @@ struct PreviewAPP: View
         
         Table_Cal_Daily.test(n_days: 10)
         
-        /*
         var items : [Table_Cal_Daily] = Table_Cal_Daily.get_all_items()
         
         for i in 0..<items.count
@@ -51,30 +42,30 @@ struct PreviewAPP: View
             print("Cal Sport: \(items[i].cal_sport)")
         }
         
-        print("first day = \(Table_Cal_Daily.get_first_date())")
-        
         print("avg day = \(Table_Cal_Daily.average_cal_days())")
         print("avg week = \(Table_Cal_Daily.average_cal_week())")
         
         print("Number of elements: \(items.count)")
-         */
+        
     }
-    
+
     var body: some View
     {
         Group
         {
             if showMainView
             {
-                if managerUser.UserAPP.nickname != "Default"
+                if firstTime == false
                 {
                     Homepage()
                         .environmentObject(managerUser)
+                        .environmentObject(healthStore)
                 }
                 else
                 {
                     ChoseSport()
                         .environmentObject(managerUser)
+                        .environmentObject(healthStore)
                 }
             }
             else
@@ -93,9 +84,20 @@ struct PreviewAPP: View
         }
         .onAppear
         {
-            self.enableHealth()
-            self.load()
+            let usr : UserCoreData? = UserCoreData.get_user()
             
+            /*
+                Loading attempt of UserApp
+             */
+            if usr != nil
+            {
+                self.managerUser.UserAPP = User()
+                
+                managerUser.UserAPP.load_UserCoreData(usr: usr)
+                
+                self.firstTime = false
+            }
+    
             withAnimation(.linear(duration: 2))
             {
                 angle = 0
@@ -107,44 +109,17 @@ struct PreviewAPP: View
             {
                 showMainView = true
             }
-        }
-    }
-    
-    func enableHealth()
-    {
-        if let healthStore = healthStore
-        {
-            healthStore.requestAuthorization
-            {
-                success in
-                if success
-                {
-                    healthStore.calculateSteps
-                    {
-                        statisticsCollection in
-                        if let statisticsCollection = statisticsCollection
-                        {
-                            self.healthStore!.updateUIFromStatistics(statisticsCollection, n_days_prev: 0, end: Date())
-                        }
-                    }
-                }
-            }
-        }
-    }
-    
-    // BUG FATALE
-    func load()
-    {
-        let usr : UserCoreData? = UserCoreData.get_user()
-        
-        /*
-            Loading attempt of UserApp
-         */
-        if usr != nil
-        {
-            self.managerUser.UserAPP = User()
             
-            managerUser.UserAPP.load_UserCoreData(usr: usr)
+            //self.attendi()
+        
+        }
+    }
+    
+    func attendi()
+    {
+        while healthStore.isLoading == false
+        {
+            print(healthStore.steps.count)
         }
     }
 }

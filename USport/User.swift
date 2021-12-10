@@ -34,10 +34,10 @@ class User : ObservableObject
         self.nickname = "Default"
         self.height = 0
         self.weight = 0.0
-        self.Type_of_Sport = "Default"
+        self.Type_of_Sport = "Football"
         self.Age = 0
-        self.Type_Activity = "Default"
-        self.gender = "Default"
+        self.Type_Activity = "Sedentary lifestyle"
+        self.gender = "Male"
     }
     
     init(nickname : String, age: Int, gender: String, activity : String, height : Int, weight : Float, type_of_sport : Sport)
@@ -45,10 +45,10 @@ class User : ObservableObject
         self.nickname = "Default"
         self.height = 0
         self.weight = 0.0
-        self.Type_of_Sport = "Default"
+        self.Type_of_Sport = "Football"
         self.Age = 0
-        self.Type_Activity = "Default"
-        self.gender = "Default"
+        self.Type_Activity = "Sedentary lifestyle"
+        self.gender = "Male"
     }
     
     init(n_workout : Int)
@@ -56,10 +56,10 @@ class User : ObservableObject
         self.nickname = "Default"
         self.height = 0
         self.weight = 0.0
-        self.Type_of_Sport = "Default"
+        self.Type_of_Sport = "Football"
         self.Age = 0
-        self.Type_Activity = "Default"
-        self.gender = "Default"
+        self.Type_Activity = "Sedentary lifestyle"
+        self.gender = "Male"
         
         self.create_n_workouts(n_workouts: n_workout)
         

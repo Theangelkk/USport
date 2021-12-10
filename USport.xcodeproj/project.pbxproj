@@ -219,12 +219,13 @@
 				1B04606E275A6EC100F0BF22 /* ChoiceButton.swift */,
 				650C7C76275A0C610096215D /* Assets.xcassets */,
 				650C7C78275A0C610096215D /* Preview Content */,
+				65A025432761F9E800F1C323 /* ManagerUser.swift */,
+				6517FB2D275E3DE40090D2EC /* Manager_Kcal.swift */,
 				6576E6AC275A14EB0022FD08 /* Sport.swift */,
 				6576E6B0275A19340022FD08 /* Activity.swift */,
 				6576E6B2275A19EB0022FD08 /* Workout.swift */,
 				65687C842761333B0098F38F /* Workouts.swift */,
 				65687C86276133580098F38F /* DrawingsWorkouts.swift */,
-				6517FB2D275E3DE40090D2EC /* Manager_Kcal.swift */,
 				65635FD2275A5EBC0076A9C8 /* User.swift */,
 				65A5BE8A275D248A00819933 /* RKCell.swift */,
 				65A5BE85275D248A00819933 /* RKColorSettings.swift */,
@@ -233,7 +234,6 @@
 				65A5BE87275D248A00819933 /* RKMonth.swift */,
 				65A5BE88275D248A00819933 /* RKViewController.swift */,
 				65A5BE86275D248A00819933 /* RKWeekdayHeader.swift */,
-				65A025432761F9E800F1C323 /* ManagerUser.swift */,
 			);
 			path = USport;
 			sourceTree = "<group>";

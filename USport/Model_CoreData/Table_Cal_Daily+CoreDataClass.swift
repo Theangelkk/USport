@@ -157,9 +157,9 @@ public class Table_Cal_Daily: NSManagedObject
             items = []
         }
         
-        if(items.count > 0)
+        if(items.count > 1)
         {
-            return items[0].date!
+            return items[1].date!
         }
         else
         {
@@ -226,7 +226,9 @@ public class Table_Cal_Daily: NSManagedObject
     static func test(n_days : Int)
     {
         let cal = Calendar.current
-        var date = cal.startOfDay(for: Date())
+        //var date = cal.startOfDay(for: Date())
+        
+        var date = Calendar.current.date(byAdding: .day, value: -5, to: Date())!
         
         var cal_daily: Float = Float.random(in: 1200.0 ..< 2500.0)
         var cal_sport: Float = Float.random(in: 400.0 ..< 1200.0)
@@ -238,26 +240,17 @@ public class Table_Cal_Daily: NSManagedObject
         Table_Cal_Daily.formatter.locale = .current
         Table_Cal_Daily.formatter.dateFormat = "EEEE"
         
-        var name_today = self.formatter.string(from: Date())
-        
         var obj : Table_Cal_Daily = Table_Cal_Daily(context: CoreDataManager.persistentContainer!.viewContext)
-        
-        obj.date = Date()
-        obj.name_day = name_today
-        obj.cal_daily = cal_daily
-        obj.cal_sport = cal_sport
-        
-        Table_Cal_Daily.save_item_on_CoreData()
-        
+    
         var count : Int = 0
         
-        for _ in 1 ... n_days
+        for _ in 0 ... n_days+1
         {
             date = cal.date(byAdding: .day, value: -1, to: date)!
             
             dates.append(date)
             
-            name_today = self.formatter.string(from: date)
+            var name_today = self.formatter.string(from: date)
             
             cal_daily = Float.random(in: 1200.0 ..< 2500.0)
             

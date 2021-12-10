@@ -9,7 +9,7 @@ import Foundation
 
 class Manager_Kcal
 {
-    var user : User
+    var user : User = User()
     
     let coeff_RMR : Float = 9.99
     let coeff_RMR_Male : Float = 5.0
@@ -33,21 +33,16 @@ class Manager_Kcal
     
     let userCalendar : Calendar = Calendar.current
     
-    let requestedComponents : Set<Calendar.Component> = [ .year, .month, .day, .hour, .minute, .second ]
+    let requestedComponents : Set<Calendar.Component> = [.year, .month, .day, .hour, .minute, .second]
     
     let formatter = DateFormatter()
     
-    var healthStore: HealthStore?
-    
-    init(user : User)
-    {
-        self.user = user
+    var steps : [Step] = [Step]()
         
+    init()
+    {
         self.formatter.locale = .current
         self.formatter.dateFormat = "EEEE"
-        
-        self.healthStore = HealthStore()
-
     }
     
     // Link: https://www.healthline.com/health/fitness-exercise/how-many-calories-do-i-burn-a-day#calorie-calculator
@@ -65,6 +60,8 @@ class Manager_Kcal
             self.RMR -= self.coeff_RMR_Famale
         }
         
+        print(self.user.Type_Activity)
+        print(self.coeff_Activity[self.user.Type_Activity]!)
         self.RMR = self.RMR * self.coeff_Activity[self.user.Type_Activity]!
         
     }
@@ -111,16 +108,23 @@ class Manager_Kcal
         return Float(Float(steps) * cal_step)
     }
     
-    func actual_cal_day(user : User) -> Float
+    func actual_cal_day() -> Float
     {
         let formatter = DateFormatter()
         
         formatter.locale = .current
         formatter.dateFormat = "EEEE"
         
-        let steps : [Step] = self.steps_counter_HealthKit(n_days_prev: 1, end_date: Date())
+        let steps : [Step] = self.steps_counter_HealthKit(start_time: Date(), end_date: Date())
         
-        let cal_day : Float = self.get_Kcal_Daily() + self.get_Kcal_pedometer(steps: steps[0].count)
+        var n_steps_today : Int = 0
+        
+        if steps.count > 0
+        {
+            n_steps_today = steps[0].count
+        }
+        
+        let cal_day : Float = self.get_Kcal_Daily() + self.get_Kcal_pedometer(steps: n_steps_today)
         
         var cal_sport : Float = 0.0
         
@@ -175,32 +179,50 @@ class Manager_Kcal
         Table_Cal_Daily.save_item_on_CoreData()
     }
     
-    func steps_counter_HealthKit(n_days_prev : Int, end_date : Date) -> [Step]
+    func steps_counter_HealthKit(start_time : Date, end_date : Date) -> [Step]
     {
-        var steps : [Step] = [Step]()
+        var steps_int : [Step] = [Step]()
         
-        if let healthStore = healthStore
+        let dataTimeComponets_Start = self.userCalendar.dateComponents(self.requestedComponents, from: start_time)
+        let dataTimeComponets_End = self.userCalendar.dateComponents(self.requestedComponents, from: end_date)
+        
+        var idx_start = 0
+        var idx_end = 0
+        
+        for i in 0..<self.steps.count
         {
-            healthStore.requestAuthorization
+            let dataTimeComponets_i = self.userCalendar.dateComponents(self.requestedComponents, from: self.steps[i].date)
+            
+            if (dataTimeComponets_i.day == dataTimeComponets_Start.day  &&
+                dataTimeComponets_i.month == dataTimeComponets_Start.month &&
+                dataTimeComponets_i.year == dataTimeComponets_Start.year)
             {
-                success in
-                
-                if success
-                {
-                    healthStore.calculateSteps
-                    {
-                        statisricsCollection in
-                        
-                        if let statisricsCollection = statisricsCollection
-                        {
-                            steps = healthStore.updateUIFromStatistics(statisricsCollection, n_days_prev: n_days_prev, end: end_date)
-                        }
-                    }
-                }
+                idx_start = i
+                break
             }
         }
         
-        return steps
+        for i in 0..<self.steps.count
+        {
+            let dataTimeComponets_i = self.userCalendar.dateComponents(self.requestedComponents, from: self.steps[i].date)
+            
+            if (dataTimeComponets_i.day == dataTimeComponets_End.day  &&
+                dataTimeComponets_i.month == dataTimeComponets_End.month &&
+                dataTimeComponets_i.year == dataTimeComponets_End.year)
+            {
+                idx_end = i
+                break
+            }
+        }
+        
+        let n_elem = idx_end - idx_start
+        
+        for i in 0..<n_elem
+        {
+            steps_int.append(self.steps[idx_start+i])
+        }
+        
+        return steps_int
     }
     
     func save_days_past()
@@ -216,33 +238,41 @@ class Manager_Kcal
             return Calendar.current.date(byAdding: .day, value: -1, to: Date())!
         }
         
-        let diffs = Calendar.current.dateComponents([.year, .month, .day], from: last_date_stored, to: yesterday)
-        
-        var days : Int = 0
-        
-        days += Int(diffs.day!)
-        days += Int(diffs.month! * 30)
-        
-        let steps : [Step] = self.steps_counter_HealthKit(n_days_prev: days, end_date: yesterday)
+        let steps : [Step] = self.steps_counter_HealthKit(start_time: last_date_stored, end_date: yesterday)
         
         var actual_date : Date = last_date_stored
         
         var total_cal_daily : Float = 0.0
         var total_cal_sport : Float = 0.0
         
-        for i in 0..<days
+        let diff_days : Int = userCalendar.numberOfDaysBetween(actual_date, and: yesterday)
+        
+        print(diff_days)
+        
+        for i in 0..<diff_days
         {
+            total_cal_daily = 0.0
+            total_cal_sport = 0.0
+            
             actual_date = Calendar.current.date(byAdding: .day, value: +1, to: actual_date)!
             
             total_cal_daily += self.get_Kcal_Daily()
             
-            total_cal_daily += self.get_Kcal_pedometer(steps: steps[i].count)
+            if steps.count > 0
+            {
+                total_cal_daily += self.get_Kcal_pedometer(steps: steps[i].count)
+            }
+            else
+            {
+                total_cal_daily += 0.0
+            }
+            
+            let name_today : String = formatter.string(from: actual_date)
             
             for j in 0..<self.user.workouts.count
             {
                 let name_day_sport = self.user.workouts[j].name_day()
-                let name_today : String = formatter.string(from: actual_date)
-                
+        
                 if name_today == name_day_sport
                 {
                     let intensity = self.user.workouts[j].IntensityOfLevel[self.user.workouts[j].Intesity_Level]
@@ -250,9 +280,20 @@ class Manager_Kcal
                     let sport = Sport(type_of_sport: self.user.workouts[j].Type_of_Sport)
                     total_cal_sport += sport.get_cal_sport(user: user, intensity: intensity, startTime: self.user.workouts[j].Start_Time, endTime: self.user.workouts[j].End_Time)
                 }
-                
-                self.add_new_historical_data(date: actual_date, cal_daily: total_cal_daily, cal_sport: total_cal_sport, name_day: name_today)
             }
+            
+            self.add_new_historical_data(date: actual_date, cal_daily: total_cal_daily, cal_sport: total_cal_sport, name_day: name_today)
         }
+    }
+}
+
+extension Calendar
+{
+    func numberOfDaysBetween(_ from: Date, and to: Date) -> Int {
+        let fromDate = startOfDay(for: from) // <1>
+        let toDate = startOfDay(for: to) // <2>
+        let numberOfDays = dateComponents([.day], from: fromDate, to: toDate) // <3>
+        
+        return numberOfDays.day!
     }
 }

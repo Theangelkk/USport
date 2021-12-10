@@ -15,6 +15,7 @@ import HealthKit
 struct Homepage: View
 {
     @EnvironmentObject var managerUser : ManagerUser
+    @EnvironmentObject var healthStore : HealthKitManager
     
     @State var managerKcal : Manager_Kcal? = nil
     
@@ -24,8 +25,14 @@ struct Homepage: View
     
     var names_button_bar : [String] = ["Daily", "Weekly", "Monthty"]
     
-    var buttonBar : ButtonBar = ButtonBar()
-
+    @State var buttonBar : ButtonBar?
+    @State var firstTime : Bool = true
+    
+    init()
+    {
+        
+    }
+    
     var body: some View
     {
         ZStack
@@ -59,9 +66,9 @@ struct Homepage: View
                         }
                         .onChange(of: self.chose_period, perform:
                                     { (value) in
-                            buttonBar.onChange(value, homepage: self)
+                            buttonBar!.onChange(value)
                                     })
-                        .onAppear { buttonBar.onChange(0, homepage: self) }
+                        .onAppear { buttonBar!.onChange(0) }
                         
                         .pickerStyle(.segmented)
                             .position(x: geometry.size.width/2.1, y: -geometry.size.height/4.5)
@@ -139,6 +146,37 @@ struct Homepage: View
                 }
             }
         }
+        .onAppear
+        {
+            self.managerKcal = Manager_Kcal()
+            self.managerKcal!.user = self.managerUser.UserAPP
+            self.managerKcal!.steps = self.managerUser.steps
+            
+            self.buttonBar = ButtonBar(currentKcal: $currentKcal, totalKcal: $totalKcal, managerKcal: self.$managerKcal)
+        
+            if firstTime
+            {
+                self.managerKcal!.save_days_past()
+                
+                var items : [Table_Cal_Daily] = Table_Cal_Daily.get_all_items()
+                
+                for i in 0..<items.count
+                {
+                    print("Day \(i)")
+                    print("Date: \(items[i].date)")
+                    print("Name of Day: \(items[i].name_day)")
+                    print("Cal Daily: \(items[i].cal_daily)")
+                    print("Cal Sport: \(items[i].cal_sport)")
+                }
+                
+                print("avg day = \(Table_Cal_Daily.average_cal_days())")
+                print("avg week = \(Table_Cal_Daily.average_cal_week())")
+                
+                print("Number of elements: \(items.count)")
+                
+                firstTime = false
+            }
+        }
     }
 }
 
@@ -206,24 +244,19 @@ struct Ring_Graph: View
 
 }
 
-class ButtonBar
+struct ButtonBar
 {
-    var homepage : Homepage? = nil
-    var idx : Int = 0
-
-    init()
-    {
-        self.homepage = nil
-    }
+    @Binding var currentKcal : Float
+    @Binding var totalKcal : Float
+    @Binding var managerKcal : Manager_Kcal?
     
-    func onChange(_ tag: Int, homepage : Homepage)
+    var idx : Int = 0
+    
+    func onChange(_ tag: Int)
     {
-        self.homepage = homepage
-        self.homepage!.managerKcal = Manager_Kcal(user: homepage.managerUser.UserAPP)
+        currentKcal = managerKcal!.actual_cal_day()
         
-        self.homepage!.currentKcal = self.homepage!.managerKcal!.actual_cal_day(user : self.homepage!.managerUser.UserAPP)
-        
-        self.homepage!.totalKcal = Table_Cal_Daily.average_cal_days()
+        totalKcal = Table_Cal_Daily.average_cal_days()
     }
 }
 

@@ -10,9 +10,11 @@ import Foundation
 class ManagerUser : ObservableObject
 {
     @Published var UserAPP : User
+    @Published var steps : [Step]
     
     init()
     {
         self.UserAPP = User()
+        self.steps = [Step]()
     }
 }
