@@ -104,7 +104,7 @@ struct Profile: View
                 .navigationBarTitle("Profile", displayMode: .inline)
                 
                 // Button Cancel
-                .navigationBarBackButtonHidden(true)
+                /*.navigationBarBackButtonHidden(true)*/
             
                 /*.navigationBarItems(leading: Button(action :
                 {
@@ -114,7 +114,7 @@ struct Profile: View
                 }){
                         Image(systemName: "arrow.left")
                 })*/
-                .navigationBarTitle("Chose dates", displayMode: .inline)
+                /*.navigationBarTitle("Chose dates", displayMode: .inline)*/
                 
                 /*.sheet(isPresented: $isShowPhotoLibrary) {
                     ImagePicker(sourceType: .photoLibrary, selectedImage: self.$image) }*/
