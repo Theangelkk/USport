@@ -16,65 +16,68 @@ struct History: View {
     
     var body: some View
     {
-        // Mettere un immagine di sfondo
-        
-        GeometryReader
+        NavigationView
         {
-            geometry in
+            // Mettere un immagine di sfondo
             
-            Spacer()
-            
-            Section
+            GeometryReader
             {
-                LineView(data: items_days)
-                    .padding()
-                    .position(x: geometry.size.width/2, y: geometry.size.height/2.1)
-            
-            }
-            
-            Section
-            {
-                RoundedRectangle(cornerRadius: 3)
-                    .stroke(Color.blue, lineWidth: 3)
-                    .frame(width: geometry.size.width - 30, height: geometry.size.height/2.2)
-                    .position(x: geometry.size.width/2, y: geometry.size.height/1.4)
+                geometry in
                 
-                Image("omino_pallavolo")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: geometry.size.width/2.8, height: geometry.size.height/3.4)
-                    .position(x: geometry.size.width/3.2, y: geometry.size.height/1.65)
+                Spacer()
                 
-                Text("\(self.Kcal_Sport) Kcal")
-                    .fontWeight(.bold)
-                    .multilineTextAlignment(.center)
-                    .font(.system(size: 36))
-                    .frame(width: geometry.size.width/3, height: 100)
-                    .position(x: geometry.size.width/1.5, y: geometry.size.height/1.60)
-                    .shadow(color: Color.black.opacity(0.40), radius: 5, x: 5, y: 10)
+                Section
+                {
+                    LineView(data: items_days)
+                        .padding()
+                        .position(x: geometry.size.width/2, y: geometry.size.height/2)
                 
-                Text("\(self.Kcal_Daily) Kcal")
-                    .fontWeight(.bold)
-                    .multilineTextAlignment(.center)
-                    .font(.system(size: 36))
-                    .frame(width: geometry.size.width/3, height: 100)
-                    .position(x: geometry.size.width/1.5, y: geometry.size.height/1.18)
-                    .shadow(color: Color.black.opacity(0.40), radius: 5, x: 5, y: 10)
+                }
                 
-                Image("life_person")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: geometry.size.width/2.8, height: geometry.size.height/3.4)
-                    .position(x: geometry.size.width/3.2, y: geometry.size.height/1.20)
+                Section
+                {
+                    RoundedRectangle(cornerRadius: 3)
+                        .stroke(Color.blue, lineWidth: 3)
+                        .frame(width: geometry.size.width - 30, height: geometry.size.height/2)
+                        .position(x: geometry.size.width/2, y: geometry.size.height/1.4)
+                    
+                    Image("omino_pallavolo")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: geometry.size.width/2.8, height: geometry.size.height/3.4)
+                        .position(x: geometry.size.width/3.2, y: geometry.size.height/1.65)
+                    
+                    Text("\(self.Kcal_Sport) cal")
+                        .fontWeight(.bold)
+                        .multilineTextAlignment(.center)
+                        .font(.system(size: 36))
+                        .frame(width: geometry.size.width/3, height: 100)
+                        .position(x: geometry.size.width/1.5, y: geometry.size.height/1.60)
+                        .shadow(color: Color.black.opacity(0.40), radius: 5, x: 5, y: 10)
+                    
+                    Text("\(self.Kcal_Daily) Kcal")
+                        .fontWeight(.bold)
+                        .multilineTextAlignment(.center)
+                        .font(.system(size: 36))
+                        .frame(width: geometry.size.width/3, height: 100)
+                        .position(x: geometry.size.width/1.5, y: geometry.size.height/1.18)
+                        .shadow(color: Color.black.opacity(0.40), radius: 5, x: 5, y: 10)
+                    
+                    Image("life_person")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: geometry.size.width/2.8, height: geometry.size.height/3.4)
+                        .position(x: geometry.size.width/3.2, y: geometry.size.height/1.20)
 
+                }
             }
+            .navigationBarTitle("History", displayMode: .inline)
+            
+            .navigationBarItems(trailing: NavigationLink(destination: History_Filter(items_days: $items_days, Kcal_Daily: self.$Kcal_Daily, Kcal_Sport: self.$Kcal_Sport)
+            ){
+                    Image(systemName: "calendar")
+            })
         }
-        .navigationBarTitle("History", displayMode: .inline)
-        
-        .navigationBarItems(trailing: NavigationLink(destination: History_Filter(items_days: $items_days, Kcal_Daily: self.$Kcal_Daily, Kcal_Sport: self.$Kcal_Sport)
-        ){
-                Image(systemName: "calendar")
-        })
     }
     
 }

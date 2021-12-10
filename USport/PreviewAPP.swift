@@ -31,6 +31,7 @@ struct PreviewAPP: View
         
         Table_Cal_Daily.test(n_days: 10)
         
+        /*
         var items : [Table_Cal_Daily] = Table_Cal_Daily.get_all_items()
         
         for i in 0..<items.count
@@ -46,6 +47,7 @@ struct PreviewAPP: View
         print("avg week = \(Table_Cal_Daily.average_cal_week())")
         
         print("Number of elements: \(items.count)")
+         */
         
     }
 

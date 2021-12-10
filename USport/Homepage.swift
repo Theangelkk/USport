@@ -28,7 +28,6 @@ struct Homepage: View
     @Binding var buttonBar : ButtonBar?
     @State var firstTime : Bool = true
     
-    
     var body: some View
     {
         GeometryReader
@@ -43,7 +42,7 @@ struct Homepage: View
                     .foregroundColor(Color.blue)
                     .font(.system(size: 50))
                     .bold()
-                    .position(x: geometry.size.width/2, y: -geometry.size.height/12)
+                    .position(x: geometry.size.width/2, y: geometry.size.height/14)
                     
                 Picker("Which period do you want to evaluate", selection: $chose_period)
                 {
@@ -62,13 +61,21 @@ struct Homepage: View
                 .onAppear { buttonBar!.onChange(0) }
                 .pickerStyle(.segmented)
 
-                .position(x: geometry.size.width/2.1, y: -geometry.size.height/4.5)
+                .position(x: geometry.size.width/2.1, y: -geometry.size.height/3.5)
 
                 .frame(width: geometry.size.width - 15, height: geometry.size.height/90)
 
                 Ring_Graph(geometry: geometry, currentKcal: $currentKcal, totalKcal: $totalKcal)
 
-                .shadow(color: Color.black.opacity(0.30), radius: 5, x: 5, y: 10)
+                
+            }
+        }
+        .onAppear
+        {
+            if firstTime
+            {
+                managerKcal!.save_days_past()
+                firstTime = false
             }
         }
     }
@@ -96,34 +103,34 @@ struct Ring_Graph: View
             Circle()
                 .trim(from: 0, to: 1)
                 .stroke(Color.black.opacity(0.10), lineWidth: 10)
-                .frame(width: geometry.size.width/1.5,
+                .frame(width: geometry.size.width/1.3,
                        height: geometry.size.height)
-                .position(x: geometry.size.width/1.5, y: geometry.size.height/10.5)
+                .position(x: geometry.size.width/1.1, y: geometry.size.height/4.2)
         
             Circle()
                 .trim(from: 0, to: CGFloat( self.currentKcal.wrappedValue / self.totalKcal.wrappedValue ) )
                 .stroke(Color.red, style: StrokeStyle(lineWidth: 10, lineCap: .round))
-                .frame(width: geometry.size.width/1.5,
+                .frame(width: geometry.size.width/1.3,
                        height: geometry.size.height)
-                .position(x: geometry.size.width/1.5, y: geometry.size.height/10.5)
+                .position(x: geometry.size.width/1.1, y: geometry.size.height/4.2)
             
             
             Text("\(String(format: "%.1f", CGFloat( self.currentKcal.wrappedValue / self.totalKcal.wrappedValue ) * CGFloat(100)))%")
-                .font(.system(size: 65))
+                .font(.system(size: 75))
                 .foregroundColor(.black)
                 .fontWeight(.bold)
-                .position(x: geometry.size.width/2, y: -geometry.size.height/30)
+                .position(x: geometry.size.width/1.9, y: -geometry.size.height/25)
                 .rotationEffect(.init(degrees: 90))
             
             let actual_cal : Int = Int(self.currentKcal.wrappedValue)
             let total_cal : Int = Int(self.totalKcal.wrappedValue)
             
             Text("\(actual_cal) / \(total_cal) cal")
-                .font(.system(size: 24))
+                .font(.system(size: 28))
                 .foregroundColor(.black)
                 .fontWeight(.bold)
                 .multilineTextAlignment(.center)
-                .position(x: geometry.size.width/2.05, y: geometry.size.height/13)
+                .position(x: geometry.size.width/1.9, y: geometry.size.height/10)
                 .rotationEffect(.init(degrees: 90))
         }
         .rotationEffect(.init(degrees: -90))
@@ -154,7 +161,7 @@ struct ButtonBar
     }
 }
 
-
+/*
 struct Homepage_Previews: PreviewProvider
 {
     @StateObject static var managerUser: ManagerUser = ManagerUser()
@@ -175,5 +182,5 @@ struct Homepage_Previews: PreviewProvider
             .environmentObject(healthStore)
     }
 }
- 
+ */
 
