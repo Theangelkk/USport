@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ChoiceButton: View
 {
+    @Binding var changeView : Bool
     @Binding var sportSelected : String
     
     var nameSport : String
@@ -19,9 +20,10 @@ struct ChoiceButton: View
     @State var esit : Bool = false
         
     var body: some View
-    {
-        Button(action: {
+    {  
+        Button(action:  {
             sportSelected = nameSport
+            changeView = true
         })
         {
             if self.sportSelected != self.nameSport
@@ -111,7 +113,7 @@ struct ChoiceButton_Activity: View
     }
 }
 
-struct ButtonNext: View
+/*struct ButtonNext: View
 {
     @Binding var changeView : Bool
     
@@ -125,7 +127,7 @@ struct ButtonNext: View
         }
         .buttonStyle(CustomButtonStyle())
     }
-}
+}*/
 
 /*
     Custom Design "Next" Button
