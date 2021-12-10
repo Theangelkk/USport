@@ -137,7 +137,7 @@ struct InsertData: View
             })
             {
                 Text("Next")
-                    .font(.system(size: 25))
+                    .font(.system(size: 15))
                     .fontWeight(.heavy)
             }
             .buttonStyle(CustomButtonStyle())

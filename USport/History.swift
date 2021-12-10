@@ -51,7 +51,7 @@ struct History: View {
                     .font(.system(size: 36))
                     .frame(width: geometry.size.width/3, height: 100)
                     .position(x: geometry.size.width/1.5, y: geometry.size.height/1.60)
-                    .shadow(color: Color.black.opacity(0.40), radius: 5, x: 5, y: 10)
+                    
                 
                 Text("\(self.Kcal_Daily) Kcal")
                     .fontWeight(.bold)
@@ -59,7 +59,7 @@ struct History: View {
                     .font(.system(size: 36))
                     .frame(width: geometry.size.width/3, height: 100)
                     .position(x: geometry.size.width/1.5, y: geometry.size.height/1.18)
-                    .shadow(color: Color.black.opacity(0.40), radius: 5, x: 5, y: 10)
+                    
                 
                 Image("life_person")
                     .resizable()

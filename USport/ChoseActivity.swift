@@ -61,11 +61,12 @@ struct ChoseActivity: View {
                     NavigationLink(destination: EditActivity(nameSport : $sportSelected))
                     {
                         Text("Next")
-                            .font(.system(size: 25))
+                            .font(.system(size: 15))
                             .fontWeight(.heavy)
                     }
                     .buttonStyle(CustomButtonStyle())
                     .position(x: geometry.size.width/2, y: (geometry.size.height)-60)
+                    
                     
                 }
                 .navigationBarTitle("Chose your activity", displayMode: .inline)

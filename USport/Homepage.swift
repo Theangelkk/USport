@@ -68,7 +68,7 @@ struct Homepage: View
 
                 Ring_Graph(geometry: geometry, currentKcal: $currentKcal, totalKcal: $totalKcal)
 
-                .shadow(color: Color.black.opacity(0.30), radius: 5, x: 5, y: 10)
+                
             }
         }
     }
