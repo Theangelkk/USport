@@ -63,6 +63,7 @@ struct ChoiceButton: View
 
 struct ChoiceButton_Activity: View
 {
+    @Binding var changeView : Bool
     @Binding var sportSelected : String
     
     var nameSport : String
@@ -76,6 +77,7 @@ struct ChoiceButton_Activity: View
     {
         Button(action: {
             sportSelected = nameSport
+            changeView = true
         })
         {
             if self.sportSelected != self.nameSport
