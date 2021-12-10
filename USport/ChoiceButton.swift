@@ -54,7 +54,7 @@ struct ChoiceButton: View
             }
                 
         }
-        .shadow(color: Color.black, radius: 6, x: 10, y: 10)
+        
         
     }
 }
@@ -106,7 +106,7 @@ struct ChoiceButton_Activity: View
             }
                 
         }
-        .shadow(color: Color.black, radius: 6, x: 10, y: 10)
+        
         
     }
 }
@@ -119,8 +119,9 @@ struct ButtonNext: View
         Button(action: {changeView = true})
         {
             Text("Next")
-                .font(.system(size: 25))
+                .font(.system(size: 15))
                 .fontWeight(.heavy)
+                
         }
         .buttonStyle(CustomButtonStyle())
     }
@@ -145,7 +146,7 @@ struct CustomButtonStyle: ButtonStyle
                     .padding()
                     .foregroundColor(.white)
                     .background(Color.blue)
-                    .shadow(color: Color.black, radius: 20, x: 5, y: 5)
+                    .cornerRadius(50)
             }
             .padding(3)
             .onHover
