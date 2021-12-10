@@ -32,82 +32,85 @@ struct Profile: View
     
     var body: some View {
         
-        GeometryReader
+        NavigationView
         {
-            // Mettere un immagine di sfondo
-            
-            geometry in
-            
-            VStack
+            GeometryReader
             {
-                /*
+                // Mettere un immagine di sfondo
+                
+                geometry in
+                
                 VStack
                 {
-                    Button(action: {
-                        self.isShowPhotoLibrary = true
-                        
-                    })
-                    {  //Ricordiamoci di caricare l'immagine!!!
-                        Image("profile_icon")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: geometry.size.width/2.5, height: geometry.size.height/3)
-                            .background(Color.white.opacity(0.0))
-                    } .background(Color.white.opacity(0.0)
-                }
-                */
-                Form
-                {
-                    Section(header: Text(""))
+                    /*
+                    VStack
                     {
-                        Picker(selection: $sexSelected, label: Text("Sex"))
-                        {
-                                ForEach(0..<sex.count)
-                                {
-                                    Text(self.sex[$0])
-                                }
-                                .foregroundColor(.blue)
-                        }
-                        
-                        TextField_Elem_Profile(name_image: "weight", init_text: weight, text: $weight, geometry: geometry)
-                        
-    
-                        TextField_Elem_Profile(name_image: "height", init_text: height, text: $height, geometry: geometry)
-                        
-                        NavigationLink(destination: AddWorkout_Profile(type_sport: managerUser.UserAPP.workouts[0].Type_of_Sport)
-                                        .environmentObject(managerUser))
-                        {
-                            Text("Workouts")
-                        }
-                        
-                        Toggle("Notifications", isOn: $shouldActivateNotifications)
-                            .toggleStyle(SwitchToggleStyle(tint: .green))
-                        
+                        Button(action: {
+                            self.isShowPhotoLibrary = true
+                            
+                        })
+                        {  //Ricordiamoci di caricare l'immagine!!!
+                            Image("profile_icon")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: geometry.size.width/2.5, height: geometry.size.height/3)
+                                .background(Color.white.opacity(0.0))
+                        } .background(Color.white.opacity(0.0)
                     }
-                    .foregroundColor(.black)
-                }
-            }
-            .navigationBarTitle(managerUser.UserAPP.nickname, displayMode: .inline)
-            
-            // Button Cancel
-            .navigationBarBackButtonHidden(true)
+                    */
+                    Form
+                    {
+                        Section(header: Text(""))
+                        {
+                            Picker(selection: $sexSelected, label: Text("Sex"))
+                            {
+                                    ForEach(0..<sex.count)
+                                    {
+                                        Text(self.sex[$0])
+                                    }
+                                    .foregroundColor(.blue)
+                            }
+                            
+                            TextField_Elem_Profile(name_image: "weight", init_text: weight, text: $weight, geometry: geometry)
+                            
         
-            .navigationBarItems(leading: Button(action :
-            {
-                self.saveData()
-                self.presentationMode.wrappedValue.dismiss()
+                            TextField_Elem_Profile(name_image: "height", init_text: height, text: $height, geometry: geometry)
+                            
+                            NavigationLink(destination: AddWorkout_Profile(type_sport: managerUser.UserAPP.workouts[0].Type_of_Sport)
+                                            .environmentObject(managerUser))
+                            {
+                                Text("Workouts")
+                            }
+                            
+                            Toggle("Notifications", isOn: $shouldActivateNotifications)
+                                .toggleStyle(SwitchToggleStyle(tint: .green))
+                            
+                        }
+                        .foregroundColor(.black)
+                    }
+                }
+                .navigationBarTitle(managerUser.UserAPP.nickname, displayMode: .inline)
                 
-            }){
-                    Image(systemName: "arrow.left")
-            })
-            .navigationBarTitle("Chose dates", displayMode: .inline)
+                // Button Cancel
+                .navigationBarBackButtonHidden(true)
             
-            /*.sheet(isPresented: $isShowPhotoLibrary) {
-                ImagePicker(sourceType: .photoLibrary, selectedImage: self.$image) }*/
-        }
-        .onAppear
-        {
-            self.load()
+                .navigationBarItems(leading: Button(action :
+                {
+                    self.saveData()
+                    self.presentationMode.wrappedValue.dismiss()
+                    
+                }){
+                        Image(systemName: "arrow.left")
+                })
+                .navigationBarTitle("Chose dates", displayMode: .inline)
+                
+                /*.sheet(isPresented: $isShowPhotoLibrary) {
+                    ImagePicker(sourceType: .photoLibrary, selectedImage: self.$image) }*/
+            }
+            .onAppear
+            {
+                self.load()
+            }
         }
     }
     

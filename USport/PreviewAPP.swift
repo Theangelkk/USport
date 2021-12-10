@@ -57,7 +57,7 @@ struct PreviewAPP: View
             {
                 if firstTime == false
                 {
-                    Homepage()
+                    Dashboard()
                         .environmentObject(managerUser)
                         .environmentObject(healthStore)
                 }

@@ -55,7 +55,7 @@ struct AddWorkout: View
             
             if(changeView == true)
             {
-                Homepage()
+                Dashboard()
                     .environmentObject(managerUser)
             }
         }
