@@ -102,22 +102,6 @@ struct Profile: View
                     }
                 }
                 .navigationBarTitle("Profile", displayMode: .inline)
-                
-                // Button Cancel
-                /*.navigationBarBackButtonHidden(true)*/
-            
-                /*.navigationBarItems(leading: Button(action :
-                {
-                    self.saveData()
-                    self.presentationMode.wrappedValue.dismiss()
-                    
-                }){
-                        Image(systemName: "arrow.left")
-                })*/
-                /*.navigationBarTitle("Chose dates", displayMode: .inline)*/
-                
-                /*.sheet(isPresented: $isShowPhotoLibrary) {
-                    ImagePicker(sourceType: .photoLibrary, selectedImage: self.$image) }*/
             }
             .onAppear
             {

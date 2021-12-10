@@ -54,7 +54,7 @@ struct EditActivity: View
             }){
                     Image(systemName: "arrow.left")
             })
-            .navigationBarTitle(Text(name_activity), displayMode: .inline)
+            .navigationBarTitle(Text(nameSport), displayMode: .inline)
             
         }
         .accentColor(.red)
