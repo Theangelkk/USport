@@ -15,6 +15,7 @@
 		1BEEFD9C275BA535005A14CE /* Homepage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEEFD9B275BA535005A14CE /* Homepage.swift */; };
 		1BEEFD9E275BA58D005A14CE /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEEFD9D275BA58D005A14CE /* History.swift */; };
 		1BEFC52F2760FAC700A508BA /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEFC52E2760FAC700A508BA /* Notification.swift */; };
+		1BFB2C832763713800E9A26E /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65AB8D182762743800081B05 /* HealthKit.framework */; };
 		650C7C73275A0C5F0096215D /* USportApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650C7C72275A0C5F0096215D /* USportApp.swift */; };
 		650C7C77275A0C610096215D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 650C7C76275A0C610096215D /* Assets.xcassets */; };
 		650C7C7A275A0C610096215D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 650C7C79275A0C610096215D /* Preview Assets.xcassets */; };
@@ -153,6 +154,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				655078FA275CCDA90034BACB /* SwiftUICharts in Frameworks */,
+				1BFB2C832763713800E9A26E /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -665,7 +667,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"USport/Preview Content\"";
-				DEVELOPMENT_TEAM = FP6BQ47Z26;
+				DEVELOPMENT_TEAM = M3672A53US;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = USport/Info.plist;
@@ -681,7 +683,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "AngeloTeamB-iOS-Programming.USport";
+				PRODUCT_BUNDLE_IDENTIFIER = "Alessandro-TeamB-iOS-Programming.USport";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -698,7 +700,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"USport/Preview Content\"";
-				DEVELOPMENT_TEAM = FP6BQ47Z26;
+				DEVELOPMENT_TEAM = M3672A53US;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = USport/Info.plist;
@@ -714,7 +716,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "AngeloTeamB-iOS-Programming.USport";
+				PRODUCT_BUNDLE_IDENTIFIER = "Alessandro-TeamB-iOS-Programming.USport";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -729,7 +731,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = FP6BQ47Z26;
+				DEVELOPMENT_TEAM = M3672A53US;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -754,7 +756,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = FP6BQ47Z26;
+				DEVELOPMENT_TEAM = M3672A53US;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -778,7 +780,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = FP6BQ47Z26;
+				DEVELOPMENT_TEAM = M3672A53US;
 				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -801,7 +803,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = FP6BQ47Z26;
+				DEVELOPMENT_TEAM = M3672A53US;
 				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

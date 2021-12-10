@@ -17,7 +17,7 @@ struct Profile: View
     
     //@State private var isShowPhotoLibrary = false
     //@State private var image = UIImage()
-            
+     
     @State var workouts : [Workout] = []
     
     @State var sex = ["Male", "Female"]
@@ -29,6 +29,7 @@ struct Profile: View
     @State var shouldActivateNotifications = false
     
     @State var firstTime : Bool = true
+    
     
     var body: some View {
         
@@ -69,39 +70,50 @@ struct Profile: View
                                         Text(self.sex[$0])
                                     }
                                     .foregroundColor(.blue)
-                            }
+                            }.onChange(of: self.sexSelected, perform:{ (value) in
+                                save_changes()
+                            })
                             
-                            TextField_Elem_Profile(name_image: "weight", init_text: weight, text: $weight, geometry: geometry)
+                            TextField_Elem_Profile(name_image: "weight", init_text: weight, text: $weight, geometry: geometry).onChange(of: self.weight, perform:{ (value) in
+                                save_changes()
+                            })
                             
         
-                            TextField_Elem_Profile(name_image: "height", init_text: height, text: $height, geometry: geometry)
+                            TextField_Elem_Profile(name_image: "height", init_text: height, text: $height, geometry: geometry).onChange(of: self.height, perform:{ (value) in
+                                save_changes()
+                            })
                             
                             NavigationLink(destination: AddWorkout_Profile(type_sport: managerUser.UserAPP.workouts[0].Type_of_Sport)
                                             .environmentObject(managerUser))
                             {
                                 Text("Workouts")
-                            }
+                            }.onChange(of: self.workouts, perform:{ (value) in
+                                save_changes()
+                            })
                             
                             Toggle("Notifications", isOn: $shouldActivateNotifications)
                                 .toggleStyle(SwitchToggleStyle(tint: .green))
                             
                         }
                         .foregroundColor(.black)
+                        .onChange(of: self.shouldActivateNotifications, perform:{ (value) in
+                            save_changes()
+                        })
                     }
                 }
-                .navigationBarTitle(managerUser.UserAPP.nickname, displayMode: .inline)
+                .navigationBarTitle("Profile", displayMode: .inline)
                 
                 // Button Cancel
                 .navigationBarBackButtonHidden(true)
             
-                .navigationBarItems(leading: Button(action :
+                /*.navigationBarItems(leading: Button(action :
                 {
                     self.saveData()
                     self.presentationMode.wrappedValue.dismiss()
                     
                 }){
                         Image(systemName: "arrow.left")
-                })
+                })*/
                 .navigationBarTitle("Chose dates", displayMode: .inline)
                 
                 /*.sheet(isPresented: $isShowPhotoLibrary) {
@@ -113,6 +125,14 @@ struct Profile: View
             }
         }
     }
+    
+    
+    func save_changes()
+    {
+        self.saveData()
+        self.presentationMode.wrappedValue.dismiss()
+    }
+    
     
     func load()
     {
