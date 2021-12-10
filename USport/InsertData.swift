@@ -69,7 +69,7 @@ struct InsertData: View
         
         if esit == false
         {
-            delegate.createNotification()
+            delegate.createNotification( titolo: "ERROR",body: "Some fields are incorrect")
         }
     }
     

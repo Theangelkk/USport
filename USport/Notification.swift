@@ -26,10 +26,10 @@ class Notification: NSObject, ObservableObject, UNUserNotificationCenterDelegate
         completionHandler([.badge, .banner, .sound])
     }
     
-    func createNotification() {
+    func createNotification(titolo : String, body : String) {
         let content = UNMutableNotificationContent()
-        content.title = "ERROR"
-        content.subtitle = "Some fields are incorrect"
+        content.title = titolo
+        content.subtitle = body
         content.categoryIdentifier = "Actions"
         
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.5, repeats: false)
@@ -44,4 +44,5 @@ class Notification: NSObject, ObservableObject, UNUserNotificationCenterDelegate
         
         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
     }
+    
 }

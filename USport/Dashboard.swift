@@ -25,7 +25,7 @@ struct Dashboard: View
         TabView {
                             
             Homepage(managerKcal: $managerKcal, chose_period : $chose_period, currentKcal: $currentKcal, totalKcal: $totalKcal, buttonBar: $buttonBar).tabItem {
-                Label("Homepage", systemImage: "magazine")
+                Label("Summary", systemImage: "magazine")
                             }
             .environmentObject(managerUser)
             .environmentObject(healthStore)
@@ -36,7 +36,7 @@ struct Dashboard: View
                     .foregroundColor(Color.green)
                     .overlay(
                             
-                        Label("Add new activity", systemImage: "plus.circle")
+                        Label("Activities", systemImage: "plus.circle")
                             .font(.system(size: 32))
                             .foregroundColor(Color.white)
                             .buttonStyle(.borderedProminent)

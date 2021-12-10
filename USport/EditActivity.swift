@@ -11,6 +11,8 @@ struct EditActivity: View
 {
     @Environment(\.presentationMode) var presentationMode
     
+    @StateObject var delegate = Notification()
+    
     @Binding var nameSport : String
     
     @State var new_activity : Activity = Activity()
@@ -43,16 +45,15 @@ struct EditActivity: View
                 }
             }
             
-            // Button Cancel
-            .navigationBarBackButtonHidden(true)
         
-            .navigationBarItems(leading: Button(action :
+            .navigationBarItems(trailing: Button(action :
             {
                 addActivity()
                 self.presentationMode.wrappedValue.dismiss()
-                
+                delegate.createNotification(titolo: "CORRECT SAVE", body: "New Activity saved")
+                //ChoseActivity()
             }){
-                    Image(systemName: "arrow.left")
+                    Image(systemName: "arrow.right")
             })
             .navigationBarTitle(Text(nameSport), displayMode: .inline)
             
