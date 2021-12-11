@@ -23,12 +23,14 @@ struct InsertData: View
     @State var height: String = ""
     @State var number_workout: String = ""
     
+    @State var n_workout : Int = 0
+    
     @State var changeView : Bool = false
     
     @State var idx_gender : Int = 0
     @State var idx_activity : Int = 0
     @State var age : String = ""
-    
+        
     func checkFieds()
     {
         var esit : Bool = false
@@ -40,9 +42,9 @@ struct InsertData: View
             
             if(int_height > 0 && int_height < 270 && float_weight > 0.0 && float_weight < 250.0)
             {
-                let int_n_workouts : Int = Int(self.number_workout) ?? 0
+                self.n_workout = Int(self.number_workout) ?? 0
                 
-                if(int_n_workouts > 0 && int_n_workouts < 8)
+                if(n_workout > 0 && n_workout < 8)
                 {
                     let int_age : Int = Int(self.age) ?? 0
                     
@@ -52,7 +54,7 @@ struct InsertData: View
                         
                         managerUser.UserAPP.set_weight(weight: float_weight)
                         managerUser.UserAPP.set_height(height: int_height)
-                        managerUser.UserAPP.create_n_workouts(n_workouts: int_n_workouts)
+                        managerUser.UserAPP.create_n_workouts(n_workouts: n_workout)
                         
                         managerUser.UserAPP.addSport(nameSport: self.nameSport)
                         
@@ -148,7 +150,7 @@ struct InsertData: View
             
             if(changeView == true)
             {
-                AddWorkout()
+                AddWorkout(n_wokouts: $n_workout)
                     .environmentObject(managerUser)
                     .environmentObject(healthStore)
             }

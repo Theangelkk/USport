@@ -10,19 +10,14 @@ import SwiftUI
 struct EditWorkout: View
 {
     @Environment(\.presentationMode) var presentationMode
-        
-    @Binding var new_workout : Workout
+    
+    @Binding var workouts : [Workout]
+    
+    @Binding var idx_workout : Int
     
     @State var name_workout_tmp: String = ""
-    
-    @State var daySelected_tmp : Int = 0
-    @State var intensitySelected_tmp : Int = 0
-    
-    @State var start_tmp : Date = Date()
-    @State var end_tmp : Date = Date()
-    
-    @State var firstTime : Bool = true
-    
+    @State var end_time_tmp : Date = Date()
+        
     var day = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
     
     var IntensityOfLevel = ["Low", "Medium", "High"]
@@ -42,7 +37,7 @@ struct EditWorkout: View
                 
                     Section(header: Text("Actions"))
                     {
-                        Picker(selection: $daySelected_tmp, label: Text("Selected day"))
+                        Picker(selection: $workouts[self.idx_workout].Day, label: Text("Selected day"))
                         {
                             ForEach(0..<day.count)
                             {
@@ -50,11 +45,11 @@ struct EditWorkout: View
                             }
                         }
                 
-                        DatePicker("Start", selection: $start_tmp, displayedComponents: .hourAndMinute)
+                        DatePicker("Start", selection: $workouts[self.idx_workout].Start_Time, displayedComponents: .hourAndMinute)
                         
-                        DatePicker("End", selection: $end_tmp, displayedComponents: .hourAndMinute)
+                        DatePicker("End", selection: $end_time_tmp, displayedComponents: .hourAndMinute)
                             
-                        Picker(selection: $intensitySelected_tmp, label: Text("Intensity of Level"))
+                        Picker(selection: $workouts[self.idx_workout].Intesity_Level, label: Text("Intensity of Level"))
                             {
                                 ForEach(0..<IntensityOfLevel.count)
                                 {
@@ -65,6 +60,12 @@ struct EditWorkout: View
                     
                 }
                 .accentColor(.red)
+            
+                .onAppear
+                {
+                    self.name_workout_tmp = workouts[self.idx_workout].Title
+                    self.end_time_tmp = workouts[self.idx_workout].End_Time
+                }
             
                 // Button Cancel
                 .navigationBarBackButtonHidden(true)
@@ -84,15 +85,9 @@ struct EditWorkout: View
         var esit_title : Bool = false
         var esit_endTime : Bool = false
           
-        esit_title = new_workout.set_Title(title: self.name_workout_tmp)
+        esit_title = workouts[self.idx_workout].set_Title(title: self.name_workout_tmp)
         
-        new_workout.set_Day(idx: self.daySelected_tmp)
-        
-        new_workout.set_IntensityOfLevel(idx: self.intensitySelected_tmp)
-        
-        new_workout.Start_Time = self.start_tmp
-        
-        esit_endTime = new_workout.set_EndTime(end: self.end_tmp)
+        esit_endTime = workouts[self.idx_workout].set_EndTime(end: self.end_time_tmp)
             
         let all_esit : Bool = esit_title && esit_endTime
         
@@ -100,7 +95,6 @@ struct EditWorkout: View
         {
             self.presentationMode.wrappedValue.dismiss()
         }
-        
     }
 }
 

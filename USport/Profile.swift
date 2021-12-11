@@ -30,7 +30,6 @@ struct Profile: View
     
     @State var firstTime : Bool = true
     
-    
     var body: some View {
         
         NavigationView
@@ -43,22 +42,6 @@ struct Profile: View
                 
                 VStack
                 {
-                    /*
-                    VStack
-                    {
-                        Button(action: {
-                            self.isShowPhotoLibrary = true
-                            
-                        })
-                        {  //Ricordiamoci di caricare l'immagine!!!
-                            Image("profile_icon")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: geometry.size.width/2.5, height: geometry.size.height/3)
-                                .background(Color.white.opacity(0.0))
-                        } .background(Color.white.opacity(0.0)
-                    }
-                    */
                     Form
                     {
                         Section(header: Text(""))
@@ -132,14 +115,7 @@ struct Profile: View
             }
         }
         
-        if self.firstTime
-        {
-            self.workouts = managerUser.UserAPP.workouts
-            self.firstTime = false
-        }
-            
-        managerUser.UserAPP.workouts = self.workouts
-        
+        self.workouts = managerUser.UserAPP.workouts
     }
     
     func saveData()
@@ -195,64 +171,3 @@ struct Profile_Previews: PreviewProvider {
         Profile()
     }
 }
-
-/*
-struct ImagePicker: UIViewControllerRepresentable {
- 
-    var sourceType: UIImagePickerController.SourceType = .photoLibrary
-    @Binding var selectedImage: UIImage
-    @Environment(\.presentationMode) private var presentationMode
-    
-    func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePicker>) -> UIImagePickerController {
-        
-        let imagePicker = UIImagePickerController()
-        imagePicker.allowsEditing = false
-        imagePicker.sourceType = sourceType
-        imagePicker.delegate = context.coordinator
- 
-        return imagePicker
-    }
- 
-    func updateUIViewController(_ uiViewController: UIImagePickerController, context: UIViewControllerRepresentableContext<ImagePicker>) {
- 
-    }
-    
-    final class Coordinator: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-     
-        var parent: ImagePicker
-     
-        init(_ parent: ImagePicker) {
-            self.parent = parent
-        }
-     
-        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-     
-            if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-                parent.selectedImage = image
-                /*
-                let imageSaver = ImageSaver()
-                   imageSaver.writeToPhotoAlbum(image: image)
-                 */
-            }
-     
-            parent.presentationMode.wrappedValue.dismiss()
-        }
-    }
-    
-    func makeCoordinator() -> Coordinator {
-        Coordinator(self)
-    }
-}
-
-class ImageSaver: NSObject {
-    func writeToPhotoAlbum(image: UIImage) {
-        UIImageWriteToSavedPhotosAlbum(image, self, #selector(saveCompleted), nil)
-        
-        
-    }
-
-    @objc func saveCompleted(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
-        print("Save finished!")
-    }
-}
-*/
