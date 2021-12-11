@@ -51,13 +51,6 @@ struct AddWorkout: View
                             managerUser.UserAPP.workouts = workouts
                             
                             UserCoreData.save_user_on_CoreData(user: managerUser.UserAPP, delete_old: true)
-                            
-                            for i in 0..<managerUser.UserAPP.workouts.count
-                            {
-                                print(managerUser.UserAPP.workouts[i].Title)
-                                print(managerUser.UserAPP.workouts[i].name_day())
-                            }
-                            
                         })
                         {
                             Text("Done")

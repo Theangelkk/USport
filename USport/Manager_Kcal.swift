@@ -60,10 +60,7 @@ class Manager_Kcal
             self.RMR -= self.coeff_RMR_Famale
         }
         
-        print(self.user.Type_Activity)
-        print(self.coeff_Activity[self.user.Type_Activity]!)
         self.RMR = self.RMR * self.coeff_Activity[self.user.Type_Activity]!
-        
     }
     
     func get_Kcal_Daily() -> Float
@@ -248,8 +245,6 @@ class Manager_Kcal
         var total_cal_sport : Float = 0.0
         
         let diff_days : Int = userCalendar.numberOfDaysBetween(actual_date, and: yesterday)
-        
-        print(diff_days)
         
         for i in 0..<diff_days
         {

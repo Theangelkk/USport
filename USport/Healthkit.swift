@@ -64,12 +64,7 @@ class HealthStore : ObservableObject
                         
                         if let statisticsCollection = statisticsCollection
                         {
-                            print(statisticsCollection)
-                            
                             self.steps = self.enum_Statistics(statisticsCollection)
-                            
-                            print(self.steps)
-                            print(self.steps.count)
                         }
                     }
                 }

@@ -124,12 +124,6 @@ struct Profile: View
             }
         }
         
-        for i in 0..<managerUser.UserAPP.workouts.count
-        {
-            print(managerUser.UserAPP.workouts[i].Title)
-            print(managerUser.UserAPP.workouts[i].name_day())
-        }
-        
         self.workouts = managerUser.UserAPP.workouts
     }
     
