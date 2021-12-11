@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1B04606F275A6EC100F0BF22 /* ChoiceButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B04606E275A6EC100F0BF22 /* ChoiceButton.swift */; };
-		1B113B362763C8D0003B0867 /* Homepage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B113B352763C8D0003B0867 /* Homepage.swift */; };
 		1B6D885327624F730000CAB3 /* USport_CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1B6D885127624F730000CAB3 /* USport_CoreData.xcdatamodeld */; };
 		1B8AE4CD275E54890021E9AA /* ChoseActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8AE4CC275E54880021E9AA /* ChoseActivity.swift */; };
 		1B8AE4D1275E72730021E9AA /* EditActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8AE4D0275E72730021E9AA /* EditActivity.swift */; };
@@ -23,6 +22,7 @@
 		650C7C8E275A0C620096215D /* USportUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650C7C8D275A0C620096215D /* USportUITests.swift */; };
 		650C7C90275A0C620096215D /* USportUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650C7C8F275A0C620096215D /* USportUITestsLaunchTests.swift */; };
 		6517FB2E275E3DE40090D2EC /* Manager_Kcal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6517FB2D275E3DE40090D2EC /* Manager_Kcal.swift */; };
+		6529C442276486F90026F270 /* Homepage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6529C441276486F90026F270 /* Homepage.swift */; };
 		655078FA275CCDA90034BACB /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 655078F9275CCDA90034BACB /* SwiftUICharts */; };
 		655078FC275D1AC80034BACB /* History_Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655078FB275D1AC80034BACB /* History_Filter.swift */; };
 		65635FD3275A5EBC0076A9C8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65635FD2275A5EBC0076A9C8 /* User.swift */; };
@@ -92,7 +92,6 @@
 
 /* Begin PBXFileReference section */
 		1B04606E275A6EC100F0BF22 /* ChoiceButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceButton.swift; sourceTree = "<group>"; };
-		1B113B352763C8D0003B0867 /* Homepage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Homepage.swift; path = ../../../Downloads/Homepage.swift; sourceTree = "<group>"; };
 		1B6D884F27624F530000CAB3 /* USport_CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = USport_CoreData.xcdatamodel; sourceTree = "<group>"; };
 		1B6D885227624F730000CAB3 /* USport_CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = USport_CoreData.xcdatamodel; sourceTree = "<group>"; };
 		1B8AE4CC275E54880021E9AA /* ChoseActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoseActivity.swift; sourceTree = "<group>"; };
@@ -110,6 +109,7 @@
 		650C7C8D275A0C620096215D /* USportUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USportUITests.swift; sourceTree = "<group>"; };
 		650C7C8F275A0C620096215D /* USportUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USportUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		6517FB2D275E3DE40090D2EC /* Manager_Kcal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manager_Kcal.swift; sourceTree = "<group>"; };
+		6529C441276486F90026F270 /* Homepage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Homepage.swift; sourceTree = "<group>"; };
 		655078FB275D1AC80034BACB /* History_Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History_Filter.swift; sourceTree = "<group>"; };
 		65635FD2275A5EBC0076A9C8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		65635FD4275A5FF00076A9C8 /* PreviewAPP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewAPP.swift; sourceTree = "<group>"; };
@@ -209,7 +209,7 @@
 				65635FDA275A69870076A9C8 /* AddWorkout.swift */,
 				65635FDC275A69C00076A9C8 /* EditWorkout.swift */,
 				65AB8D1E276361DE00081B05 /* Dashboard.swift */,
-				1B113B352763C8D0003B0867 /* Homepage.swift */,
+				6529C441276486F90026F270 /* Homepage.swift */,
 				1B8C6AC527620B6D00F2E7FC /* ViewController.swift */,
 				1BEEFD9D275BA58D005A14CE /* History.swift */,
 				655078FB275D1AC80034BACB /* History_Filter.swift */,
@@ -461,7 +461,7 @@
 				65635FDD275A69C00076A9C8 /* EditWorkout.swift in Sources */,
 				1B04606F275A6EC100F0BF22 /* ChoiceButton.swift in Sources */,
 				65A5BE98275D248A00819933 /* RKDate.swift in Sources */,
-				1B113B362763C8D0003B0867 /* Homepage.swift in Sources */,
+				6529C442276486F90026F270 /* Homepage.swift in Sources */,
 				65AB8D172762519300081B05 /* Step.swift in Sources */,
 				65A5BE8C275D248A00819933 /* RKColorSettings.swift in Sources */,
 				1BEFC52F2760FAC700A508BA /* Notification.swift in Sources */,

@@ -108,7 +108,7 @@ class Manager_Kcal
         return Float(Float(steps) * cal_step)
     }
     
-    func actual_cal_day() -> Float
+    func actual_cal_day() -> (total_cal : Float, cal_day_normal : Float, cal_day_sport : Float)
     {
         let formatter = DateFormatter()
         
@@ -156,7 +156,9 @@ class Manager_Kcal
             cal_activities += sport_act.get_cal_sport(user: user, intensity: "Medium", startTime: start_time_act, endTime: end_time_act)
         }
         
-        return cal_day + cal_sport + cal_activities
+        var total_cal : Float = cal_day + cal_sport + cal_activities
+        
+        return (total_cal,cal_day,cal_sport)
     }
     
     func add_new_historical_data(date : Date, cal_daily : Float, cal_sport : Float, name_day : String)
@@ -217,7 +219,7 @@ class Manager_Kcal
         
         let n_elem = idx_end - idx_start
         
-        for i in 0..<n_elem
+        for i in 0..<n_elem+1
         {
             steps_int.append(self.steps[idx_start+i])
         }

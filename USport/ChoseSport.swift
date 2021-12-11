@@ -9,7 +9,8 @@ import SwiftUI
 
 struct ChoseSport: View {
         
-   @EnvironmentObject var managerUser : ManagerUser
+    @EnvironmentObject var managerUser : ManagerUser
+    @EnvironmentObject var healthStore : HealthKitManager
     
     @State var sportSelected : String = "Default"
     @State var changeView : Bool = false
@@ -67,6 +68,7 @@ struct ChoseSport: View {
                 {
                     InsertData(nameSport : $sportSelected)
                         .environmentObject(managerUser)
+                        .environmentObject(healthStore)
                 }
             }
         }

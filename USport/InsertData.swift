@@ -12,6 +12,7 @@ import UserNotificationsUI
 struct InsertData: View
 {
     @EnvironmentObject var managerUser : ManagerUser
+    @EnvironmentObject var healthStore : HealthKitManager
     
     @StateObject var delegate = Notification()
     
@@ -77,8 +78,6 @@ struct InsertData: View
         
         GeometryReader
         {
-            // Mettere un immagine di sfondo
-            
             geometry in
         
             NavigationView
@@ -151,13 +150,21 @@ struct InsertData: View
             {
                 AddWorkout()
                     .environmentObject(managerUser)
+                    .environmentObject(healthStore)
+            }
+        }
+        .onAppear
+        {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0)
+            {
+                self.healthStore.startQuery()
             }
         }
     }
 }
 
-struct Image_t : View {
-    
+struct Image_t : View
+{
     var Image_name : String
     
     var body: some View{
@@ -179,7 +186,8 @@ struct TextField_Elem: View
     
     var geometry : GeometryProxy
     
-    var body: some View {
+    var body: some View
+    {
         HStack (alignment: .center, spacing: 15)
         {
             Image_t(Image_name: name_image)

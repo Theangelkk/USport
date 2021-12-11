@@ -31,8 +31,6 @@ struct EditWorkout: View
     {
         GeometryReader
         {
-            // Mettere un immagine di sfondo
-            
             geometry in
             
             Form

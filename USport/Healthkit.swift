@@ -297,9 +297,7 @@ class HealthKitManager: ObservableObject
                     let count = statistics.sumQuantity()?.doubleValue(for: .count())
                     
                     let step = Step(count: Int(count ?? 0), date: statistics.startDate)
-                    
-                    print(step)
-                    
+                
                     DispatchQueue.main.async{
                         self.steps.append(step)
                     }

@@ -78,7 +78,7 @@ struct History_Filter: View {
             
             self.items_days = ris_all_cal
             
-            /*
+            
             var items : [Table_Cal_Daily] = Table_Cal_Daily.get_all_items()
             
             for i in 0..<items.count
@@ -94,7 +94,6 @@ struct History_Filter: View {
             print("avg week = \(Table_Cal_Daily.average_cal_week())")
             
             print("Number of elements: \(items.count)")
-            */
         }
     }
 }

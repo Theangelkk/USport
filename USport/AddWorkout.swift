@@ -10,6 +10,7 @@ import SwiftUI
 struct AddWorkout: View
 {
     @EnvironmentObject var managerUser : ManagerUser
+    @EnvironmentObject var healthStore : HealthKitManager
     
     @State var changeView : Bool = false
     @State var nameWorkout : String = ""
@@ -17,9 +18,7 @@ struct AddWorkout: View
     var body: some View
     {
         GeometryReader
-        {
-            // Mettere un immagine di sfondo
-            
+        {            
             geometry in
             
             NavigationView
@@ -57,6 +56,16 @@ struct AddWorkout: View
             {
                 Dashboard()
                     .environmentObject(managerUser)
+                    .environmentObject(healthStore)
+            }
+        }
+        .onAppear
+        {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0)
+            {
+                self.managerUser.steps = self.healthStore.steps
+                
+                print(self.managerUser.steps)
             }
         }
     }
