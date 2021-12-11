@@ -67,7 +67,7 @@ class User : ObservableObject
     
     func load_UserCoreData(usr : UserCoreData?)
     {
-        self.nickname = String(usr!.nickname!)
+        self.nickname = usr!.nickname!
         
         self.Age = Int(usr!.age)
         

@@ -36,6 +36,7 @@ struct AddWorkout_Profile: View
                         idx in
                         
                         ButtonWorkout_Profile(idx_workout: idx, workouts : $managerUser.UserAPP.workouts, type_sport: type_sport, new_workout : managerUser.UserAPP.workouts[idx])
+                            .environmentObject(managerUser)
                     }
                 }
             }

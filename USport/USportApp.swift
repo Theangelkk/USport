@@ -10,15 +10,12 @@ import HealthKit
 
 @main
 struct USportApp: App
-{
-    @StateObject var managerUser : ManagerUser = ManagerUser()
-    
+{    
     var body: some Scene
     {
         WindowGroup
         {
             PreviewAPP()
-                .environmentObject(managerUser)
         }
     }
 }

@@ -10,7 +10,7 @@ import HealthKit
 
 struct PreviewAPP: View
 {
-    @EnvironmentObject var managerUser : ManagerUser
+    @StateObject var managerUser : ManagerUser = ManagerUser()
     @StateObject var healthStore: HealthKitManager = HealthKitManager()
     
     @State private var showMainView = false
@@ -73,7 +73,7 @@ struct PreviewAPP: View
                 self.managerUser.UserAPP = User()
                 
                 managerUser.UserAPP.load_UserCoreData(usr: usr)
-                
+            
                 self.firstTime = false
             }
             else

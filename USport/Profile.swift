@@ -54,16 +54,22 @@ struct Profile: View
                                     }
                                     .foregroundColor(.blue)
                             }.onChange(of: self.sexSelected, perform:{ (value) in
+                                
                                 save_changes()
+
                             })
                             
                             TextField_Elem_Profile(name_image: "weight", init_text: weight, text: $weight, geometry: geometry).onChange(of: self.weight, perform:{ (value) in
+                        
                                 save_changes()
+                                
                             })
                             
         
                             TextField_Elem_Profile(name_image: "height", init_text: height, text: $height, geometry: geometry).onChange(of: self.height, perform:{ (value) in
+                                
                                 save_changes()
+                                
                             })
                             
                             NavigationLink(destination: AddWorkout_Profile(type_sport: managerUser.UserAPP.workouts[0].Type_of_Sport)
@@ -71,7 +77,9 @@ struct Profile: View
                             {
                                 Text("Workouts")
                             }.onChange(of: self.workouts, perform:{ (value) in
+                                
                                 save_changes()
+
                             })
                             
                             Toggle("Notifications", isOn: $shouldActivateNotifications)
@@ -80,7 +88,8 @@ struct Profile: View
                         }
                         .foregroundColor(.black)
                         .onChange(of: self.shouldActivateNotifications, perform:{ (value) in
-                            save_changes()
+                        
+                                save_changes()
                         })
                     }
                 }
@@ -113,6 +122,12 @@ struct Profile: View
             {
                 sexSelected = i
             }
+        }
+        
+        for i in 0..<managerUser.UserAPP.workouts.count
+        {
+            print(managerUser.UserAPP.workouts[i].Title)
+            print(managerUser.UserAPP.workouts[i].name_day())
         }
         
         self.workouts = managerUser.UserAPP.workouts

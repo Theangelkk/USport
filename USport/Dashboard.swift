@@ -66,6 +66,8 @@ struct Dashboard: View
                 Image(systemName: "person.circle")
                 Text("Profile")
             }
+            .environmentObject(managerUser)
+            
         }.onAppear
         {
             self.managerKcal = Manager_Kcal()

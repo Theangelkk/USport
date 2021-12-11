@@ -34,13 +34,15 @@ public class UserCoreData: NSManagedObject
     
         do
         {
-            var ans : [UserCoreData] = try CoreDataManager.persistentContainer!.viewContext.fetch(request)
+            let ans : [UserCoreData] = try CoreDataManager.persistentContainer!.viewContext.fetch(request)
             
             print("N User = \(ans.count)")
             
             if ans.count > 0
             {
-                return ans[0]
+                self.actual_userCoreData = ans[0]
+                
+                return self.actual_userCoreData
             }
             else
             {
@@ -55,16 +57,13 @@ public class UserCoreData: NSManagedObject
     
     static func save_user_on_CoreData(user : User, delete_old : Bool)
     {
+        UserCoreData.actual_userCoreData = UserCoreData.get_user()
+        
         if UserCoreData.actual_userCoreData == nil
         {
-            UserCoreData.actual_userCoreData = UserCoreData.get_user()
-        
-            if UserCoreData.actual_userCoreData == nil
-            {
-                UserCoreData.actual_userCoreData = UserCoreData(context: CoreDataManager.persistentContainer!.viewContext)
-            }
+            UserCoreData.actual_userCoreData = UserCoreData(context: CoreDataManager.persistentContainer!.viewContext)
         }
-        
+
         UserCoreData.actual_userCoreData!.copy_User(usr: user)
         
         print(UserCoreData.actual_userCoreData!)
