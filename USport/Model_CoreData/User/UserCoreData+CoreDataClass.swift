@@ -35,9 +35,7 @@ public class UserCoreData: NSManagedObject
         do
         {
             let ans : [UserCoreData] = try CoreDataManager.persistentContainer!.viewContext.fetch(request)
-            
-            print("N User = \(ans.count)")
-            
+                    
             if ans.count > 0
             {
                 self.actual_userCoreData = ans[0]

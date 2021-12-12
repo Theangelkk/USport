@@ -145,9 +145,8 @@ struct Profile: View
                 
                 managerUser.UserAPP.workouts = self.workouts
         
-                //USportApp.UserAPP!.set_type_of_activity(idx: idx_activity)
-                
                 UserCoreData.save_user_on_CoreData(user: managerUser.UserAPP, delete_old: true)
+                
             }
         }
     }

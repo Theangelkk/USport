@@ -14,7 +14,8 @@ struct RKCell: View {
     
     var cellWidth: CGFloat
     
-    var body: some View {
+    var body: some View
+    {
         Text(rkDate.getText())
             .fontWeight(rkDate.getFontWeight())
             .foregroundColor(rkDate.getTextColor())
@@ -26,9 +27,12 @@ struct RKCell: View {
 }
 
 #if DEBUG
-struct RKCell_Previews : PreviewProvider {
-    static var previews: some View {
-        Group {
+struct RKCell_Previews : PreviewProvider
+{
+    static var previews: some View
+    {
+        Group
+        {
             RKCell(rkDate: RKDate(date: Date(), rkManager: RKManager(calendar: Calendar.current, minimumDate: Date(), maximumDate: Date().addingTimeInterval(60*60*24*365), mode: 0), isDisabled: false, isToday: false, isSelected: false, isBetweenStartAndEnd: false), cellWidth: CGFloat(32))
                 .previewDisplayName("Control")
             RKCell(rkDate: RKDate(date: Date(), rkManager: RKManager(calendar: Calendar.current, minimumDate: Date(), maximumDate: Date().addingTimeInterval(60*60*24*365), mode: 0), isDisabled: true, isToday: false, isSelected: false, isBetweenStartAndEnd: false), cellWidth: CGFloat(32))

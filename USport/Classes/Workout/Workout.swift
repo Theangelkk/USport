@@ -33,7 +33,6 @@ public class Workout : Activity, NSSecureCoding
         self.Intesity_Level = 0
         
         super.init()
-        
     }
     
     init(newValue_Day : Int, newValue_Title: String, newValue_StartTime: Date, newValue_EndTime: Date, newValue_Intesity_Level : Int, type_of_sport : String)
@@ -50,8 +49,8 @@ public class Workout : Activity, NSSecureCoding
         let mIntensity_Level = coder.decodeInteger(forKey: Key.Intensity_Level.rawValue)
         
         let mTitle = coder.decodeObject(forKey: Key.Title.rawValue) as? String
-        let mStart_Time = coder.decodeObject(of: NSDate.self, forKey: Key.Start_Time.rawValue) as? Date
-        let mEnd_Time = coder.decodeObject(of: NSDate.self, forKey: Key.End_Time.rawValue) as? Date
+        let mStart_Time = coder.decodeObject(of: NSDate.self, forKey: Key.Start_Time.rawValue) as Date?
+        let mEnd_Time = coder.decodeObject(of: NSDate.self, forKey: Key.End_Time.rawValue) as Date?
         
         let mSport = coder.decodeObject(forKey: Key.type_of_sport.rawValue) as? String
         

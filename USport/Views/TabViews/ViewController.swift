@@ -9,10 +9,12 @@ import Foundation
 import UIKit
 import UserNotifications
 
-class ViewController: UIViewController {
-
-    override func viewDidLoad() {
+class ViewController: UIViewController
+{
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
+        
         // Do any additional setup after loading the view, typically from a nib.
         
         // Step 1: Ask for permission

@@ -62,7 +62,6 @@ class User : ObservableObject
         self.gender = "Male"
         
         self.create_n_workouts(n_workouts: n_workout)
-        
     }
     
     func load_UserCoreData(usr : UserCoreData?)
@@ -136,9 +135,9 @@ class User : ObservableObject
     
     func set_gender(idx: Int)
     {
-        
-            self.gender = type_of_gender[idx]
+        self.gender = type_of_gender[idx]
     }
+    
     func add_workout(workout : Workout)
     {
         self.workouts.append(workout)

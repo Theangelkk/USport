@@ -18,24 +18,37 @@ struct RKMonth: View {
     
     let calendarUnitYMD = Set<Calendar.Component>([.year, .month, .day])
     let daysPerWeek = 7
-    var monthsArray: [[Date]] {
+    var monthsArray: [[Date]]
+    {
         monthArray()
     }
+    
     let cellWidth = CGFloat(32)
     
     @State var showTime = false
     
     
     var body: some View {
-        VStack(alignment: HorizontalAlignment.center, spacing: 10){
+        VStack(alignment: HorizontalAlignment.center, spacing: 10)
+        {
             Text(getMonthHeader()).foregroundColor(self.rkManager.colors.monthHeaderColor)
-            VStack(alignment: .leading, spacing: 5) {
-                ForEach(monthsArray, id:  \.self) { row in
-                    HStack() {
-                        ForEach(row, id:  \.self) { column in
-                            HStack() {
+            VStack(alignment: .leading, spacing: 5)
+            {
+                ForEach(monthsArray, id:  \.self)
+                {
+                    row in
+                    
+                    HStack()
+                    {
+                        ForEach(row, id:  \.self)
+                        {
+                            column in
+                            
+                            HStack()
+                            {
                                 Spacer()
-                                if self.isThisMonth(date: column) {
+                                if self.isThisMonth(date: column)
+                                {
                                     RKCell(rkDate: RKDate(
                                         date: column,
                                         rkManager: self.rkManager,
@@ -44,8 +57,12 @@ struct RKMonth: View {
                                         isSelected: self.isSpecialDate(date: column),
                                         isBetweenStartAndEnd: self.isBetweenStartAndEnd(date: column)),
                                         cellWidth: self.cellWidth)
-                                        .onTapGesture { self.dateTapped(date: column) }
-                                } else {
+                                        .onTapGesture { self.dateTapped(date: column)
+                                            
+                                        }
+                                }
+                                else
+                                {
                                     Text("").frame(width: self.cellWidth, height: self.cellWidth)
                                 }
                                 Spacer()

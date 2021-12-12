@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct ChoseSport: View {
-        
+struct ChoseSport: View
+{
     @EnvironmentObject var managerUser : ManagerUser
     @EnvironmentObject var healthStore : HealthKitManager
     
@@ -19,9 +19,8 @@ struct ChoseSport: View {
     {
         ZStack
         {
-            // Mettere un immagine di sfondo
-            
-            GeometryReader{
+            GeometryReader
+            {
                 
                 geometry in
             

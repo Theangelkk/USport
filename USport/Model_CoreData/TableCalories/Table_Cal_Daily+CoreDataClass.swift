@@ -226,7 +226,6 @@ public class Table_Cal_Daily: NSManagedObject
     static func test(n_days : Int)
     {
         let cal = Calendar.current
-        //var date = cal.startOfDay(for: Date())
         
         var date = Calendar.current.date(byAdding: .day, value: -5, to: Date())!
         
@@ -250,7 +249,7 @@ public class Table_Cal_Daily: NSManagedObject
             
             dates.append(date)
             
-            var name_today = self.formatter.string(from: date)
+            let name_today = self.formatter.string(from: date)
             
             cal_daily = Float.random(in: 1200.0 ..< 2500.0)
             

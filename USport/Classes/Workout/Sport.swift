@@ -132,7 +132,6 @@ class Sport : ObservableObject
         }
         else if(intensity == "Medium")
         {
-        
             cal_hour = self.Coeff_Kcal_Medium * lean_mass
         }
         else
@@ -149,10 +148,9 @@ class Sport : ObservableObject
         
         let diff_min : Int = (dataTimeComponets_EndTime.minute! - dataTimeComponets_StartTime.minute!)
         
-        var all_cal = Float(diff_min + diff_hour_in_min) * cal_min
+        let all_cal = Float(diff_min + diff_hour_in_min) * cal_min
         
         return all_cal
-        
     }
 }
 
