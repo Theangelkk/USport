@@ -1,6 +1,6 @@
 # USport
 iOS Application - Team B\
-Introduction\
+Introduction
 
 USport is an iOS application which is able to monitor calories without sensors.
 
