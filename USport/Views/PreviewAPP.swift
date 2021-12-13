@@ -76,12 +76,6 @@ struct PreviewAPP: View
             
                 self.firstTime = false
             }
-            else
-            {
-                Table_Cal_Daily.remove_all()
-                
-                Table_Cal_Daily.test(n_days: 10)
-            }
     
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0)
             {

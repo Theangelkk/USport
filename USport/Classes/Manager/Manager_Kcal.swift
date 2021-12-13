@@ -226,42 +226,49 @@ class Manager_Kcal
         var total_cal_daily : Float = 0.0
         var total_cal_sport : Float = 0.0
         
-        let diff_days : Int = userCalendar.numberOfDaysBetween(actual_date, and: yesterday)
+        var diff_days : Int = userCalendar.numberOfDaysBetween(actual_date, and: yesterday)
         
-        for i in 0..<diff_days
+        if (diff_days <= 0)
         {
-            total_cal_daily = 0.0
-            total_cal_sport = 0.0
-            
-            actual_date = Calendar.current.date(byAdding: .day, value: +1, to: actual_date)!
-            
-            total_cal_daily += self.get_Kcal_Daily()
-            
-            if steps.count > 0
+            diff_days = 0
+        }
+        else
+        {
+            for i in 0..<diff_days
             {
-                total_cal_daily += self.get_Kcal_pedometer(steps: steps[i].count)
-            }
-            else
-            {
-                total_cal_daily += 0.0
-            }
-            
-            let name_today : String = formatter.string(from: actual_date)
-            
-            for j in 0..<self.user.workouts.count
-            {
-                let name_day_sport = self.user.workouts[j].name_day()
-        
-                if name_today == name_day_sport
+                total_cal_daily = 0.0
+                total_cal_sport = 0.0
+                
+                actual_date = Calendar.current.date(byAdding: .day, value: +1, to: actual_date)!
+                
+                total_cal_daily += self.get_Kcal_Daily()
+                
+                if steps.count > 0
                 {
-                    let intensity = self.user.workouts[j].IntensityOfLevel[self.user.workouts[j].Intesity_Level]
-                    
-                    let sport = Sport(type_of_sport: self.user.workouts[j].Type_of_Sport)
-                    total_cal_sport += sport.get_cal_sport(user: user, intensity: intensity, startTime: self.user.workouts[j].Start_Time, endTime: self.user.workouts[j].End_Time)
+                    total_cal_daily += self.get_Kcal_pedometer(steps: steps[i].count)
                 }
-            }
+                else
+                {
+                    total_cal_daily += 0.0
+                }
+                
+                let name_today : String = formatter.string(from: actual_date)
+                
+                for j in 0..<self.user.workouts.count
+                {
+                    let name_day_sport = self.user.workouts[j].name_day()
             
-            self.add_new_historical_data(date: actual_date, cal_daily: total_cal_daily, cal_sport: total_cal_sport, name_day: name_today)
+                    if name_today == name_day_sport
+                    {
+                        let intensity = self.user.workouts[j].IntensityOfLevel[self.user.workouts[j].Intesity_Level]
+                        
+                        let sport = Sport(type_of_sport: self.user.workouts[j].Type_of_Sport)
+                        total_cal_sport += sport.get_cal_sport(user: user, intensity: intensity, startTime: self.user.workouts[j].Start_Time, endTime: self.user.workouts[j].End_Time)
+                    }
+                }
+                
+                self.add_new_historical_data(date: actual_date, cal_daily: total_cal_daily, cal_sport: total_cal_sport, name_day: name_today)
+            }
         }
     }
 }

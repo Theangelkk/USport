@@ -236,22 +236,14 @@ struct ButtonBar
         {
             totalKcal = Table_Cal_Daily.average_cal_days()
             
+            if totalKcal == 0.0
+            {
+                totalKcal = currentKcal
+            }
+    
             self.text = "daily"
         }
-        else if idx == 1
-        {
-            totalKcal = Table_Cal_Daily.average_cal_days()
-            
-            self.text = "weekly"
-        }
-        else
-        {
-            totalKcal = Table_Cal_Daily.average_cal_mounth()
-            
-            self.text = "monthty"
-            
-        }
-        
+    
         other_circle = (currentKcal/totalKcal) - 1.0
     }
 }

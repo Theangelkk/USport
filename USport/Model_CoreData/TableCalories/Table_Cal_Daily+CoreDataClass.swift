@@ -200,15 +200,22 @@ public class Table_Cal_Daily: NSManagedObject
         var Total_cal_daily : Float = 0.0
         var Total_cal_sport : Float = 0.0
         
-        for i in 0..<items.count
+        if items.count > 0
         {
-            let item : Table_Cal_Daily = items[i]
+            for i in 0..<items.count
+            {
+                let item : Table_Cal_Daily = items[i]
+                
+                Total_cal_daily += item.cal_daily
+                Total_cal_sport += item.cal_sport
+            }
             
-            Total_cal_daily += item.cal_daily
-            Total_cal_sport += item.cal_sport
+            return Float(Float(Total_cal_daily + Total_cal_sport) / Float(items.count))
         }
-        
-        return Float(Float(Total_cal_daily + Total_cal_sport) / Float(items.count))
+        else
+        {
+            return 0.0
+        }
     }
     
     static func save_item_on_CoreData()
