@@ -69,6 +69,7 @@
 		65A5BEA0275D248A00819933 /* RKManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A5BE8B275D248A00819933 /* RKManager.swift */; };
 		65AB8D172762519300081B05 /* Step.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AB8D162762519300081B05 /* Step.swift */; };
 		65AB8D1F276361DE00081B05 /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AB8D1E276361DE00081B05 /* Dashboard.swift */; };
+		65F7530F276737000023C752 /* README.md  in Resources */ = {isa = PBXBuildFile; fileRef = 65F7530E276737000023C752 /* README.md  */; };
 		7DDB5D80275F9ADD008B071D /* Healthkit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDB5D7F275F9ADD008B071D /* Healthkit.swift */; };
 		7DFC1FCC275CC1AD00335F63 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFC1FCB275CC1AD00335F63 /* Profile.swift */; };
 /* End PBXBuildFile section */
@@ -144,6 +145,7 @@
 		65AB8D182762743800081B05 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		65AB8D1D276274ED00081B05 /* USport.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = USport.entitlements; sourceTree = "<group>"; };
 		65AB8D1E276361DE00081B05 /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
+		65F7530E276737000023C752 /* README.md  */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "README.md "; sourceTree = "<group>"; };
 		7DDB5D7F275F9ADD008B071D /* Healthkit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Healthkit.swift; sourceTree = "<group>"; };
 		7DFC1FCB275CC1AD00335F63 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -199,6 +201,7 @@
 		650C7C71275A0C5F0096215D /* USport */ = {
 			isa = PBXGroup;
 			children = (
+				65F7530E276737000023C752 /* README.md  */,
 				650C7C76275A0C610096215D /* Assets.xcassets */,
 				65AB8D1D276274ED00081B05 /* USport.entitlements */,
 				65AB8D15276234FA00081B05 /* Info.plist */,
@@ -482,6 +485,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65F7530F276737000023C752 /* README.md  in Resources */,
 				650C7C7A275A0C610096215D /* Preview Assets.xcassets in Resources */,
 				650C7C77275A0C610096215D /* Assets.xcassets in Resources */,
 			);
