@@ -8,10 +8,10 @@ USport is an iOS application which is able to monitor calories without sensors.
 1. Clone the repository\
 `https://github.com/Theangelkk/USport`
    
-2. Enter the project directory\
-`USport.xcodeproj`\
+2. Enter the project directory
+`USport.xcodeproj`
 
-3. Run the application\
+3. Run the application
 
 -------------------------------------
 Team:
